@@ -1,6 +1,6 @@
 import { View, Text } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
-import './consultation.less'
+import './consultation.scss'
 
 export default function Index() {
 
