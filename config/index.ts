@@ -36,7 +36,7 @@ export default defineConfig(async (merge, { command, mode }) => {
         pxtransform: {
           enable: true,
           config: {
-
+            onePxTransform: true
           }
         },
         url: {
