@@ -38,3 +38,21 @@
       width: 53.34px;
       height: 48px;
   }
+  .change_area {
+      font-size: 28px;
+      border: 1px solid green;
+      ::after {
+        content: "";
+        position: absolute;
+        // bottom: 0;
+        // left: 50%;
+        right: -20px;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 10px solid #333;
+      
+      }
+  }
