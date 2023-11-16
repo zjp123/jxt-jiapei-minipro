@@ -1,0 +1,58 @@
+.navigationPage{
+    // position: fixed;
+    // top:0;
+    // left:0;
+    width:100%;
+    text-align:center;
+    box-sizing: content-box;
+  }
+  .head{
+    display: flex;
+    align-items: center;
+    color: #585858;
+    border: 1px solid red;
+  }
+  .navigationIcon{
+    position: absolute;
+    left:30px;
+  }
+  .navigationTitle{
+    font-weight:600;
+    flex:1;
+    display: flex;
+    justify-content: center;
+    .ml {
+        margin-left: 3px;
+    }
+  }
+  .small{
+    font-size:14px;
+  }
+  .default{
+    font-size:36px;
+  }
+  .large{
+    font-size:18px;
+  }
+  .logoimg {
+      width: 53.34px;
+      height: 48px;
+  }
+  .change_area {
+      font-size: 28px;
+      border: 1px solid green;
+      ::after {
+        content: "";
+        position: absolute;
+        // bottom: 0;
+        // left: 50%;
+        right: -20px;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 10px solid #333;
+      
+      }
+  }
