@@ -4,6 +4,7 @@ import { useLoad } from '@tarojs/taro'
 import { useEffect } from 'react'
 import './index.scss'
 import Navigation from '../../components/navbar/navbar'
+import SwiperCom from '../../components/swiperCom/swiper'
 
 export default function Index() {
 	// const [padTop, setPadTop] = useState<number>()
@@ -20,6 +21,7 @@ export default function Index() {
 	return (
 		<>
 			<Navigation />
+            <SwiperCom />
 			{/* <View className='box'>
 				<Text>Hello world!</Text>
 				<Text>58驾培</Text>

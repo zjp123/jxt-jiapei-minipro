@@ -4,7 +4,6 @@ import { useLoad } from '@tarojs/taro'
 import './navbar.scss'
 import { get as getGlobalData } from '../../global_data'
 import Taro from '@tarojs/taro'
-import logoPath from '../../static/images/58.png'
 import { AtActionSheet, AtActionSheetItem } from "taro-ui"
 import { useState } from 'react'
 export default function Navbar(props) {
@@ -64,7 +63,7 @@ export default function Navbar(props) {
                         </AtActionSheet>
                     </View>
                     <View className="navigationTitle">
-                        <CoverImage className='logoimg' src={logoPath} />
+                        <CoverImage className='logoimg' src='https://img.58cdn.com.cn/dist/jxt/images/jxtschool/58_mini_jiapei.png' />
                         <Text className="ml">{props.title}</Text>
                     </View>
                 </View>
