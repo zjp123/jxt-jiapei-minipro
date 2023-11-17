@@ -6,29 +6,17 @@ import './index.scss'
 import Navigation from '../../components/navbar/navbar'
 import SwiperCom from '../../components/swiperCom/swiper'
 import { useState } from 'react'
-import TextIcon from './components/text-icon/text-icon'
-import CoachField from './components/coach-field/coach-field'
-import ClassIntroduc from './components/class-introduc/class-introduc'
-import CoachStar from './components/coach-star/coach-star'
-import SmartSchool from './components/smart-school/smart-school'
-import SchoolNews from './components/school-news/school-news'
 
 let _freshing = false
 export default function Index() {
     const [triggered, setTriggered] = useState(false)
     const [arr, setArr] = useState([])
     const [topPx, setTopPx] = useState()
-    const [page, setPage] = useState(1);
-    const totalPages = 6;
     // const navRef = useRef()
     const onPulling = (e) => {
         setTriggered(true)
         console.log('onPulling:', e)
     }
-
-    useEffect(() => {
-        fetchData()
-    }, [page]);
 
     useReady(() => {
         // 初次渲染时，在小程序触发 onReady 后，才能获取小程序的渲染层节点
@@ -39,20 +27,19 @@ export default function Index() {
               console.log(res, '>>>>')
               setTopPx(res[0].top)
           })
-    })
+      })
 
-    const fetchData = () => {
-        if (page === 1) {
-            setTimeout(() => {
-                Taro.hideLoading()
-                const list: any = []
-                for (let i = 0; i < 10; i++) list.push(i)
-                setArr(list)
-                setTriggered(false)
-                _freshing = false
-            }, 1000)
-            return
-        }
+    const onRestore = (e) => {
+        console.log('onRestore:', e)
+    }
+
+    // 上拉
+    const onPuUp = () => {
+        if (_freshing || arr.length >= 30) return
+        Taro.showLoading({
+            title: '加载中',
+        })
+        _freshing = true
         setTimeout(() => {
             Taro.hideLoading()
             const list: any = []
@@ -63,20 +50,6 @@ export default function Index() {
         }, 1000)
     }
 
-    const onRestore = (e) => {
-        console.log('onRestore:', e)
-    }
-
-    // 上拉
-    const onPuUp = () => {
-        if (_freshing || page >= totalPages) return
-        Taro.showLoading({
-            title: '加载中',
-        })
-        _freshing = true
-        setPage(page + 1)
-    }
-
     // 下拉刷新
     const onRefresh = () => {
         if (_freshing) return
@@ -84,9 +57,25 @@ export default function Index() {
             title: '加载中',
         })
         _freshing = true
-        setPage(1)
+        // setTimeout(() => {
+        //   this.setData({
+        //     triggered: false,
+        //   })
+        //   this._freshing = false
+        // }, 3000)
+        setTimeout(() => {
+            Taro.hideLoading()
+            const list: any = []
+            for (let i = 0; i < 10; i++) list.push(i)
+            setArr(list)
+            setTriggered(false)
+            _freshing = false
+        }, 1000)
     }
 
+	useEffect(() => {
+		// console.log(navRef.current, 'lll')
+	}, [])
 	useLoad(() => {
 		console.log('Page loaded.')
 		// Taro.setNavigationBarTitle({
@@ -117,22 +106,19 @@ export default function Index() {
                 // bindrefresherabort="onAbort"
             >
                 <SwiperCom />
-                <TextIcon />
-                {/* {
+                {
                     arr.map((item, index) => {
                         return (
                             <View key={index} style="display: flex; height: 100px;">
-                                <Image style={{width: '100%'}} src="https://images.unsplash.com/photo-1565699894576-1710004524ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1832&q=80" />
+                                <Image src="https://images.unsplash.com/photo-1565699894576-1710004524ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1832&q=80" />
+                                <Image src="https://images.unsplash.com/photo-1566378955258-7633cb5c823e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" />
+                                <Image src="https://images.unsplash.com/photo-1566404394190-cda8c6209208?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=630&q=80" />
+                                <Image src="https://images.unsplash.com/photo-1566490595448-be523b4d2914?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=958&q=80" />
                             </View>
                         )
                     })
-                } */}
-                <CoachField />
-                <ClassIntroduc />
-                <CoachStar />
-                <SmartSchool />
-                <SchoolNews />
+                }
             </ScrollView>
-        </View>
+		</View>
 	)
 }

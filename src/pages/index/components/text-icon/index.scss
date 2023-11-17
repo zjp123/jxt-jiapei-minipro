@@ -1,0 +1,20 @@
+.text_icon_box {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'PingFang SC';
+    height: 70px;
+    align-items: center;
+    padding: 0 26px;
+    margin-bottom: 10px;
+    .fl {
+        display: flex;
+        align-items: center;
+        font-size: 22px;
+        line-height: 28px;
+    }
+    .mr {
+        width: 28px;
+        height: 28px;
+        margin-right: 8px;
+    }
+}

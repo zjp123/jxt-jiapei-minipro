@@ -1,0 +1,115 @@
+#coach-star-box {
+    background-color: #fff;
+    border-radius: 24px;
+    padding: 37px 24px 0;
+    margin-bottom: 10px;
+    .coach-star-title {
+        line-height: 44px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .coach-card-title {
+            font-family: FZLanTingHei-R-GBK;
+            font-size: 36px;
+            color: #101D37;
+            margin-right: 24px;
+        }
+        .coach-card-level-title {
+            font-family: FZLanTingHei-R-GBK;
+            font-size: 24px;
+            color: #999;
+        }
+        .look-more {
+            font-family: FZLanTingHei-R-GBK;
+            color: #458DD2;
+            font-size: 22px;
+        }
+    }
+    .single-coach-box {
+        padding: 30px 0;
+        // border: 1px solid red;
+        display: flex;
+        // align-items: center;
+        // border-bottom: 1px solid #EDEDED;
+        .img-left-width {
+            width: 120px;
+            height: 120px;
+            border-radius: 60px;
+            margin-right: 18px;
+
+        }
+        .card-right {
+            flex: 1;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            // border: 1px solid red;
+            .card-right-one {
+                display: flex;
+                align-items: center;
+                // border: 1px solid red;
+                .card-right-title {
+                    font-family: 'PingFang SC';
+                    font-size: 36px;
+                    color: #14213A;
+                    // border: 1px solid green;
+                    line-height: 44px;
+
+                }
+                image {
+                    width: 114px;
+                    height: 32.3px;
+                    margin: 0 20px;
+                }
+                .star-tag {
+                    padding: 2px 12px;
+                    background-color: #EFF3F5;
+                    color: #666;
+                    font-size: 22px;
+                    border-radius: 6px;
+                }
+            }
+            .card-right-two {
+                display: flex;
+                image {
+                    width: 34px;
+                    height: 34px;
+                    margin-right: 6px;
+                }
+                .star-chang-di {
+                    font-size: 24px;
+                    color: #666;
+                    line-height: 36px;
+                }
+            }
+            .card-right-three {
+                display: flex;
+                
+                .score {
+                    color: #FF8D00;
+                    font-size: 24px;
+                    margin-right: 18px;
+                }
+                .evaluate {
+                    display: flex;
+                    font-size: 24px;
+                    color: #666;
+                    margin-right: 18px;
+                    .count {
+                        color: #FF8A00;
+                    }
+                }
+                .star-tag {
+                    padding: 2px 12px;
+                    background-color: #EFF3F5;
+                    color: #666;
+                    font-size: 22px;
+                    border-radius: 6px;
+                    margin-right: 18px;
+                }
+            }
+        }
+    }
+ 
+}

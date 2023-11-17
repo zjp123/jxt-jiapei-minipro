@@ -1,0 +1,113 @@
+#class-introduc-box {
+    background-color: #fff;
+    border-radius: 24px;
+    padding: 37px 24px 0;
+    margin-bottom: 10px;
+    .class-introduc-title {
+        line-height: 44px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .class-card-title {
+            font-family: FZLanTingHei-R-GBK;
+            font-size: 36px;
+            color: #101D37;
+            margin-right: 24px;
+        }
+        .class-card-level-title {
+            font-family: FZLanTingHei-R-GBK;
+            font-size: 24px;
+            color: #999;
+        }
+        .look-more {
+            font-family: FZLanTingHei-R-GBK;
+            color: #458DD2;
+            font-size: 22px;
+        }
+    }
+    .single-class-box {
+        padding: 30px 0;
+        // border: 1px solid red;
+        display: flex;
+        // align-items: center;
+        // border-bottom: 1px solid #EDEDED;
+        .img-left-width {
+            width: 233.6px;
+            height: 175.2px;
+            border-radius: 12px;
+            margin-right: 18px;
+        }
+        .card-right {
+            flex: 1;
+            // border: 1px solid red;
+            .card-right-title {
+                font-family: 'PingFang SC';
+                font-size: 36px;
+                color: #333;
+                line-height: 52px;
+                margin-bottom: 10px;
+                // border: 1px solid green;
+            }
+            .two-tag {
+                display: flex;
+            }
+            .card-right-tag {
+                padding: 10px;
+                background-color: #EFF3F5;
+                color: #666;
+                font-size: 24px;
+                margin-right: 10px;
+                border-radius: 6px;
+                margin-bottom: 10px;
+            }
+            .fl {
+                display: flex;
+            }
+            .class-price {
+                .hdj {
+                    font-size: 24px;
+                    color: #FF6600;
+                }
+                .symbol {
+                    font-size: 24px;
+                    color: #FF6600;
+                    font-weight: 500;
+                }
+                .cny {
+                    font-size: 40px;
+                    color: #FF6600;
+                    font-weight: 500;
+                }
+                .origin-rice {
+                    font-size: 24px;
+                    color: #999;
+                    margin-left: 8px;
+                    text-decoration-line: line-through;
+                }
+            }
+            .class-online-sinup {
+                // display: flex;
+                // justify-content: center;
+                // align-items: center;
+                color: #fff;
+                background-color: #E9623E;
+                font-size: 28px;
+                border-radius: 52px;
+                padding: 8px 24px;
+                float: right;
+                margin-top: 14px;
+            }
+        }
+    }
+    // .fl {
+    //     display: flex;
+    //     align-items: center;
+    //     font-size: 20px;
+    //     line-height: 28px;
+    // }
+    // .mr {
+    //     width: 28px;
+    //     height: 28px;
+    //     margin-right: 5px;
+    // }
+}

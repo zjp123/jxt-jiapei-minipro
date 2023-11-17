@@ -5,8 +5,8 @@ import './navbar.scss'
 import { get as getGlobalData } from '../../global_data'
 import Taro from '@tarojs/taro'
 import { AtActionSheet, AtActionSheetItem } from "taro-ui"
-import { useState } from 'react'
-export default function Navbar(props) {
+import { useState, forwardRef } from 'react'
+const Navbar = (props) => {
 	// useEffect(() => {
 		
     // }, [])
@@ -83,3 +83,6 @@ Navbar.defaultProps = {
         console.log(area)
     }
 }
+
+// export default forwardRef(Navbar)
+export default Navbar
