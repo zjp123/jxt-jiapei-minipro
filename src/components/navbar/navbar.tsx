@@ -5,7 +5,7 @@ import './navbar.scss'
 import { get as getGlobalData } from '../../global_data'
 import Taro from '@tarojs/taro'
 import { AtActionSheet, AtActionSheetItem } from "taro-ui"
-import { useState, forwardRef } from 'react'
+import { useState } from 'react'
 const Navbar = (props) => {
 	// useEffect(() => {
 		
@@ -33,7 +33,6 @@ const Navbar = (props) => {
         setArea(area)
         setIsOpened(false)
         Taro.showTabBar()
-
     }
 
 	return (

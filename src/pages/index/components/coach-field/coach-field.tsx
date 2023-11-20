@@ -1,5 +1,6 @@
 // import React from 'react'
 import { View, Text } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import './index.scss'
 import SingleField from './single-field'
 
@@ -11,7 +12,13 @@ const CoachField = () => {
                 <Text className="coach_field_card_level_title">就近练车</Text>
             </View>
             <View>
-                <Text className="look_more">查看更多&gt;</Text>
+                <Text 
+                onClick={() => {
+                    Taro.navigateTo({
+                        url: 'field'
+                    })
+                }} 
+                className="look_more">查看更多&gt;</Text>
             </View>
         </View>
         <SingleField />

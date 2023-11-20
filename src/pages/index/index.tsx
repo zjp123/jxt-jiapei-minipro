@@ -1,7 +1,7 @@
-import { View, ScrollView, Image } from '@tarojs/components'
+import { View, ScrollView } from '@tarojs/components'
 // import Taro from '@tarojs/taro'
 import Taro, { useLoad, useReady } from '@tarojs/taro'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import './index.scss'
 import Navigation from '../../components/navbar/navbar'
 import SwiperCom from '../../components/swiperCom/swiper'
@@ -12,20 +12,22 @@ import ClassIntroduc from './components/class-introduc/class-introduc'
 import CoachStar from './components/coach-star/coach-star'
 import SmartSchool from './components/smart-school/smart-school'
 import SchoolNews from './components/school-news/school-news'
+import ContactUs from './components/contact-us/contact-us'
+import { get as getGlobalData } from '../../global_data'
 
 let _freshing = false
 export default function Index() {
     const [triggered, setTriggered] = useState(false)
     const [arr, setArr] = useState([])
     const [topPx, setTopPx] = useState()
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(1)
     const totalPages = 6;
     // const navRef = useRef()
     const onPulling = (e) => {
         setTriggered(true)
         console.log('onPulling:', e)
     }
-
+    // Taro.hideTabBar()
     useEffect(() => {
         fetchData()
     }, [page]);
@@ -41,8 +43,13 @@ export default function Index() {
           })
     })
 
-    const fetchData = () => {
-        if (page === 1) {
+    const fetchData = (pageNum?) => {
+        if (_freshing) return
+        Taro.showLoading({
+            title: '加载中',
+        })
+        _freshing = true
+        if (page === 1 || pageNum === 1) {
             setTimeout(() => {
                 Taro.hideLoading()
                 const list: any = []
@@ -68,23 +75,24 @@ export default function Index() {
     }
 
     // 上拉
-    const onPuUp = () => {
-        if (_freshing || page >= totalPages) return
-        Taro.showLoading({
-            title: '加载中',
-        })
-        _freshing = true
-        setPage(page + 1)
-    }
+    // const onPuUp = () => {
+    //     if (_freshing || page >= totalPages) return
+    //     Taro.showLoading({
+    //         title: '加载中',
+    //     })
+    //     _freshing = true
+    //     setPage(page + 1)
+    // }
 
     // 下拉刷新
     const onRefresh = () => {
-        if (_freshing) return
-        Taro.showLoading({
-            title: '加载中',
-        })
-        _freshing = true
-        setPage(1)
+        // if (_freshing) return
+        // Taro.showLoading({
+        //     title: '加载中',
+        // })
+        // _freshing = true
+        // setPage(1)
+        fetchData(1)
     }
 
 	useLoad(() => {
@@ -96,19 +104,23 @@ export default function Index() {
 
 	return (
 		<View className='index_box'>
-			<Navigation/>
+			<Navigation onchange={() => {
+                fetchData(1)
+            }}/>
             <ScrollView
                 id="scro_view"
                 scroll-y
-                style="width: 100%; height: 100%; border: 1px solid blue;"
+                // style={{display: 'flex', flexDirection: 'column', flex: 1}}
+                style="width: 100%; height: 100%;"
+                // style={{width: '100%', height: '100%', marginBottom: getGlobalData('tabbarHeight') + 36 + 'px'}}
                 lowerThreshold={50}
                 refresherEnabled={true}
                 refresherThreshold={topPx}
-                refresherDefaultStyle="white"
-                refresherBackground="lightgreen"
+                refresherDefaultStyle="black"
+                refresherBackground="#F8F8F8"
                 refresherTriggered={triggered}
                 // 滚动到底部/右边，会触发 上拉加载
-                onScrollToLower={onPuUp}
+                // onScrollToLower={onPuUp}
                 // 自定义下拉刷新控件被下拉开始
                 onRefresherPulling={onPulling}
                 // 自定义下拉刷新被触发 -- 下拉刷新
@@ -132,6 +144,8 @@ export default function Index() {
                 <CoachStar />
                 <SmartSchool />
                 <SchoolNews />
+                <ContactUs />
+                <View className="zhan-wei" style={{height: getGlobalData('tabbarHeight') + 36 + 'px'}}></View>
             </ScrollView>
         </View>
 	)

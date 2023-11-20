@@ -1,5 +1,6 @@
 // import React from 'react'
 import { View, Text } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import './index.scss'
 import SingleStar from './single-star'
 
@@ -11,7 +12,13 @@ const CoachStar = () => {
                 <Text className="coach-card-level-title">金牌资深教练 一对一教学</Text>
             </View>
             <View>
-                <Text className="look-more">查看更多&gt;</Text>
+                <Text
+                onClick={() => {
+                    Taro.navigateTo({
+                        url: 'star'
+                    })
+                }} 
+                className="look-more">查看更多&gt;</Text>
             </View>
         </View>
         <SingleStar />

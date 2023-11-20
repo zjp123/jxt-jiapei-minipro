@@ -1,5 +1,6 @@
 // import React from 'react'
 import { View, Text } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import './index.scss'
 import SingleClass from './single-class'
 
@@ -11,7 +12,13 @@ const ClassIntroduc = () => {
                 <Text className="class-card-level-title">多样化班型 量身定制</Text>
             </View>
             <View>
-                <Text className="look-more">查看更多&gt;</Text>
+                <Text 
+                onClick={() => {
+                    Taro.navigateTo({
+                        url: 'introduc'
+                    })
+                }} 
+                className="look-more">查看更多&gt;</Text>
             </View>
         </View>
         <SingleClass />
