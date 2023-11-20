@@ -107,46 +107,49 @@ export default function Index() {
 			<Navigation onchange={() => {
                 fetchData(1)
             }}/>
-            <ScrollView
-                id="scro_view"
-                scroll-y
-                // style={{display: 'flex', flexDirection: 'column', flex: 1}}
-                style="width: 100%; height: 100%;"
-                // style={{width: '100%', height: '100%', marginBottom: getGlobalData('tabbarHeight') + 36 + 'px'}}
-                lowerThreshold={50}
-                refresherEnabled={true}
-                refresherThreshold={topPx}
-                refresherDefaultStyle="black"
-                refresherBackground="#F8F8F8"
-                refresherTriggered={triggered}
-                // 滚动到底部/右边，会触发 上拉加载
-                // onScrollToLower={onPuUp}
-                // 自定义下拉刷新控件被下拉开始
-                onRefresherPulling={onPulling}
-                // 自定义下拉刷新被触发 -- 下拉刷新
-                onRefresherRefresh={onRefresh}
-                onRefresherRestore={onRestore}
-                // bindrefresherabort="onAbort"
-            >
-                <SwiperCom />
-                <TextIcon />
-                {/* {
-                    arr.map((item, index) => {
-                        return (
-                            <View key={index} style="display: flex; height: 100px;">
-                                <Image style={{width: '100%'}} src="https://images.unsplash.com/photo-1565699894576-1710004524ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1832&q=80" />
-                            </View>
-                        )
-                    })
-                } */}
-                <CoachField />
-                <ClassIntroduc />
-                <CoachStar />
-                <SmartSchool />
-                <SchoolNews />
-                <ContactUs />
-                <View className="zhan-wei" style={{height: getGlobalData('tabbarHeight') + 36 + 'px'}}></View>
-            </ScrollView>
+            <View className="pb-36" style={{display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden'}}>
+                <ScrollView
+                    id="scro_view"
+                    scroll-y
+                    style={{height: '100%'}}
+                    // style="width: 100%; height: 100%;"
+                    // style={{width: '100%', height: '100%', marginBottom: getGlobalData('tabbarHeight') + 36 + 'px'}}
+                    lowerThreshold={50}
+                    refresherEnabled={true}
+                    refresherThreshold={topPx}
+                    refresherDefaultStyle="black"
+                    refresherBackground="#F8F8F8"
+                    refresherTriggered={triggered}
+                    // 滚动到底部/右边，会触发 上拉加载
+                    // onScrollToLower={onPuUp}
+                    // 自定义下拉刷新控件被下拉开始
+                    onRefresherPulling={onPulling}
+                    // 自定义下拉刷新被触发 -- 下拉刷新
+                    onRefresherRefresh={onRefresh}
+                    onRefresherRestore={onRestore}
+                    // bindrefresherabort="onAbort"
+                >
+                    <SwiperCom />
+                    <TextIcon />
+                    {/* {
+                        arr.map((item, index) => {
+                            return (
+                                <View key={index} style="display: flex; height: 100px;">
+                                    <Image style={{width: '100%'}} src="https://images.unsplash.com/photo-1565699894576-1710004524ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1832&q=80" />
+                                </View>
+                            )
+                        })
+                    } */}
+                    <CoachField />
+                    <ClassIntroduc />
+                    <CoachStar />
+                    <SmartSchool />
+                    <SchoolNews />
+                    <ContactUs />
+                    <View className="zhan-wei" style={{height: Taro.pxTransform(36)}}></View>
+                </ScrollView>
+                {/* <View className="zhan-wei" style={{height: '36px'}}></View> */}
+            </View>
         </View>
 	)
 }

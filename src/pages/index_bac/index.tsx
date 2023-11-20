@@ -1,7 +1,7 @@
 import { View, ScrollView, Image } from '@tarojs/components'
 // import Taro from '@tarojs/taro'
 import Taro, { useLoad, useReady } from '@tarojs/taro'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import './index.scss'
 import Navigation from '../../components/navbar/navbar'
 import SwiperCom from '../../components/swiperCom/swiper'
