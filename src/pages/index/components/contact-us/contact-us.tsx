@@ -15,6 +15,13 @@ const ContactUs = (props: ContactProp) => {
     // Taro.hideTabBar()
     const systemInfo = wx.getSystemInfoSync()
     console.log(systemInfo, '111111111')
+
+    const makePhoneCallFn = (e) => {
+        const phoneNumber = e.target.dataset.phone
+        wx.makePhoneCall({
+            phoneNumber: phoneNumber
+        })
+    }
     // const handleLongPress = (e) => {
     //     // console.log(8888)
     //     console.log(e)
@@ -49,7 +56,7 @@ const ContactUs = (props: ContactProp) => {
                     </View>
                     <View>
                         <Text className="shouji">手<Text style={{visibility: 'hidden'}}>的</Text>机：</Text>
-                        <Text>18888888888</Text>
+                        <Text data-phone='18888888888' onClick={makePhoneCallFn}>18888888888</Text>
                     </View>
                 </View>
             </View>
