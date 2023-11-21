@@ -14,4 +14,13 @@
         // padding-bottom: 36px;
         // margin-bottom: 36px;
     }
+    #activity-img {
+        position: absolute;
+        right: 26px;
+        bottom: 144px;
+        image {
+            width: 156px;
+            height: 151px;
+        }
+    }
 }
