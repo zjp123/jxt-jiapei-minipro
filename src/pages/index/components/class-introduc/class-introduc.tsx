@@ -4,7 +4,11 @@ import Taro from '@tarojs/taro'
 import './index.scss'
 import SingleClass from './single-class'
 
-const ClassIntroduc = () => {
+interface IntroducProp{
+    classIntroducList: Array<any>
+}
+
+const ClassIntroduc = (props: IntroducProp) => {
     return <View id="class-introduc-box">
         <View className="class-introduc-title">
             <View>

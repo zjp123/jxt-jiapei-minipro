@@ -4,7 +4,11 @@ import Taro from '@tarojs/taro'
 import './index.scss'
 import SingleNews from './single-news'
 
-const SchoolNews = () => {
+interface NewsProp{
+    newsList: Array<any>
+}
+
+const SchoolNews = (props: NewsProp) => {
     return <View id="school-news-box">
         <View className="school-news-title">
             <View>

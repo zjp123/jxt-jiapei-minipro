@@ -4,7 +4,11 @@ import Taro from '@tarojs/taro'
 import './index.scss'
 import SingleField from './single-field'
 
-const CoachField = () => {
+interface FieldProp{
+    fieldList: Array<any>
+}
+
+const CoachField = (props: FieldProp) => {
     return <View id="coach_field_box">
         <View className="coach_field_title">
             <View>

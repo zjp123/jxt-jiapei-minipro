@@ -4,7 +4,11 @@ import Taro from '@tarojs/taro'
 import './index.scss'
 import SingleStar from './single-star'
 
-const CoachStar = () => {
+interface StarProp{
+    coachStarList: Array<any>
+}
+
+const CoachStar = (props: StarProp) => {
     return <View id="coach-star-box">
         <View className="coach-star-title">
             <View>

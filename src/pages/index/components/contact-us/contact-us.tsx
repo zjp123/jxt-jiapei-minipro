@@ -3,7 +3,15 @@ import { View, Text, Image } from '@tarojs/components'
 // import Taro from '@tarojs/taro'
 import './index.scss'
 
-const ContactUs = () => {
+interface ContactProp{
+    contactInfo: {
+        name: string,
+        phone: string | number,
+        imgUrl: string
+    }
+}
+
+const ContactUs = (props: ContactProp) => {
     // Taro.hideTabBar()
     const systemInfo = wx.getSystemInfoSync()
     console.log(systemInfo, '111111111')

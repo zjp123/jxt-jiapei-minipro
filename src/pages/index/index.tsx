@@ -13,7 +13,7 @@ import CoachStar from './components/coach-star/coach-star'
 import SmartSchool from './components/smart-school/smart-school'
 import SchoolNews from './components/school-news/school-news'
 import ContactUs from './components/contact-us/contact-us'
-import { get as getGlobalData } from '../../global_data'
+// import { get as getGlobalData } from '../../global_data'
 
 let _freshing = false
 export default function Index() {
@@ -23,6 +23,16 @@ export default function Index() {
     const [page, setPage] = useState(1)
     const totalPages = 6;
     // const navRef = useRef()
+    const [fieldList, setFieldList] = useState([])
+    const [classIntroducList, setClassIntroducList] = useState([])
+    const [coachStarList, setCoachStarList] = useState([])
+    const [newsList, setNewsList] = useState([])
+    const [contactInfo, setContactInfo] = useState({
+        name: '',
+        phone: '',
+        imgUrl: ''
+    })
+    
     const onPulling = (e) => {
         setTriggered(true)
         console.log('onPulling:', e)
@@ -140,12 +150,12 @@ export default function Index() {
                             )
                         })
                     } */}
-                    <CoachField />
-                    <ClassIntroduc />
-                    <CoachStar />
+                    <CoachField fieldList={fieldList}/>
+                    <ClassIntroduc classIntroducList={classIntroducList}/>
+                    <CoachStar coachStarList={coachStarList}/>
                     <SmartSchool />
-                    <SchoolNews />
-                    <ContactUs />
+                    <SchoolNews newsList={newsList}/>
+                    <ContactUs contactInfo={contactInfo}/>
                     <View className="zhan-wei" style={{height: Taro.pxTransform(36)}}></View>
                 </ScrollView>
                 {/* <View className="zhan-wei" style={{height: '36px'}}></View> */}
