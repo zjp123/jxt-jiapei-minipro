@@ -5,6 +5,7 @@ export default defineAppConfig({
     'pages/consultation/consultation',
     'pages/registration/registration',
     'pages/my/my',
+    'pages/classbrief/classbrief'
   ],
   window: {
     backgroundTextStyle: 'light',

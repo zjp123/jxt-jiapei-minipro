@@ -19,7 +19,7 @@ const ClassIntroduc = (props: IntroducProp) => {
                 <Text 
                 onClick={() => {
                     Taro.navigateTo({
-                        url: 'introduc'
+                        url: '/pages/classbrief/classbrief'
                     })
                 }} 
                 className="look-more">查看更多&gt;</Text>
