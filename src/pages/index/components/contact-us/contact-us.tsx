@@ -4,15 +4,12 @@ import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 
 interface ContactProp{
-    contactInfo: {
-        name: string,
-        phone: string | number,
-        imgUrl: string
-    }
+    contactInfo: {[key: string]: any}
 }
 
 const ContactUs = (props: ContactProp) => {
     // Taro.hideTabBar()
+    const {contactInfo} = props
     const systemInfo = wx.getSystemInfoSync()
     console.log(systemInfo, '111111111')
 
@@ -52,18 +49,18 @@ const ContactUs = (props: ContactProp) => {
                     <Text></Text>
                     <View>
                         <Text className="lianxiren">联系人：</Text>
-                        <Text>张校长</Text>
+                        <Text>{contactInfo.contact || ''}</Text>
                     </View>
                     <View>
                         <Text className="shouji">手<Text style={{visibility: 'hidden'}}>的</Text>机：</Text>
-                        <Text data-phone='18888888888' onClick={makePhoneCallFn}>18888888888</Text>
+                        <Text data-phone={contactInfo.contactPhone || ''} onClick={makePhoneCallFn}>{contactInfo.contactPhone || ''}</Text>
                     </View>
                 </View>
             </View>
             <View className="right">
                 {/* <View><Image src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/baoming.png" /></View> */}
                 {/* <Image data-src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/baoming.png" onLongPress={handleLongPress} src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/baoming.png" /> */}
-                <Image showMenuByLongpress src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/baoming.png" />
+                <Image showMenuByLongpress src={contactInfo.wxQrCode || ''} />
                 <View className="text-box">
                     <Text className="text-one">长按下载至相册</Text>
                     <Text>微信识别咨询报名</Text>

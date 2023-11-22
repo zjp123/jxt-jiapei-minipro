@@ -4,7 +4,7 @@ import { useLoad } from '@tarojs/taro'
 import './my.scss'
 // import { get as getGlobalData } from '../../global_data'
 import Taro, { useReady } from '@tarojs/taro'
-import { getOpenId } from "@/api/common"
+import { getOpenIdApi } from "@/api/common"
 
 
 export default function My() {
@@ -21,7 +21,7 @@ export default function My() {
             //发起网络请求
             let data: any  = null
             try {
-                data = await getOpenId('POST',{ code: res.code })
+                data = await getOpenIdApi('POST',{ code: res.code })
                 console.log('获取openid结果', data)
                 // if (data.code === 0) {
                 //     let params = {

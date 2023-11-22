@@ -7,7 +7,8 @@ const globalData = {
         avatarUrl: '',
         userName: '',
         phone: ''
-    }
+    },
+    schoolId: '1426060676178128896'
 }
 
 export function set(key, val) {
