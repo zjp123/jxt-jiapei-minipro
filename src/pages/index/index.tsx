@@ -14,6 +14,7 @@ import SmartSchool from './components/smart-school/smart-school'
 import SchoolNews from './components/school-news/school-news'
 import ContactUs from './components/contact-us/contact-us'
 import ActivityCom from './components/activity-com/activity-com'
+import ResultCom from './components/result-com/result-com'
 import { get as getGlobalData } from '../../global_data'
 import { getIndexPageApi, getFieldListApi, getClassTypeApi, getCocahStarApi, getNewsApi } from "@/api/common"
 
@@ -77,7 +78,7 @@ export default function Index() {
         const res_cocah_type = await p4
         setCoachStarList(res_cocah_type?.data?.list || [])
         const res_news_list = await p5
-        console.log(res_news_list, '>>>>>>>>>>>>')
+        console.log(res_cocah_type, '>>>>>>>>>>>>')
         setNewsList(res_news_list?.data?.list || [])
         Taro.hideLoading()
         setTriggered(false)
@@ -197,8 +198,11 @@ export default function Index() {
             }}>
                 <Image src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/activity-img.png"/>
             </View>
-            {
+            {/* {
                 isOpenModalVisible && <ActivityCom isOpenModalVisible={isOpenModalVisible} setIsOpenModalVisible={setIsOpenModalVisible}/>
+            } */}
+            {
+                isOpenModalVisible && <ResultCom isSureModalVisible={isOpenModalVisible} setIsSureModalVisible={setIsOpenModalVisible}/>
             }
         </View>
 	)
