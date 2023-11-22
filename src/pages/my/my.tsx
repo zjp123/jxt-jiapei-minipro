@@ -2,7 +2,10 @@ import { View, Text, Image, Button } from '@tarojs/components'
 // import { AtButton } from 'taro-ui'
 import { useLoad } from '@tarojs/taro'
 import './my.scss'
-import { get as getGlobalData } from '../../global_data'
+// import { get as getGlobalData } from '../../global_data'
+import Taro, { useReady } from '@tarojs/taro'
+import { getOpenId } from "@/api/common"
+
 
 export default function My() {
 
@@ -10,8 +13,49 @@ export default function My() {
     console.log('Page loaded.')
   })
 
+  useReady(() => { 
+    Taro.login({
+      async success(res) {
+        if (res.code) {
+            console.log("第一个code", res)
+            //发起网络请求
+            let data: any  = null
+            try {
+                data = await getOpenId('POST',{ code: res.code })
+                console.log('获取openid结果', data)
+                // if (data.code === 0) {
+                //     let params = {
+                //         openId: data.data.openid,
+                //         code: res.code,
+                //     }
+                // }
+            } catch (error) {
+                console.log('getopenidgetopenidgetopenid', error)
+            }
+            
+        } else {
+            console.log("登录失败！" + res.errMsg);
+        }
+      },
+    });
+  });
+
+
   const getPhoneFn = (e) => {
         console.log(e)
+  }
+
+  const getUserInfoFn = () => {
+    Taro.getUserProfile({
+        desc: '用于完善用户资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+        success: (res) => {
+            console.log(res, '获取昵称和头像结果')
+            // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+        },
+        fail: () => {
+            console.log('拒绝获取头像和昵称')
+        }
+    })
   }
 
   return (
@@ -21,7 +65,8 @@ export default function My() {
                 <Image src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/adv-default.png"/>
                 <View className="login-btn">
                     {/* <AtButton className="btn" type='primary' size='small'>点击登录/注册</AtButton> */}
-                    <Button className="btn" openType='getPhoneNumber' onGetPhoneNumber={getPhoneFn}>获取手机号</Button>
+                    {/* <Button className="btn" openType='getPhoneNumber' onGetPhoneNumber={getPhoneFn}>获取手机号</Button> */}
+                    <Button className="btn" onClick={getUserInfoFn}>登录</Button>
                     <Text className="more">登录后获取更多信息～</Text>
                     {/* <Text className="nickName">Hi，微信昵称</Text>
                     <Text className="phone">188****8888</Text> */}

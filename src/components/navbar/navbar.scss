@@ -40,8 +40,7 @@
   }
   .change_area {
       font-size: 28px;
-    //   border: 1px solid green;
-      ::after {
+      &::after {
         content: "";
         position: absolute;
         // bottom: 0;
@@ -53,6 +52,5 @@
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
         border-top: 10px solid #333;
-      
       }
   }
