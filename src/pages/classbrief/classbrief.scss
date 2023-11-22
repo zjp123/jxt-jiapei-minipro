@@ -1,3 +1,17 @@
+.class-werrper {
+    width: 100%;
+    height: 100vh;
+    background-color: #F8F8F8;
+
+    .no-list {
+        font-family: PingFang SC;
+        font-size: 26px;
+        text-align: center;
+        color: #999999;
+        margin-bottom: 30px;
+    }
+}
+
 .class-bg {
     padding: 30px 26px;
     box-sizing: border-box;
@@ -26,6 +40,7 @@
 
         .class-item-content {
             flex: 1;
+
             .class-content-top {
                 font-family: PingFang SC;
                 font-size: 36px;
