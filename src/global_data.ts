@@ -4,11 +4,9 @@ const globalData = {
     statusBarHeight:0,//状态栏高度
     menuRight:0,//胶囊按钮 距离屏幕右边的距离
     userInfo: {
-        avatarUrl: '',
-        userName: '',
         phone: ''
     },
-    schoolId: '1426060676178128896'
+    schoolId: '1128592555575894016'
 }
 
 export function set(key, val) {

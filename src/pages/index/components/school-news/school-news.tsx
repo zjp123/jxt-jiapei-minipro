@@ -9,6 +9,7 @@ interface NewsProp{
 }
 
 const SchoolNews = (props: NewsProp) => {
+    const {newsList} = props
     return <View id="school-news-box">
         <View className="school-news-title">
             <View>
@@ -24,9 +25,14 @@ const SchoolNews = (props: NewsProp) => {
                 className="look-more">查看更多&gt;</Text>
             </View>
         </View>
+        {
+          newsList.map((item, index) => {
+            return <SingleNews key={item.id} item={item} lastChild={index === newsList.length - 1}/>
+          })
+        }
+        {/* <SingleNews />
         <SingleNews />
-        <SingleNews />
-        <SingleNews lastChild/>
+        <SingleNews lastChild/> */}
     </View>
 }
 

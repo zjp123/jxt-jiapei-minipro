@@ -42,6 +42,7 @@
             flex-direction: column;
             justify-content: space-between;
             height: 140px;
+            flex: 1;
             .card-right-title {
                 font-family: 'Alibaba PuHuiTi';
                 font-size: 32px;
@@ -60,7 +61,14 @@
                 text {
                     color: #666;
                     font-size: 24px;
-                    text-align: justify;
+                }
+                .max-line-one {
+                  flex: 1;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
                 }
             }
         }

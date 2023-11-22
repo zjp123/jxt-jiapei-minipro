@@ -15,7 +15,7 @@ import SchoolNews from './components/school-news/school-news'
 import ContactUs from './components/contact-us/contact-us'
 import ActivityCom from './components/activity-com/activity-com'
 import { get as getGlobalData } from '../../global_data'
-import { getIndexPageApi } from "@/api/common"
+import { getIndexPageApi, getFieldListApi, getClassTypeApi, getCocahStarApi, getNewsApi } from "@/api/common"
 
 let _freshing = false
 export default function Index() {
@@ -58,9 +58,30 @@ export default function Index() {
     })
 
     const fetchData = async () => {
-        const res = await getIndexPageApi('POST')
-        console.log(res, '>>>>>>')
-        setContactInfo(res.data || {})
+        if (_freshing) return
+        Taro.showLoading({
+            title: '加载中',
+        })
+        _freshing = true
+        const p1 = getIndexPageApi('POST')
+        const p2 = getFieldListApi('POST')
+        const p3 = getClassTypeApi('POST')
+        const p4 = getCocahStarApi('POST', {schoolId, isHome: true})
+        const p5 = getNewsApi('POST')
+        const res_contac = await p1
+        setContactInfo(res_contac.data || {})
+        const res_field = await p2
+        setFieldList(res_field?.data?.list || [])
+        const res_class_type = await p3
+        setClassIntroducList(res_class_type?.data?.list || [])
+        const res_cocah_type = await p4
+        setCoachStarList(res_cocah_type?.data?.list || [])
+        const res_news_list = await p5
+        console.log(res_news_list, '>>>>>>>>>>>>')
+        setNewsList(res_news_list?.data?.list || [])
+        Taro.hideLoading()
+        setTriggered(false)
+        _freshing = false
     }
 
     // const fetchData = (pageNum?) => {

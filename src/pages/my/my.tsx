@@ -65,8 +65,8 @@ export default function My() {
                 <Image src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/adv-default.png"/>
                 <View className="login-btn">
                     {/* <AtButton className="btn" type='primary' size='small'>点击登录/注册</AtButton> */}
-                    {/* <Button className="btn" openType='getPhoneNumber' onGetPhoneNumber={getPhoneFn}>获取手机号</Button> */}
-                    <Button className="btn" onClick={getUserInfoFn}>登录</Button>
+                    <Button className="btn" openType='getPhoneNumber' onGetPhoneNumber={getPhoneFn}>获取手机号</Button>
+                    {/* <Button className="btn" onClick={getUserInfoFn}>登录</Button> */}
                     <Text className="more">登录后获取更多信息～</Text>
                     {/* <Text className="nickName">Hi，微信昵称</Text>
                     <Text className="phone">188****8888</Text> */}
