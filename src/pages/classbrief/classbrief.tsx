@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, ScrollView, CoverImage } from '@tarojs/components'
-import Taro, { useLoad } from '@tarojs/taro'
-import { getClassList } from '@/api/common'
+import Taro from '@tarojs/taro'
+import { getClassList, getOpenIdApi } from '@/api/common'
 import './classbrief.scss'
 
 const Index: React.FC = () => {
     const defaultClassesImage = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/h5/classes-default.png'
+    const url =
+    process.env.NODE_ENV === 'production'
+        ? `https://jxtm.jxedt.com/h5/#/spScanCode`
+        : process.env.NODE_ENV === 'development'
+            ? `http://jxtguns.58v5.cn/h5/#/spScanCode`
+            : `http://jxtguns.58v5.cn/h5/#/spScanCode`
     const [triggered, setTriggered] = useState(false)
     const [list, setList] = useState({
         list: [],
@@ -16,17 +22,11 @@ const Index: React.FC = () => {
             totalRows: 1,
         }
     });
-    // const [refreshing, setRefreshing] = useState(false);
-    // const [loadingMore, setLoadingMore] = useState(false);
-
-    useLoad(() => {
-        console.log('Page loaded.')
-    })
-
+    // 初始化
     useEffect(() => {
         getList({ pageIndex: 1 })
     }, [])
-
+    // 请求数据接口
     const getList = async (page, flag = false) => {
         try {
             const res: any = await getClassList('POST', { ...list?.pagination, ...page })
@@ -41,12 +41,6 @@ const Index: React.FC = () => {
                 })
 
                 if (flag) {
-                    // let list 
-                    // setList((val) => {
-                    //     list = val
-                    //     return val
-                    // })
-                    // console.log()
                     const data = [...list?.list, ...res?.data?.list]
                     setList({
                         ...res?.data,
@@ -68,15 +62,65 @@ const Index: React.FC = () => {
 
     // 下拉重新加载
     const onRefresh = () => {
-        getList({ pageIndex: 1})
+        getList({ pageIndex: 1 })
     };
-
+    // 上拉加载
     const onLoadMore = () => {
         if (list?.list.length === list?.pagination?.totalRows) {
             return
         }
         getList({ pageIndex: list.pagination.pageIndex + 1 }, true)
     };
+   
+    // 报名
+    const goApplication = (item) => {
+        Taro.navigateTo({
+            url: `/pages/webview/webview?url=${url}&tenantId=${item.tenantId}&classesId=${item.id}&carType=${item.dicTrainType}`
+        })
+        // Taro.checkSession({
+        //     success: function () {
+        //         //session_key 未过期，并且在本生命周期一直有效
+        //         Taro.navigateTo({
+        //             url: `pages/webview/webview?url=http://jxtguns.58v5.cn/h5/#/spScanCode?tenantId=${item.tenantId}&classesId=${item.id}&carType=${item.dicTrainType}`
+        //         })
+        //     },
+        //     fail: function () {
+        //         // session_key 已经失效，需要重新执行登录流程
+        //         Taro.login({
+        //             async success(res) {
+        //                 if (res.code) {
+        //                     console.log("第一个code", res)
+        //                     //发起网络请求
+        //                     let data: any = null
+        //                     try {
+        //                         data = await getOpenIdApi('POST', { code: res.code })
+        //                         console.log('获取openid结果', data)
+        //                         // if (data.code === 0) {
+        //                         //     let params = {
+        //                         //         openId: data.data.openid,
+        //                         //         code: res.code,
+        //                         //     }
+        //                         // }
+        //                     } catch (error) {
+        //                         console.log('getopenidgetopenidgetopenid', error)
+        //                     }
+
+        //                 } else {
+        //                     console.log("登录失败！" + res.errMsg);
+        //                 }
+        //             },
+        //         });
+        //     }
+        // })
+    }
+
+    // 班制详情
+    const goDetail = (item) => {
+        Taro.navigateTo({
+            url: `/pages/classbriefDetail/classbriefDetail?id=${item.id}`
+        })
+    }
+
     return (
         <View className='class-werrper'>
             <ScrollView
@@ -98,7 +142,13 @@ const Index: React.FC = () => {
                     {
                         list?.list?.map((item: any, index) => {
                             return (
-                                <View key={index} className='class-item'>
+                                <View
+                                    key={index}
+                                    className='class-item'
+                                    onClick={() => {
+                                        goDetail(item)
+                                    }}
+                                >
                                     <View className='class-item-img'>
                                         <CoverImage className='img' src={item?.picUrl ? item?.picUrl + '?w=233&h=175' : defaultClassesImage} />
                                     </View>
@@ -134,7 +184,10 @@ const Index: React.FC = () => {
                                             <Text className='class-price-prve'>原价¥{item?.originalPrice}</Text>
                                         </View>
                                         <View className='class-content-btn'>
-                                            <Text className='class-btn'>在线报名</Text>
+                                            <Text className='class-btn' onClick={(e) => {
+                                                e.stopPropagation()
+                                                goApplication(item)
+                                            }}>在线报名</Text>
                                         </View>
                                     </View>
                                 </View>
@@ -143,8 +196,8 @@ const Index: React.FC = () => {
                     }
                 </View>
                 {
-                   list?.list.length === list?.pagination?.totalRows &&
-                   <View className='no-list'>暂无更多~</View>
+                    list?.list.length === list?.pagination?.totalRows &&
+                    <View className='no-list'>暂无更多~</View>
                 }
             </ScrollView>
         </View>

@@ -14,35 +14,37 @@ import SmartSchool from './components/smart-school/smart-school'
 import SchoolNews from './components/school-news/school-news'
 import ContactUs from './components/contact-us/contact-us'
 import ActivityCom from './components/activity-com/activity-com'
-// import { get as getGlobalData } from '../../global_data'
+import { get as getGlobalData } from '../../global_data'
+import { getIndexPageApi } from "@/api/common"
 
 let _freshing = false
 export default function Index() {
+    const schoolId = getGlobalData('schoolId')
     const [triggered, setTriggered] = useState(false)
     const [isOpenModalVisible, setIsOpenModalVisible] = useState(false)
-    const [arr, setArr] = useState([])
+    // const [arr, setArr] = useState([])
     const [topPx, setTopPx] = useState()
-    const [page, setPage] = useState(1)
-    const totalPages = 6;
+    // const [page, setPage] = useState(1)
+    // const totalPages = 6;
     // const navRef = useRef()
     const [fieldList, setFieldList] = useState([])
     const [classIntroducList, setClassIntroducList] = useState([])
     const [coachStarList, setCoachStarList] = useState([])
     const [newsList, setNewsList] = useState([])
-    const [contactInfo, setContactInfo] = useState({
-        name: '',
-        phone: '',
-        imgUrl: ''
-    })
+    const [contactInfo, setContactInfo] = useState({})
     
     const onPulling = (e) => {
         setTriggered(true)
         console.log('onPulling:', e)
     }
     // Taro.hideTabBar()
+    // useEffect(() => {
+    //     fetchData()
+    // }, [page]);
+
     useEffect(() => {
         fetchData()
-    }, [page]);
+    }, [])
 
     useReady(() => {
         // 初次渲染时，在小程序触发 onReady 后，才能获取小程序的渲染层节点
@@ -50,37 +52,43 @@ export default function Index() {
           .select('#scro_view')
           .boundingClientRect()
           .exec(res => {
-              console.log(res, '>>>>')
+              // console.log(res, '>>>>')
               setTopPx(res[0].top)
           })
     })
 
-    const fetchData = (pageNum?) => {
-        if (_freshing) return
-        Taro.showLoading({
-            title: '加载中',
-        })
-        _freshing = true
-        if (page === 1 || pageNum === 1) {
-            setTimeout(() => {
-                Taro.hideLoading()
-                const list: any = []
-                for (let i = 0; i < 10; i++) list.push(i)
-                setArr(list)
-                setTriggered(false)
-                _freshing = false
-            }, 1000)
-            return
-        }
-        setTimeout(() => {
-            Taro.hideLoading()
-            const list: any = []
-            for (let i = 0; i < 10; i++) list.push(i)
-            setArr(arr.concat(list))
-            setTriggered(false)
-            _freshing = false
-        }, 1000)
+    const fetchData = async () => {
+        const res = await getIndexPageApi('POST')
+        console.log(res, '>>>>>>')
+        setContactInfo(res.data || {})
     }
+
+    // const fetchData = (pageNum?) => {
+    //     if (_freshing) return
+    //     Taro.showLoading({
+    //         title: '加载中',
+    //     })
+    //     _freshing = true
+    //     if (page === 1 || pageNum === 1) {
+    //         setTimeout(() => {
+    //             Taro.hideLoading()
+    //             const list: any = []
+    //             for (let i = 0; i < 10; i++) list.push(i)
+    //             setArr(list)
+    //             setTriggered(false)
+    //             _freshing = false
+    //         }, 1000)
+    //         return
+    //     }
+    //     setTimeout(() => {
+    //         Taro.hideLoading()
+    //         const list: any = []
+    //         for (let i = 0; i < 10; i++) list.push(i)
+    //         setArr(arr.concat(list))
+    //         setTriggered(false)
+    //         _freshing = false
+    //     }, 1000)
+    // }
 
     const onRestore = (e) => {
         console.log('onRestore:', e)
@@ -104,7 +112,8 @@ export default function Index() {
         // })
         // _freshing = true
         // setPage(1)
-        fetchData(1)
+        // fetchData(1)
+        fetchData()
     }
 
 	useLoad(() => {
@@ -117,7 +126,7 @@ export default function Index() {
 	return (
 		<View className='index_box'>
 			<Navigation onchange={() => {
-                fetchData(1)
+                fetchData()
             }}/>
             <View className="pb-36" style={{display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden'}}>
                 <ScrollView
