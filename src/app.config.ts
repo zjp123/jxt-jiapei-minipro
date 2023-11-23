@@ -5,12 +5,15 @@ export default defineAppConfig({
     'pages/consultation/consultation',
     'pages/registration/registration',
     'pages/my/my',
+    'pages/field/field',
   ],
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: '首页',
-    navigationBarTextStyle: 'black'
+    navigationBarTextStyle: 'black',
+    enablePullDownRefresh: true,
+    onReachBottomDistance: 50
   },
   tabBar: {
     "color": '#666',

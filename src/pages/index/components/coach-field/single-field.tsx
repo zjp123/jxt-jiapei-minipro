@@ -3,8 +3,8 @@ import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 
 const SingleCard = (props) => {
-    const {item = {}} = props
-    return <View className="single-card-box" style={{borderBottom: props.lastChild ? 'none' : '1px solid #EDEDED' }}>
+    const {item = {}, lastChild, isNotIndexPage = false} = props
+    return <View className="single-card-box" style={{borderBottom: lastChild ? 'none' : isNotIndexPage ? 'static' : '1px solid #EDEDED' }}>
             <Image className="img-left-width" src={item.jxCdPicUrl} />
             <View className="card-right">
                 <Text className="card-right-title">{item.courseName}{item.name}</Text>

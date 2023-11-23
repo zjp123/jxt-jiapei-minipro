@@ -19,7 +19,7 @@ const CoachField = (props: FieldProp) => {
                 <Text 
                 onClick={() => {
                     Taro.navigateTo({
-                        url: 'field'
+                        url: '/pages/field/field'
                     })
                 }} 
                 className="look_more">查看更多&gt;</Text>
