@@ -11,7 +11,8 @@ export default defineAppConfig({
     'pages/webview/result',
     'pages/webview/pay',
     'pages/coach/coach',
-    'pages/coachDetail/coachDetail'
+    'pages/coachDetail/coachDetail',
+    'pages/news/news'
   ],
   window: {
     backgroundTextStyle: 'light',

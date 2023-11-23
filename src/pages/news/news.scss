@@ -1,0 +1,30 @@
+.news-werrper {
+    width: 100%;
+    height: 100vh;
+    background-color: #F8F8F8;
+
+    .at-tabs__header {
+        margin-top: 2px;
+
+        .at-tabs__item {
+            font-size: 30px;
+            color: #101D37;
+        }
+
+        .at-tabs__item.at-tabs__item--active {
+            font-size: 36px;
+            color: #E9623E;
+        }
+        .at-tabs__item-underline {
+            width: 136px;
+            left: 59px;
+            height: 4px;
+            background-color: #E9623E;
+        }
+    }
+}
+.new-list-werrper {
+    width: 100%;
+    height: 100vh;
+    background-color: #F8F8F8;
+}

@@ -1,4 +1,3 @@
 export default definePageConfig({
-    navigationBarTitleText: '班型介绍',
-  })
-  
+  navigationBarTitleText: '班型介绍',
+})

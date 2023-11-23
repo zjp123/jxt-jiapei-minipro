@@ -18,7 +18,7 @@ const SchoolNews = (props: NewsProp) => {
                 <Text
                 onClick={() => {
                     Taro.navigateTo({
-                        url: 'news'
+                        url: '/pages/news/news'
                     })
                 }}
                 className="look-more">查看更多&gt;</Text>
