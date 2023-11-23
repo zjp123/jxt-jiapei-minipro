@@ -54,7 +54,7 @@ const Navbar = (props) => {
                             }}
                         >{area}</Text>
                         <AtActionSheet isOpened={isOpened} cancelText='取消' onCancel={ handleCancel } onClose={ handleClose }>
-                            <AtActionSheetItem onClick={ () => {handleClick('佛山', '1128592555575894016')} }>
+                            <AtActionSheetItem onClick={ () => {handleClick('佛山', '1390632768383229952')} }>
                                 佛山
                             </AtActionSheetItem>
                             <AtActionSheetItem onClick={ () => {handleClick('石家庄', '1426060676178128896')} }>

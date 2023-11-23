@@ -1,0 +1,8 @@
+export const defaultClassesImage = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/h5/classes-default.png'
+export const defaultCoachImage = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/h5/coach-default.png'
+export const shiming = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/ysm-new.png'
+export const coachAreaImg = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/icon-xlc.png'
+export const contact = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/h5/coach-contact.png'
+export const anonymousImg = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/user_head_default.png?v=3'
+export const star_img1 = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/h5/star-img1.png'
+export const star_img2 = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/h5/star-img2.png'

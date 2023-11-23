@@ -7,7 +7,11 @@ export default defineAppConfig({
     'pages/my/my',
     'pages/classbrief/classbrief',
     'pages/webview/webview',
-    'pages/classbriefDetail/classbriefDetail'
+    'pages/classbriefDetail/classbriefDetail',
+    'pages/webview/result',
+    'pages/webview/pay',
+    'pages/coach/coach',
+    'pages/coachDetail/coachDetail'
   ],
   window: {
     backgroundTextStyle: 'light',

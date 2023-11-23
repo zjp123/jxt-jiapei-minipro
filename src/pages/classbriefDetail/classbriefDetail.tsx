@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, CoverImage } from '@tarojs/components'
+import { View, Text, ScrollView, CoverImage, Swiper, SwiperItem } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { getClassDetail, getOpenIdApi } from '@/api/common'
+import NoData from '@/components/noData/noData'
+import { addSyncTrackLog } from '@/utils/utils'
+import { defaultClassesImage } from '@/utils/imgUrl'
 import './classbriefDetail.scss'
 
 const Index: React.FC = () => {
-    const defaultClassesImage = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/h5/classes-default.png'
     const url =
-    process.env.NODE_ENV === 'production'
-        ? `https://jxtm.jxedt.com/h5/#/spScanCode`
-        : process.env.NODE_ENV === 'development'
-            ? `http://jxtguns.58v5.cn/h5/#/spScanCode`
-            : `http://jxtguns.58v5.cn/h5/#/spScanCode`
-    const params: any = Taro.getCurrentInstance().router?.params;
+        process.env.NODE_ENV === 'production'
+            ? `https://jxtm.jxedt.com/h5/#/spScanCode`
+            : process.env.NODE_ENV === 'development'
+                ? `http://jxtguns.58v5.cn/h5/#/spScanCode`
+                : `http://jxtguns.58v5.cn/h5/#/spScanCode`
+    const { params, path }: any = Taro.getCurrentInstance().router;
     const [data, setData] = useState<any>({});
     // 初始化
     useEffect(() => {
@@ -23,6 +25,11 @@ const Index: React.FC = () => {
         try {
             const res: any = await getClassDetail('POST', { id: params.id })
             if (res?.code === 0 || res?.code === 200) {
+                res.data.remarksList = res?.data?.remarks
+                    .replace(/[\.。；]/g, ';')
+                    .split(';')
+                    .filter((item: any) => item)
+
                 setData(res?.data)
             }
         } catch (e) {
@@ -32,6 +39,7 @@ const Index: React.FC = () => {
 
     // 报名
     const goApplication = () => {
+        addSyncTrackLog('在线报名', path, navigator.userAgent)
         Taro.navigateTo({
             url: `/pages/webview/webview?url=${url}&tenantId=${data.tenantId}&classesId=${data.id}&carType=${data.dicTrainType}`
         })
@@ -71,6 +79,15 @@ const Index: React.FC = () => {
         //     }
         // })
     }
+
+    // 图片预览
+    const previewImage = (list, index) => {
+        Taro.previewImage({
+            current: list[index],
+            urls: list
+        })
+    }
+
     return (
         <View className='class-detail-werrper'>
             <ScrollView
@@ -95,19 +112,10 @@ const Index: React.FC = () => {
                                     <Text className='class-tab'>{data?.learnDriverTime}</Text>
                                 </View>
                             </View>
-                            {
-                                !!data?.remarksList?.length &&
-                                <View className='class-content-tip'>
-                                    {
-                                        data?.remarksList?.map((e, index) => {
-                                            return (
-                                                <View key={index} className='class-tip-item'>{e}</View>
-                                            )
-                                        })
-                                    }
-
-                                </View>
-                            }
+                            <View className='class-content-car'>
+                                <Text className='class-car-text'>车辆：</Text>
+                                <Text className='class-car-name'>{data?.carType}</Text>
+                            </View>
                             <View className='class-content-price'>
                                 <Text className='class-price-text'>活动价¥</Text>
                                 <Text className='class-price-num'>{data?.price}</Text>
@@ -119,6 +127,43 @@ const Index: React.FC = () => {
                                     goApplication()
                                 }}>在线报名</Text>
                             </View>
+                        </View>
+                    </View>
+                    <View className='class-detail-content'>
+                        <View className='detail-title'>班型介绍</View>
+                        <View className='detail-tip'>
+                            {
+                                data?.remarksList?.map((e, index) => {
+                                    return (
+                                        <View key={index} className='class-tip-item'>{e}</View>
+                                    )
+                                })
+                            }
+                            {!data?.remarksList?.length &&
+                                <NoData />
+                            }
+                        </View>
+                        <View className='detail-swipe'>
+                            {
+                                !!data?.picUrlList?.length &&
+                                <Swiper
+                                    className='detail-swipe-box'
+                                >
+                                    {
+                                        data?.picUrlList?.map((item, index) => {
+                                            return (
+                                                <SwiperItem key={index} className='detail-swipe-item'>
+                                                    <CoverImage onClick={() => previewImage(data?.picUrlList, index)} className='detail-swipe-item-img' src={item} />
+                                                </SwiperItem>
+                                            )
+                                        })
+                                    }
+                                </Swiper>
+                            }
+                            {
+                                !data?.picUrlList?.length &&
+                                <NoData />
+                            }
                         </View>
                     </View>
                 </View>

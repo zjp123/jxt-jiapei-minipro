@@ -19,3 +19,23 @@ export function getClassDetail(method, data = {}) {
 export function getIndexPageApi(method, data = {}) {
     return taroRequest(`/api/schWeb/firstPage/search`, method, data)
 }
+
+// 埋点
+export function syncTrackLog(method, data = {}) {
+    return taroRequest(`/track/log/syncTrackLog`, method, data, 'JXTCOMMON_API')
+}
+
+// 获取明星教练列表
+export function getCoachList(method, data = {}) {
+    return taroRequest(`/api/schWeb/coach/list`, method, data)
+}
+
+// 明星教练详情
+export function getCoachDetail(method, data = {}) {
+    return taroRequest(`/api/schWeb/coach/coachDetail`, method, data)
+}
+
+// 明星教练详情评论
+export function getCoachDetailDpList(method, data = {}) {
+    return taroRequest(`/api/schWeb/coach/dpList`, method, data)
+}

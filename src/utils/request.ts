@@ -53,7 +53,7 @@ const TaroRequest = (
     header: {
       ydtCode: getGlobalData('schoolId')
     },
-		data: {...data, appId: accountInfo?.miniProgram?.appId},
+		data: {appId: accountInfo?.miniProgram?.appId, ...data},
 		success: function () {},
 		fail: function (res: any) {
 			console.log('封装请求失败', res)

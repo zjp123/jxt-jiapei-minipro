@@ -19,7 +19,7 @@ const CoachStar = (props: StarProp) => {
                 <Text
                 onClick={() => {
                     Taro.navigateTo({
-                        url: 'star'
+                        url: '/pages/coach/coach'
                     })
                 }} 
                 className="look-more">查看更多&gt;</Text>

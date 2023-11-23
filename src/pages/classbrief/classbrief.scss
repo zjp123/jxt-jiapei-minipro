@@ -10,142 +10,142 @@
         color: #999999;
         margin-bottom: 30px;
     }
-}
-
-.class-bg {
-    padding: 30px 26px;
-    box-sizing: border-box;
-
-    .class-item {
-        width: 100%;
-        background-color: #fff;
-        border-radius: 24px;
-        margin-bottom: 20px;
-        padding: 20px;
+    .class-bg {
+        padding: 30px 26px;
         box-sizing: border-box;
-        display: flex;
-
-        .class-item-img {
-            width: 233px;
-            height: 175px;
-            border-radius: 12px;
-            flex: none;
-            margin-right: 18px;
-
-            >.img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-
-        .class-item-content {
-            flex: 1;
-
-            .class-content-top {
-                font-family: PingFang SC;
-                font-size: 36px;
-                font-weight: bold;
-                color: #333333;
-
-                .class-title {
-                    display: inline-block;
-                    overflow: hidden;
-                    text-overflow: ellipsis; //超出部分省略号显示
-                    display: -webkit-box !important; // 弹性盒模型
-                    -webkit-box-orient: vertical; // 上下垂直
-                    -webkit-line-clamp: 1; // 自定义行数
+    
+        .class-item {
+            width: 100%;
+            background-color: #fff;
+            border-radius: 24px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+    
+            .class-item-img {
+                width: 233px;
+                height: 175px;
+                border-radius: 12px;
+                flex: none;
+                margin-right: 18px;
+    
+                >.img {
+                    width: 100%;
+                    height: 100%;
                 }
             }
-
-            .class-content-tab {
-                margin-top: 10px;
-
-                .class-tab {
-                    padding: 4px 8px;
-                    border-radius: 6px;
-                    background-color: #EFF3F5;
-                    color: #666666;
+    
+            .class-item-content {
+                flex: 1;
+    
+                .class-content-top {
                     font-family: PingFang SC;
-                    font-size: 24px;
+                    font-size: 36px;
+                    font-weight: bold;
+                    color: #333333;
+    
+                    .class-title {
+                        display: inline-block;
+                        overflow: hidden;
+                        text-overflow: ellipsis; //超出部分省略号显示
+                        display: -webkit-box !important; // 弹性盒模型
+                        -webkit-box-orient: vertical; // 上下垂直
+                        -webkit-line-clamp: 1; // 自定义行数
+                    }
                 }
-
-                .class-right {
-                    margin-left: 10px;
-                }
-
-                .class-margin-top {
+    
+                .class-content-tab {
                     margin-top: 10px;
+    
+                    .class-tab {
+                        padding: 4px 8px;
+                        border-radius: 6px;
+                        background-color: #EFF3F5;
+                        color: #666666;
+                        font-family: PingFang SC;
+                        font-size: 24px;
+                    }
+    
+                    .class-right {
+                        margin-left: 10px;
+                    }
+    
+                    .class-margin-top {
+                        margin-top: 10px;
+                    }
                 }
-            }
-
-            .class-content-tip {
-                margin-top: 12px;
-
-                .class-tip-item {
-                    color: #666666;
-                    font-family: PingFang SC;
-                    font-size: 24px;
-                    line-height: 40px;
-                    position: relative;
-                    padding-left: 12px;
-                    box-sizing: border-box;
-                    display: inline-block;
-                    overflow: hidden;
-                    text-overflow: ellipsis; //超出部分省略号显示
-                    display: -webkit-box !important; // 弹性盒模型
-                    -webkit-box-orient: vertical; // 上下垂直
-                    -webkit-line-clamp: 1; // 自定义行数
+    
+                .class-content-tip {
+                    margin-top: 12px;
+    
+                    .class-tip-item {
+                        color: #666666;
+                        font-family: PingFang SC;
+                        font-size: 24px;
+                        line-height: 40px;
+                        position: relative;
+                        padding-left: 12px;
+                        box-sizing: border-box;
+                        display: inline-block;
+                        overflow: hidden;
+                        text-overflow: ellipsis; //超出部分省略号显示
+                        display: -webkit-box !important; // 弹性盒模型
+                        -webkit-box-orient: vertical; // 上下垂直
+                        -webkit-line-clamp: 1; // 自定义行数
+                    }
+    
+                    .class-tip-item::before {
+                        content: '';
+                        width: 4px;
+                        height: 4px;
+                        background: #666666;
+                        border-radius: 50%;
+                        position: absolute;
+                        left: 2px;
+                        top: 47%;
+                    }
                 }
-
-                .class-tip-item::before {
-                    content: '';
-                    width: 4px;
-                    height: 4px;
-                    background: #666666;
-                    border-radius: 50%;
-                    position: absolute;
-                    left: 2px;
-                    top: 47%;
+    
+                .class-content-price {
+                    margin-top: 10px;
+                    font-size: 40px;
+                    font-weight: bold;
+                    color: #FF6600;
+    
+                    .class-price-text {
+                        font-size: 24px;
+                        font-weight: initial;
+                    }
+    
+                    .class-price-prve {
+                        font-size: 24px;
+                        font-weight: initial;
+                        color: #999999;
+                        text-decoration: line-through;
+                        margin-left: 8px;
+                    }
                 }
-            }
-
-            .class-content-price {
-                margin-top: 10px;
-                font-size: 40px;
-                font-weight: bold;
-                color: #FF6600;
-
-                .class-price-text {
-                    font-size: 24px;
-                    font-weight: initial;
-                }
-
-                .class-price-prve {
-                    font-size: 24px;
-                    font-weight: initial;
-                    color: #999999;
-                    text-decoration: line-through;
-                    margin-left: 8px;
-                }
-            }
-
-            .class-content-btn {
-                display: flex;
-                justify-content: flex-end;
-                margin-top: 10px;
-
-                .class-btn {
-                    width: 160px;
-                    height: 60px;
-                    border-radius: 52px;
-                    background-color: #E9623E;
-                    color: #fff;
-                    font-family: PingFang SC;
-                    font-size: 28px;
-                    line-height: 60px;
-                    text-align: center;
+    
+                .class-content-btn {
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 10px;
+    
+                    .class-btn {
+                        width: 160px;
+                        height: 60px;
+                        border-radius: 52px;
+                        background-color: #E9623E;
+                        color: #fff;
+                        font-family: PingFang SC;
+                        font-size: 28px;
+                        line-height: 60px;
+                        text-align: center;
+                    }
                 }
             }
         }
     }
 }
+
