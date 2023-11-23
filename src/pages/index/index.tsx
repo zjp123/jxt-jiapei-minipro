@@ -23,6 +23,7 @@ export default function Index() {
     const schoolId = getGlobalData('schoolId')
     const [triggered, setTriggered] = useState(false)
     const [isOpenModalVisible, setIsOpenModalVisible] = useState(false)
+    const [isSureModalVisible, setIsSureModalVisible] = useState(false)
     // const [arr, setArr] = useState([])
     const [topPx, setTopPx] = useState()
     // const [page, setPage] = useState(1)
@@ -198,11 +199,15 @@ export default function Index() {
             }}>
                 <Image src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/activity-img.png"/>
             </View>
-            {/* {
-                isOpenModalVisible && <ActivityCom isOpenModalVisible={isOpenModalVisible} setIsOpenModalVisible={setIsOpenModalVisible}/>
-            } */}
             {
-                isOpenModalVisible && <ResultCom isSureModalVisible={isOpenModalVisible} setIsSureModalVisible={setIsOpenModalVisible}/>
+                isOpenModalVisible && 
+                <ActivityCom 
+                isOpenModalVisible={isOpenModalVisible} setIsOpenModalVisible={setIsOpenModalVisible}
+                setIsSureModalVisible={setIsSureModalVisible}
+                />
+            }
+            {
+                isSureModalVisible && <ResultCom isSureModalVisible={isSureModalVisible} setIsSureModalVisible={setIsSureModalVisible}/>
             }
         </View>
 	)

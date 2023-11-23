@@ -1,11 +1,39 @@
-.activity-content {
-    // position: relative;
-    .ling-qu {
-        position: absolute;
-        width: 480px;
-        height: 96px;
-        bottom: 80px;
-        right: 46px;
-        left: 48px;
+.result-modal-wrap {
+  .at-modal__content {
+    padding: 32rpx 22rpx;
+  }
+  .img-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+    image {
+      width: 82px;
+      height: 82px;
     }
+  }
+  .font-style {
+    color: #333;
+    font-size: 36px;
+    line-height: 50px;
+    text-align: center;
+  }
+  .con-desc {
+    color: #666;
+    font-size: 26px;
+    line-height: 35px;
+    margin-top: 19px;
+    margin-bottom: 56px;
+  }
+  .result-sure {
+    width: 362px;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-size: 36px;
+    border-radius: 90px;
+    background-image: linear-gradient(to bottom, #FF7A00 0%, #E9623E 100%);
+  }
 }
