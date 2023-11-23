@@ -1,11 +1,10 @@
 import { View, ScrollView, Image } from '@tarojs/components'
 // import Taro from '@tarojs/taro'
-import Taro, { useLoad, useReady } from '@tarojs/taro'
-import { useEffect } from 'react'
+import Taro, { useReady } from '@tarojs/taro'
+import { useEffect, useState, useRef } from 'react'
 import './index.scss'
 import Navigation from '../../components/navbar/navbar'
 import SwiperCom from '../../components/swiperCom/swiper'
-import { useState } from 'react'
 import TextIcon from './components/text-icon/text-icon'
 import CoachField from './components/coach-field/coach-field'
 import ClassIntroduc from './components/class-introduc/class-introduc'
@@ -28,7 +27,7 @@ export default function Index() {
     const [topPx, setTopPx] = useState()
     // const [page, setPage] = useState(1)
     // const totalPages = 6;
-    // const navRef = useRef()
+    const navRef = useRef()
     const [fieldList, setFieldList] = useState([])
     const [classIntroducList, setClassIntroducList] = useState([])
     const [coachStarList, setCoachStarList] = useState([])
@@ -114,6 +113,7 @@ export default function Index() {
     // }
 
     const onRestore = (e) => {
+        console.log(navRef, '00000000000')
         console.log('onRestore:', e)
     }
 
@@ -139,76 +139,69 @@ export default function Index() {
         fetchData()
     }
 
-	useLoad(() => {
-		console.log('Page loaded.')
-		// Taro.setNavigationBarTitle({
-		//     title: <View><text>hhhh</text></View>
-		// })scrollStyle
-	})
-
 	return (
 		<View className='index_box'>
-			<Navigation onchange={() => {
-                fetchData()
-            }}/>
-            <View className="pb-36" style={{display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden'}}>
-                <ScrollView
-                    id="scro_view"
-                    scroll-y
-                    style={{height: '100%'}}
-                    // style="width: 100%; height: 100%;"
-                    // style={{width: '100%', height: '100%', marginBottom: getGlobalData('tabbarHeight') + 36 + 'px'}}
-                    lowerThreshold={50}
-                    refresherEnabled={true}
-                    refresherThreshold={topPx}
-                    refresherDefaultStyle="black"
-                    refresherBackground="#F8F8F8"
-                    refresherTriggered={triggered}
-                    // 滚动到底部/右边，会触发 上拉加载
-                    // onScrollToLower={onPuUp}
-                    // 自定义下拉刷新控件被下拉开始
-                    onRefresherPulling={onPulling}
-                    // 自定义下拉刷新被触发 -- 下拉刷新
-                    onRefresherRefresh={onRefresh}
-                    onRefresherRestore={onRestore}
-                    // bindrefresherabort="onAbort"
-                >
-                    <SwiperCom />
-                    <TextIcon />
-                    {/* {
-                        arr.map((item, index) => {
-                            return (
-                                <View key={index} style="display: flex; height: 100px;">
-                                    <Image style={{width: '100%'}} src="https://images.unsplash.com/photo-1565699894576-1710004524ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1832&q=80" />
-                                </View>
-                            )
-                        })
-                    } */}
-                    <CoachField fieldList={fieldList}/>
-                    <ClassIntroduc classIntroducList={classIntroducList}/>
-                    <CoachStar coachStarList={coachStarList}/>
-                    <SmartSchool />
-                    <SchoolNews newsList={newsList}/>
-                    <ContactUs contactInfo={contactInfo}/>
-                    <View className="zhan-wei" style={{height: Taro.pxTransform(36)}}></View>
-                </ScrollView>
-                {/* <View className="zhan-wei" style={{height: '36px'}}></View> */}
-            </View>
-            <View id="activity-img" onClick={() => {
-                setIsOpenModalVisible(true)
-            }}>
-                <Image src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/activity-img.png"/>
-            </View>
-            {
-                isOpenModalVisible && 
-                <ActivityCom 
-                isOpenModalVisible={isOpenModalVisible} setIsOpenModalVisible={setIsOpenModalVisible}
-                setIsSureModalVisible={setIsSureModalVisible}
-                />
-            }
-            {
-                isSureModalVisible && <ResultCom isSureModalVisible={isSureModalVisible} setIsSureModalVisible={setIsSureModalVisible}/>
-            }
+          <Navigation ref={navRef} onchange={() => {
+              fetchData()
+          }}/>
+          <View className="pb-36" style={{display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden'}}>
+              <ScrollView
+                  id="scro_view"
+                  scroll-y
+                  style={{height: '100%'}}
+                  // style="width: 100%; height: 100%;"
+                  // style={{width: '100%', height: '100%', marginBottom: getGlobalData('tabbarHeight') + 36 + 'px'}}
+                  lowerThreshold={50}
+                  refresherEnabled={true}
+                  refresherThreshold={topPx}
+                  refresherDefaultStyle="black"
+                  refresherBackground="#F8F8F8"
+                  refresherTriggered={triggered}
+                  // 滚动到底部/右边，会触发 上拉加载
+                  // onScrollToLower={onPuUp}
+                  // 自定义下拉刷新控件被下拉开始
+                  onRefresherPulling={onPulling}
+                  // 自定义下拉刷新被触发 -- 下拉刷新
+                  onRefresherRefresh={onRefresh}
+                  onRefresherRestore={onRestore}
+                  // bindrefresherabort="onAbort"
+              >
+                  <SwiperCom />
+                  <TextIcon />
+                  {/* {
+                      arr.map((item, index) => {
+                          return (
+                              <View key={index} style="display: flex; height: 100px;">
+                                  <Image style={{width: '100%'}} src="https://images.unsplash.com/photo-1565699894576-1710004524ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1832&q=80" />
+                              </View>
+                          )
+                      })
+                  } */}
+                  <CoachField fieldList={fieldList}/>
+                  <ClassIntroduc classIntroducList={classIntroducList}/>
+                  <CoachStar coachStarList={coachStarList}/>
+                  <SmartSchool />
+                  <SchoolNews newsList={newsList}/>
+                  <ContactUs contactInfo={contactInfo}/>
+                  <View className="zhan-wei" style={{height: Taro.pxTransform(36)}}></View>
+              </ScrollView>
+              {/* <View className="zhan-wei" style={{height: '36px'}}></View> */}
+          </View>
+          <View id="activity-img" onClick={() => {
+              setIsOpenModalVisible(true)
+          }}>
+              <Image src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/activity-img.png"/>
+          </View>
+          {
+              isOpenModalVisible && 
+              <ActivityCom 
+              isOpenModalVisible={isOpenModalVisible} setIsOpenModalVisible={setIsOpenModalVisible}
+              setIsSureModalVisible={setIsSureModalVisible}
+              />
+          }
+          {
+              isSureModalVisible && <ResultCom isSureModalVisible={isSureModalVisible} setIsSureModalVisible={setIsSureModalVisible}/>
+          }
         </View>
 	)
 }

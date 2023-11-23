@@ -1,8 +1,8 @@
 import taroRequest from '../utils/request'
 
 //获取openId，unionId
-export function getOpenIdApi(method, data = {}) {
-    return taroRequest(`/enterprise/wechat/applet/api/jscode2session`, method, data)
+export function getOpenIdApi(method, data = {}, domain?) {
+    return taroRequest(`/enterprise/wechat/applet/api/jscode2session`, method, data, domain)
 }
 // 首页联系
 export function getIndexPageApi(method, data = {}) {

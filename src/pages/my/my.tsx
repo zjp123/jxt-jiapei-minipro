@@ -2,7 +2,7 @@ import { View, Text, Image, Button } from '@tarojs/components'
 // import { AtButton } from 'taro-ui'
 import { useLoad } from '@tarojs/taro'
 import './my.scss'
-// import { get as getGlobalData } from '../../global_data'
+import { set as setGlobalData } from '../../global_data'
 import Taro, { useReady } from '@tarojs/taro'
 import { getOpenIdApi } from "@/api/common"
 
@@ -21,14 +21,12 @@ export default function My() {
             //发起网络请求
             let data: any  = null
             try {
-                data = await getOpenIdApi('POST',{ code: res.code })
+                data = await getOpenIdApi('POST',{ code: res.code }, 'BASE_SAAS')
                 console.log('获取openid结果', data)
-                // if (data.code === 0) {
-                //     let params = {
-                //         openId: data.data.openid,
-                //         code: res.code,
-                //     }
-                // }
+                if (data.code === 0) {
+                  const openId = data.data.openid
+                  setGlobalData('openId', openId)
+                }
             } catch (error) {
                 console.log('getopenidgetopenidgetopenid', error)
             }

@@ -1,6 +1,6 @@
 interface URL {
     BASE_URL:string
-    BASE_URL2:string
+    BASE_SAAS:string
     GATE_URL:string
 }
 
@@ -11,7 +11,7 @@ const notOnlineApi = process.env.NODE_ENV === 'development' || process.env.NODE_
 
 const URLLIST: URL = {
     BASE_URL: notOnlineApi ? 'http://jxtopenapi.58v5.cn' : 'https://jxtopenapi.xueche.com',
-    BASE_URL2: notOnlineApi ? 'https://jxtguns.58v5.cn' : 'https://jxtguns.58corp.com',
+    BASE_SAAS: notOnlineApi ? 'https://jxtsaas.58v5.cn' : 'https://saas.xueche.com',
     GATE_URL: notOnlineApi ? 'https://gatewayapi.58v5.cn/jxtsaas_0' : 'https://saas.xueche.com',
     // GATE_URL: 'https://saas.xueche.com'
 }
