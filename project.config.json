@@ -31,13 +31,13 @@
             "outputPath": ""
         },
         "enableEngineNative": false,
+        "useIsolateContext": true,
         "userConfirmedBundleSwitch": false,
         "packNpmManually": false,
         "packNpmRelationList": [],
         "minifyWXSS": true,
         "showES6CompileOption": false,
-        "ignoreUploadUnusedFiles": false,
-        "useIsolateContext": true
+        "ignoreUploadUnusedFiles": false
     },
     "compileType": "miniprogram",
     "libVersion": "3.2.1",

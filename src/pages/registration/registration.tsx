@@ -1,5 +1,6 @@
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
+import Class from '@/components/class/class'
 import './registration.scss'
 
 export default function Index() {
@@ -10,7 +11,7 @@ export default function Index() {
 
   return (
     <View className=''>
-      <Text>报名</Text>
+      <Class />
     </View>
   )
 }

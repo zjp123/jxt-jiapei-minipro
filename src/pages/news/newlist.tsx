@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, CoverImage } from '@tarojs/components'
+import { View, Text, ScrollView, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { getCombination } from '@/api/common'
 import { addSyncTrackLog } from '@/utils/utils'
@@ -113,7 +113,7 @@ const Index: React.FC<Props> = (props) => {
                                         </View>
                                     </View>
                                     <View className='new-item-img'>
-                                        <CoverImage className='img' src={item.picUrl ? item.picUrl + '?w=107&h=72&ss=1' : imgs[current]} />
+                                        <Image className='img' src={item.picUrl ? item.picUrl + '?w=107&h=72&ss=1' : imgs[current]} />
                                     </View>
 
                                 </View>

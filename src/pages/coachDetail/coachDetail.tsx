@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, CoverImage } from '@tarojs/components'
+import { View, Text, ScrollView, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { getCoachDetail, getCoachDetailDpList } from '@/api/common'
 import NoData from '@/components/noData/noData'
@@ -78,16 +78,16 @@ const Index: React.FC = () => {
                         className='coach-item'
                     >
                         <View className='coach-item-img'>
-                            <CoverImage className='img' src={data?.coachPhotoUrl ? data?.coachPhotoUrl + '?w=70&h=70' : defaultCoachImage} />
+                            <Image className='img' src={data?.coachPhotoUrl ? data?.coachPhotoUrl + '?w=70&h=70' : defaultCoachImage} />
                         </View>
                         <View className='coach-item-content'>
                             <View className='coach-content-top'>
                                 <Text className='coach-title'>{data?.coachName}</Text>
-                                <CoverImage className='coach-shiming' src={shiming} />
+                                <Image className='coach-shiming' src={shiming} />
                                 <Text className='coach-year'>{data?.coachYear}年教龄</Text>
                             </View>
                             <View className='coach-content-area'>
-                                <CoverImage className='coach-area-img' src={coachAreaImg} />
+                                <Image className='coach-area-img' src={coachAreaImg} />
                                 <Text className='coach-area-text'>{data?.coachAreaList?.join('、')}</Text>
                             </View>
                             <View className='coach-content-info'>
@@ -114,7 +114,7 @@ const Index: React.FC = () => {
                                     session-from="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}|{{params}}"
                                     open-type="contact"
                                 >
-                                    <CoverImage
+                                    <Image
                                         className='coach-contact-img'
                                         src={contact}
                                     />
@@ -140,7 +140,7 @@ const Index: React.FC = () => {
                                     return (
                                         <View key={index} className='pl-item' >
                                             <View className='pl-user-head'>
-                                                <CoverImage className='pl-user-img' src={item?.anonymous ? anonymousImg : item?.headPicUrl} />
+                                                <Image className='pl-user-img' src={item?.anonymous ? anonymousImg : item?.headPicUrl} />
                                             </View>
                                             <View className='pl-user-content'>
                                                 <View className='pl-user-top'>
@@ -149,7 +149,7 @@ const Index: React.FC = () => {
                                                         {
                                                             pf.map((i) => {
                                                                 return (
-                                                                    <CoverImage className='pl-pf-img' key={i} src={i > Number(item?.starts) ? star_img1 : star_img2} />
+                                                                    <Image className='pl-pf-img' key={i} src={i > Number(item?.starts) ? star_img1 : star_img2} />
                                                                 )
                                                             })
                                                         }

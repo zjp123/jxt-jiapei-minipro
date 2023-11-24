@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, CoverImage } from '@tarojs/components'
+import { View, Text, ScrollView, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { getCoachList } from '@/api/common'
 import { addSyncTrackLog } from '@/utils/utils'
@@ -96,16 +96,16 @@ const Index: React.FC = () => {
                                     }}
                                 >
                                     <View className='coach-item-img'>
-                                        <CoverImage className='img' src={item?.coachPhotoUrl ? item?.coachPhotoUrl + '?w=120&h=120' : defaultCoachImage} />
+                                        <Image className='img' src={item?.coachPhotoUrl ? item?.coachPhotoUrl + '?w=120&h=120' : defaultCoachImage} />
                                     </View>
                                     <View className='coach-item-content'>
                                         <View className='coach-content-top'>
                                             <Text className='coach-title'>{item?.coachName}</Text>
-                                            <CoverImage className='coach-shiming' src={shiming} />
+                                            <Image className='coach-shiming' src={shiming} />
                                             <Text className='coach-year'>{item?.coachYear}年教龄</Text>
                                         </View>
                                         <View className='coach-content-area'>
-                                            <CoverImage className='coach-area-img' src={coachAreaImg} />
+                                            <Image className='coach-area-img' src={coachAreaImg} />
                                             <Text className='coach-area-text'>{item.coachAreaList?.join('、')}</Text>
                                         </View>
                                         <View className='coach-content-info'>
