@@ -71,9 +71,9 @@ const Index: React.FC<Props> = (props) => {
 
     // 班制详情
     const goDetail = (item) => {
-        addSyncTrackLog('班型详情', path, navigator.userAgent)
+        addSyncTrackLog('资讯详情', path, navigator.userAgent)
         Taro.navigateTo({
-            url: `/pages/classbriefDetail/classbriefDetail?id=${item.id}`
+            url: `/pages/newsDetail/newsDetail?id=${item.id}&type=${current}`
         })
     }
 

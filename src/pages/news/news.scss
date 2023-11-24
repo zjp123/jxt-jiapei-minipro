@@ -35,13 +35,20 @@
         padding: 20px 26px;
         box-sizing: border-box;
     }
-
+    .no-list {
+        font-family: PingFang SC;
+        font-size: 26px;
+        text-align: center;
+        color: #999999;
+        margin-bottom: 150px;
+    }
     .new-item {
         padding: 30px 20px;
         box-sizing: border-box;
         border-radius: 24px;
         background-color: #fff;
         display: flex;
+        margin-bottom: 20px;
 
         .new-item-img {
             width: 200px;
@@ -59,7 +66,9 @@
         .new-item-content {
             flex: 1;
             margin-right: 44px;
-
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             .new-content-title {
                 font-size: 30px;
                 line-height: 40px;
@@ -70,9 +79,25 @@
                 -webkit-box-orient: vertical; // 上下垂直
                 -webkit-line-clamp: 2; // 自定义行数
             }
+
             .new-content {
                 display: flex;
                 margin-top: 14px;
+
+                .new-tab {
+                    margin-right: 10px;
+                    padding: 0 8px;
+                    border-radius: 6px;
+                    background-color: #DDE7F0;
+                    color: #666666;
+                    font-family: PingFang SC;
+                    font-size: 22px;
+                }
+
+                .new-time {
+                    font-size: 24px;
+                    color: #999999;
+                }
             }
         }
     }
