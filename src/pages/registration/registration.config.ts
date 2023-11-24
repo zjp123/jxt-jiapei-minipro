@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '报名'
+  navigationBarTitleText: '班型介绍'
 })

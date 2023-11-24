@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, ScrollView, CoverImage, Swiper, SwiperItem } from '@tarojs/components'
+import { View, Text, ScrollView, Image, Swiper, SwiperItem } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { getClassDetail, getOpenIdApi } from '@/api/common'
 import NoData from '@/components/noData/noData'
@@ -97,7 +97,7 @@ const Index: React.FC = () => {
                 <View className='class-bg'>
                     <View className='class-item'>
                         <View className='class-item-img'>
-                            <CoverImage className='img' src={data?.picUrl ? data?.picUrl + '?w=233&h=175' : defaultClassesImage} />
+                            <Image className='img' src={data?.picUrl ? data?.picUrl + '?w=233&h=175' : defaultClassesImage} />
                         </View>
                         <View className='class-item-content'>
                             <View className='class-content-top'>
@@ -153,7 +153,7 @@ const Index: React.FC = () => {
                                         data?.picUrlList?.map((item, index) => {
                                             return (
                                                 <SwiperItem key={index} className='detail-swipe-item'>
-                                                    <CoverImage onClick={() => previewImage(data?.picUrlList, index)} className='detail-swipe-item-img' src={item} />
+                                                    <Image onClick={() => previewImage(data?.picUrlList, index)} className='detail-swipe-item-img' src={item} />
                                                 </SwiperItem>
                                             )
                                         })

@@ -35,7 +35,7 @@ export default defineAppConfig({
       "iconPath": 'static/images/consulta.png',
       "text": "咨询"
     },{
-        "pagePath": "pages/classbrief/classbrief",
+        "pagePath": "pages/registration/registration",
         "selectedIconPath": 'static/images/regis_active.png',
         "iconPath": 'static/images/regis.png',
         "text": "报名"

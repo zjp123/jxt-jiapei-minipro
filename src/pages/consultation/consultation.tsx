@@ -9,7 +9,7 @@ export default function Index() {
   })
 
   return (
-    <View className=''>
+    <View>
       <Text>咨询</Text>
     </View>
   )
