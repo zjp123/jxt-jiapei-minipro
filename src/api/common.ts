@@ -39,3 +39,8 @@ export function getCoachDetail(method, data = {}) {
 export function getCoachDetailDpList(method, data = {}) {
     return taroRequest(`/api/schWeb/coach/dpList`, method, data)
 }
+
+// 驾校资讯列表
+export function getCombination(method, data = {}) {
+    return taroRequest(`/api/schWeb/combination/search`, method, data)
+}

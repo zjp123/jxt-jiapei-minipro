@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, ScrollView, CoverImage } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-import { getClassList } from '@/api/common'
+import { getCombination } from '@/api/common'
 import { addSyncTrackLog } from '@/utils/utils'
-import { defaultClassesImage } from '@/utils/imgUrl'
+import { newS_img1, newS_img2, newS_img3 } from '@/utils/imgUrl'
 
 interface Props {
     current: number // 资讯的类型
 }
-
+// 默认图片集合
+const imgs = {
+    0: newS_img1,
+    1: newS_img2,
+    2: newS_img3,
+}
 const Index: React.FC<Props> = (props) => {
     const { current } = props
     const { path }: any = Taro.getCurrentInstance().router;
@@ -26,21 +31,12 @@ const Index: React.FC<Props> = (props) => {
     useEffect(() => {
         getList({ pageIndex: 1 })
     }, [current])
-    
+
     // 请求数据接口
     const getList = async (page, flag = false) => {
         try {
-            const res: any = await getClassList('POST', { ...list?.pagination, ...page })
+            const res: any = await getCombination('POST', {type: current, ...list?.pagination, ...page })
             if (res?.code === 0 || res?.code === 200) {
-                res.data.list.forEach((item: any) => {
-                    if (item.remarks) {
-                        item.remarksList = item.remarks
-                            .replace(/[\.。；]/g, ';')
-                            .split(';')
-                            .filter((item: any) => item)
-                    }
-                })
-
                 if (flag) {
                     const data = [...list?.list, ...res?.data?.list]
                     setList({
@@ -98,27 +94,26 @@ const Index: React.FC<Props> = (props) => {
                 // 自定义下拉刷新被触发 -- 下拉刷新
                 onRefresherRefresh={onRefresh}
             >
-                <View className='class-bg'>
+                <View className='new-bg'>
                     {
                         list?.list?.map((item: any, index) => {
                             return (
                                 <View
                                     key={index}
-                                    className='class-item'
+                                    className='new-item'
                                     onClick={() => {
                                         goDetail(item)
                                     }}
                                 >
-                                    <View className='class-item-content'>
-                                        <View className='class-content-top'>
-                                        </View>
-                                        <View className='class-content-tab'>
-                                            <Text className='class-tab'>最快{item?.naBen}天拿证</Text>
-                                            <Text className='class-tab'>最快{item?.naBen}天拿证</Text>
+                                    <View className='new-item-content'>
+                                        <View className='new-content-title'>{item?.title}</View>
+                                        <View className='new-content'>
+                                            {!!item.top && <Text className='new-tab'>置顶</Text>}
+                                            <Text className='new-time'>{item.dateShow}</Text>
                                         </View>
                                     </View>
-                                    <View className='class-item-img'>
-                                        <CoverImage className='img' src={item?.picUrl ? item?.picUrl + '?w=233&h=175' : defaultClassesImage} />
+                                    <View className='new-item-img'>
+                                        <CoverImage className='img' src={item.picUrl ? item.picUrl + '?w=107&h=72&ss=1' : imgs[current]} />
                                     </View>
 
                                 </View>
