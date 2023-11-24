@@ -1,2 +1,2 @@
-# jxt-jiapei-minipro
-npx @tarojs/cli init jxt-jiapei
+# jxt-wechat-webschool
+npx @tarojs/cli init jxt-wechat-webschool

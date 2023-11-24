@@ -1,0 +1,19 @@
+.index_box {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    // background-color: yellow;
+    .scrollStyle {
+        // display: flex;
+        // flex-direction: column;
+        // height: 1600px;
+        border: 1px solid red;
+        background-color: yellow;
+
+        .aa {
+            color: #000;
+            height: 2000px;
+            background-color: green;
+        }
+    }
+}

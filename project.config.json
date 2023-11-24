@@ -1,23 +1,43 @@
 {
     "miniprogramRoot": "dist/",
-    "projectname": "jxt-jiapei-minipro",
+    "projectname": "jxt-wechat-webschool",
     "description": "",
-    "appid": "wx6c8c3e0360326f94",
+    "appid": "wx5e32b907878ee268",
     "setting": {
-        "urlCheck": true,
+        "urlCheck": false,
         "es6": false,
         "enhance": false,
-        "compileHotReLoad": false,
         "postcss": false,
+        "preloadBackgroundData": false,
         "minified": false,
+        "newFeature": false,
+        "coverView": true,
+        "nodeModules": false,
+        "autoAudits": false,
+        "showShadowRootInWxmlPanel": true,
+        "scopeDataCheck": false,
+        "uglifyFileName": false,
+        "checkInvalidKey": true,
+        "checkSiteMap": true,
+        "uploadWithSourceMap": true,
+        "compileHotReLoad": false,
+        "lazyloadPlaceholderEnable": false,
+        "useMultiFrameRuntime": true,
+        "useApiHook": true,
+        "useApiHostProcess": true,
         "babelSetting": {
             "ignore": [],
             "disablePlugins": [],
             "outputPath": ""
         },
-        "condition": false,
-        "bigPackageSizeSupport": false,
-        "ignoreUploadUnusedFiles": false
+        "enableEngineNative": false,
+        "userConfirmedBundleSwitch": false,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true,
+        "showES6CompileOption": false,
+        "ignoreUploadUnusedFiles": false,
+        "useIsolateContext": true
     },
     "compileType": "miniprogram",
     "libVersion": "3.2.1",
@@ -26,9 +46,9 @@
         "ignore": [],
         "include": []
     },
-    "condition": {},
     "editorSetting": {
         "tabIndent": "insertSpaces",
         "tabSize": 4
-    }
+    },
+    "condition": {}
 }

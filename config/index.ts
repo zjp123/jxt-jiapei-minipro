@@ -4,9 +4,9 @@ import devConfig from './dev'
 import prodConfig from './prod'
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
-export default defineConfig(async (merge, { command, mode }) => {
+export default defineConfig(async (merge) => {
   const baseConfig: UserConfigExport = {
-    projectName: 'jxt-jiapei-minipro',
+    projectName: 'jxt-wechat-webschool',
     date: '2023-11-14',
     designWidth: 750,
     deviceRatio: {
@@ -37,7 +37,8 @@ export default defineConfig(async (merge, { command, mode }) => {
         pxtransform: {
           enable: true,
           config: {
-            onePxTransform: true
+            onePxTransform: true,
+            minPixelValue: 12
           }
         },
         url: {

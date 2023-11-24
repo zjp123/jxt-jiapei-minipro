@@ -1,0 +1,143 @@
+#my-wrap {
+    // width: 750px;
+    // height: 1448px;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    // display: flex;
+    // flex-direction: column;
+    background: url('https://img.58cdn.com.cn/dist/jxt/images/jxtschool/my-bac.png') no-repeat;
+    .my-header {
+        height: 260px;
+        width: 100%;
+        overflow: hidden;
+        // border: 1px solid red;
+        .img-text{
+            display: flex;
+            margin-top: 65px;
+            margin-left: 46px;
+            align-items: center;
+            image {
+                width: 100px;
+                height: 100px;
+                margin-right: 24px;
+            }
+            .login-btn {
+                .btn {
+                    border: 1px solid #FF6600;
+                    background-color: #fff;
+                    color: #FF6600;
+                    border-radius: 10px;
+                    margin-bottom: 10px;
+                    height: 46px;
+                    width: 182px;
+                    font-size: 24px;
+                    text-align: center;
+                    line-height: 46px;
+                    margin: 0;
+                }
+                .more {
+                    font-size: 26px;
+                    color: #666;
+                    line-height: 35px;
+                }
+                .phone {
+                    font-size: 26px;
+                    color: #666;
+                    display: block;
+                }
+                .nickName {
+                    font-size: 32px;
+                    color: #333;
+                    line-height: 44px;
+                    margin-bottom: 13px;
+                }
+            }
+        }
+    }
+    .my-order {
+        width: 100%;
+        height: 550px;
+        background-color: #fff;
+        border-radius: 24px;
+        padding: 40px 24px 0;
+        box-sizing: border-box;
+        position: relative;
+        top: -20px;
+        // border: 1px solid red;
+        .order-title {
+            font-size: 36px;
+            color: #101D37;
+        }
+        .img-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 103px;
+            flex-direction: column;
+            border: 1px solid red;
+            image {
+                width: 282px;
+                height: 188px;
+                margin-bottom: 35px;
+            }
+            text {
+                font-size: 26px;
+                color: #999;
+            }
+        }
+        .my-order-list {
+            // margin-top: 10px;
+            .single-order {
+                border-bottom: 1px solid #EDEDED;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 24px 0;
+                .order-level-left {
+                    .order-level-top {
+                        display: flex;
+                        align-items: center;
+                        // margin-bottom: 6px;
+                        .bac-style {
+                            background: linear-gradient(to bottom, #FFA722 0%, #E96200 100%); 
+                            width: 46px;
+                            height: 31px;
+                            border-radius: 8px;
+                            text-align: center;
+                            line-height: 31px;
+                            font-size: 26px;
+                            font-weight: 500;
+                            color: #fff;
+                        }
+                        .order-desc {
+                            color: #333;
+                            font-size: 32px;
+                            font-weight: 500;
+                            margin-left: 9px;
+                            line-height: 52px;
+    
+                        }
+                    }
+                    .order-level-bottom {
+                        color: #666;
+                        font-size: 24px;
+                        line-height: 40px;
+                    }
+                }
+                .order-level-right {
+                    text {
+                        font-family: 'PingFang SC';
+                        font-size: 40px;
+                        line-height: 52px;
+                        color: #FF6600;
+                    }
+                    .cny-sym {
+                        font-size: 24px;
+                    }
+                }
+            }
+        }
+    }
+    
+}
