@@ -1,14 +1,6 @@
 import { View, WebView } from '@tarojs/components'
-import Taro, { useLoad } from '@tarojs/taro'
 
 const Consultation = () => {
-
-    useLoad(() =>{
-        setTimeout(() => {
-            Taro.setNavigationBarTitle({ title: '咨询' }) // 设置自定义标题
-        },2000)
-    })
-
     return (
         <View>
             <WebView
