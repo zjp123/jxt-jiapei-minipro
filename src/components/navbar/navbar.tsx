@@ -2,12 +2,11 @@ import { View, CoverImage, Text } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
 // import { useState, useEffect } from 'react'
 import './navbar.scss'
-import { get as getGlobalData } from '../../global_data'
+import { get as getGlobalData, set as setGlobalData } from '../../global_data'
 import Taro from '@tarojs/taro'
-import logoPath from '../../static/images/58.png'
 import { AtActionSheet, AtActionSheetItem } from "taro-ui"
 import { useState } from 'react'
-export default function Navbar(props) {
+const Navbar = (props) => {
 	// useEffect(() => {
 		
     // }, [])
@@ -29,12 +28,12 @@ export default function Navbar(props) {
         setIsOpened(false)
         Taro.showTabBar()
     }
-    const handleClick = (area) => {
-        props.onchange && props.onchange(area)
+    const handleClick = (area, schoolId) => {
+        setGlobalData('schoolId', schoolId)
+        props.onchange && props.onchange(area, schoolId)
         setArea(area)
         setIsOpened(false)
         Taro.showTabBar()
-
     }
 
 	return (
@@ -55,16 +54,16 @@ export default function Navbar(props) {
                             }}
                         >{area}</Text>
                         <AtActionSheet isOpened={isOpened} cancelText='取消' onCancel={ handleCancel } onClose={ handleClose }>
-                            <AtActionSheetItem onClick={ () => {handleClick('佛山')} }>
+                            <AtActionSheetItem onClick={ () => {handleClick('佛山', '1390632768383229952')} }>
                                 佛山
                             </AtActionSheetItem>
-                            <AtActionSheetItem onClick={ () => {handleClick('石家庄')} }>
+                            <AtActionSheetItem onClick={ () => {handleClick('石家庄', '1426060676178128896')} }>
                                 石家庄
                             </AtActionSheetItem>
                         </AtActionSheet>
                     </View>
                     <View className="navigationTitle">
-                        <CoverImage className='logoimg' src={logoPath} />
+                        <CoverImage className='logoimg' src='https://img.58cdn.com.cn/dist/jxt/images/jxtschool/58_mini_jiapei.png' />
                         <Text className="ml">{props.title}</Text>
                     </View>
                 </View>
@@ -84,3 +83,6 @@ Navbar.defaultProps = {
         console.log(area)
     }
 }
+
+// export default forwardRef(Navbar)
+export default Navbar

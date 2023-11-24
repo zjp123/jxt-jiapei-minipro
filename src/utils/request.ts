@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import URLLIST from './base'
-
+import { get as getGlobalData } from '../global_data'
 
  //获取小程序appid
  const accountInfo = Taro.getAccountInfoSync();
@@ -49,7 +49,11 @@ const TaroRequest = (
 	return Taro.request({
 		url: `${resUrl}`,
 		method,
-		data: {...data, appId: accountInfo?.miniProgram?.appId},
+    // data: {...data, appId: accountInfo?.miniProgram?.appId
+    header: {
+      ydtCode: getGlobalData('schoolId')
+    },
+		data: {appId: accountInfo?.miniProgram?.appId, ...data},
 		success: function () {},
 		fail: function (res: any) {
 			console.log('封装请求失败', res)
