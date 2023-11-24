@@ -26,14 +26,14 @@ const Index: React.FC = () => {
                 console.log("付款成功", res)
                 //成功之后拉起微信支付 微信支付完成之后跳转到微信自带的支付成功页面 点击页面上的 ‘确定’ 按钮   返回到首页
                 Taro.redirectTo({
-                    url: `/pages/webview/result?payStatus=1`
+                    url: `/pages/reportEntry/result?payStatus=1`
                 })
             },
             //小程序支付失败的回调通知
             fail: function (res) {
                 console.log('支付失败', res)
                 Taro.redirectTo({
-                    url: `/pages/webview/result`
+                    url: `/pages/reportEntry/result`
                 })
 
             }
