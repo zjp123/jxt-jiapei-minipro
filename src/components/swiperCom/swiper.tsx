@@ -24,10 +24,10 @@ export default function SwiperCom() {
                 interval={3000}
             >
                 <SwiperItem>
-                    <Image className='slide-image' src='https://img.58cdn.com.cn/dist/jxt/images/jxtschool/ba1.png'/>
+                    <Image className='slide-image' src='https://img.58cdn.com.cn/dist/jxt/images/jxtschool/ba2.png'/>
                 </SwiperItem>
                 <SwiperItem>
-                    <Image className='slide-image' src='https://img.58cdn.com.cn/dist/jxt/images/jxtschool/ba2.png'/>
+                    <Image className='slide-image' src='https://img.58cdn.com.cn/dist/jxt/images/jxtschool/ba1.png'/>
                 </SwiperItem>
             </Swiper>
         </>

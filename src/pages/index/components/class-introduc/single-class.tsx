@@ -3,30 +3,36 @@ import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 
 const SingleClass = (props) => {
+    const {item = {}} = props
     return <View className="single-class-box" style={{borderBottom: props.lastChild ? 'none' : '1px solid #EDEDED' }}>
-            <Image className="img-left-width" src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/bxjs.png" />
+            <Image className="img-left-width" src={item.picUrl} />
             <View className="card-right">
-                <Text className="card-right-title">C1 预约计时班</Text>
-                <View className="two-tag">
+                <Text className="card-right-title">{item.dicTrainType} {item.name}</Text>
+                <View className="three-tag">
                     <View className="card-right-tag">
-                        <Text>最快50天拿证</Text>
+                        <Text>最快{item.naBen}天拿证</Text>
                     </View>
                     <View className="card-right-tag">
-                        <Text>最快50天拿证</Text>
+                        <Text>{item.ctdK2}</Text>
+                    </View>
+                    <View className="card-right-tag">
+                        <Text>{item.learnDriverTime}</Text>
                     </View>
                 </View>
-                <View className="fl">
+                {/* <View className="fl">
                     <View className="card-right-tag">
                         <Text>周一到周日练车</Text>
                     </View>
-                </View>
+                </View> */}
                 <View className="class-price">
                     <Text className="hdj">活动价</Text>
                     <Text className="symbol">￥</Text>
-                    <Text className="cny">6000</Text>
-                    <Text className="origin-rice">原价￥6800</Text>
+                    <Text className="cny">{item.price}</Text>
+                    <Text className="origin-rice">原价￥{item.originalPrice}</Text>
                 </View>
-                <Text className="class-online-sinup">在线报名</Text>
+                <View style={{display: 'flex', justifyContent: 'flex-end'}}>
+                  <Text className="class-online-sinup">在线报名</Text>
+                </View>
             </View>
     </View>
 }

@@ -9,6 +9,7 @@ interface StarProp{
 }
 
 const CoachStar = (props: StarProp) => {
+    const {coachStarList} = props
     return <View id="coach-star-box">
         <View className="coach-star-title">
             <View>
@@ -25,9 +26,14 @@ const CoachStar = (props: StarProp) => {
                 className="look-more">查看更多&gt;</Text>
             </View>
         </View>
+        {
+          coachStarList.map((item, index) => {
+            return <SingleStar key={item.id} item={item} lastChild={index === coachStarList.length - 1}/>
+          })
+        }
+        {/* <SingleStar />
         <SingleStar />
-        <SingleStar />
-        <SingleStar lastChild/>
+        <SingleStar lastChild/> */}
         {/* <View className="fl">
             <Image className="mr" src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/zhjx.png"></Image>
             <Text>智慧驾校</Text>

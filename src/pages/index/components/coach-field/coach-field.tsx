@@ -19,15 +19,18 @@ const CoachField = (props: FieldProp) => {
                 <Text 
                 onClick={() => {
                     Taro.navigateTo({
-                        url: 'field'
+                        url: '/pages/field/field'
                     })
                 }} 
                 className="look_more">查看更多&gt;</Text>
             </View>
         </View>
+        {props.fieldList.map((item, index) => {
+          return <SingleField key={item.id} item={item} lastChild={index === props.fieldList.length - 1}/>
+        })}
+        {/* <SingleField />
         <SingleField />
-        <SingleField />
-        <SingleField lastChild/>
+        <SingleField lastChild/> */}
         {/* <View className="fl">
             <Image className="mr" src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/zhjx.png"></Image>
             <Text>智慧驾校</Text>

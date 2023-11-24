@@ -1,0 +1,70 @@
+#page-field {
+    width: 100%;
+    height: 100vh;
+    // height: 100%;
+    // overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 26px 0;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    .single-card-box {
+      margin-bottom: 30px;
+      background-color: #fff;
+      border-radius: 24px;
+      padding: 20px;
+      box-sizing: border-box;
+      // border: 1px solid red;
+      display: flex;
+      align-items: center;
+      // border-bottom: 1px solid #EDEDED;
+      .img-left-width {
+          width: 200px;
+          height: 140px;
+          border-radius: 12px;
+          margin-right: 18px;
+      }
+      .card-right {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 140px;
+          flex: 1;
+          .card-right-title {
+              font-family: 'Alibaba PuHuiTi';
+              font-size: 32px;
+              color: #14213A;
+              // border: 1px solid green;
+          }
+          .card-right-jz {
+              display: flex;
+              align-items: center;
+              // border: 1px solid green;
+              image {
+                  width: 36px;
+                  height: 36px;
+                  margin-right: 20px;
+              }
+              text {
+                  color: #666;
+                  font-size: 24px;
+              }
+              .max-line-one {
+                flex: 1;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+          }
+      }
+    }
+    .not-more-data {
+      color: #999;
+      font-size: 26px;
+      line-height: 36px;
+      text-align: center;
+      padding: 42px 0;
+    }
+}

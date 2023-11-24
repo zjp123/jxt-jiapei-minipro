@@ -30,6 +30,7 @@
             "disablePlugins": [],
             "outputPath": ""
         },
+<<<<<<< HEAD
         "enableEngineNative": false,
         "useIsolateContext": true,
         "userConfirmedBundleSwitch": false,
@@ -37,6 +38,9 @@
         "packNpmRelationList": [],
         "minifyWXSS": true,
         "showES6CompileOption": false,
+=======
+        "condition": false,
+>>>>>>> 1116-驾培小程序首页开发-zhangjunpeng
         "ignoreUploadUnusedFiles": false
     },
     "compileType": "miniprogram",

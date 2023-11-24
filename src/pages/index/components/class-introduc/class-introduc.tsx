@@ -9,6 +9,7 @@ interface IntroducProp{
 }
 
 const ClassIntroduc = (props: IntroducProp) => {
+    const {classIntroducList} = props
     return <View id="class-introduc-box">
         <View className="class-introduc-title">
             <View>
@@ -25,9 +26,12 @@ const ClassIntroduc = (props: IntroducProp) => {
                 className="look-more">查看更多&gt;</Text>
             </View>
         </View>
+        {classIntroducList.map((item, index) => {
+          return <SingleClass key={item.id} item={item} lastChild={index === classIntroducList.length - 1}/>
+        })}
+        {/* <SingleClass />
         <SingleClass />
-        <SingleClass />
-        <SingleClass lastChild/>
+        <SingleClass lastChild/> */}
         {/* <View className="fl">
             <Image className="mr" src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/zhjx.png"></Image>
             <Text>智慧驾校</Text>
