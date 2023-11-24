@@ -12,7 +12,8 @@ export default defineAppConfig({
     'pages/webview/pay',
     'pages/coach/coach',
     'pages/coachDetail/coachDetail',
-    'pages/news/news'
+    'pages/news/news',
+    'pages/newsDetail/newsDetail'
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -34,7 +35,7 @@ export default defineAppConfig({
       "iconPath": 'static/images/consulta.png',
       "text": "咨询"
     },{
-        "pagePath": "pages/registration/registration",
+        "pagePath": "pages/classbrief/classbrief",
         "selectedIconPath": 'static/images/regis_active.png',
         "iconPath": 'static/images/regis.png',
         "text": "报名"

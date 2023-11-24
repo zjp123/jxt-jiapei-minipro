@@ -1,0 +1,24 @@
+.news-detail-werrper {
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+
+    .news-detail-content {
+        padding: 30px 26px 50px;
+        box-sizing: border-box;
+
+        .news-detail-title {
+            font-size: 44px;
+            line-height: 60px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .news-detail-time {
+            font-size: 26px;
+            line-height: 40px;
+            color: #999999;
+            margin: 12px 0 22px;
+        }
+    }
+}
