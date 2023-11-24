@@ -77,6 +77,9 @@ const Index: React.FC = () => {
     // 报名
     const goApplication = (item) => {
         addSyncTrackLog('在线报名', path, navigator.userAgent)
+        // Taro.getStorageSync('openId')  Taro.getStorageSync('phone') Taro.getStorageSync('tokenId')
+        const d = Taro.getStorageSync('openId')
+        console.log(d, '=====>')
         // Taro.navigateTo({
         //     url: `/pages/webview/webview?url=${url}&tenantId=${item.tenantId}&classesId=${item.id}&carType=${item.dicTrainType}`
         // })
