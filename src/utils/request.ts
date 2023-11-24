@@ -51,7 +51,8 @@ const TaroRequest = (
 		method,
     // data: {...data, appId: accountInfo?.miniProgram?.appId
     header: {
-      ydtCode: getGlobalData('schoolId')
+      ydtCode: getGlobalData('schoolId'),
+      openCookieId: Taro.getStorageSync('tokenId')
     },
 		data: {appId: accountInfo?.miniProgram?.appId, ...data},
 		success: function () {},

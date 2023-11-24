@@ -29,6 +29,7 @@
         padding: 30px 0;
         // border: 1px solid red;
         display: flex;
+        flex: 1;
         // align-items: center;
         // border-bottom: 1px solid #EDEDED;
         .img-left-width {
@@ -38,32 +39,40 @@
             margin-right: 18px;
         }
         .card-right {
+            display: flex;
+            flex-direction: column;
             flex: 1;
-            // border: 1px solid red;
+            // border: 1px solid green;
             .card-right-title {
                 font-family: 'PingFang SC';
                 font-size: 36px;
                 color: #333;
-                line-height: 52px;
-                margin-bottom: 10px;
+                line-height: 52rpx;
+                margin-bottom: 10rpx;
                 // border: 1px solid green;
             }
-            .two-tag {
+            .three-tag {
                 display: flex;
-            }
-            .card-right-tag {
-                padding: 10px;
-                background-color: #EFF3F5;
-                color: #666;
-                font-size: 24px;
-                margin-right: 10px;
-                border-radius: 6px;
-                margin-bottom: 10px;
-            }
-            .fl {
-                display: flex;
+                // flex: 1;
+                flex-wrap: wrap;
+                // border: 1px solid green;
+                .card-right-tag {
+                    padding: 0 10px;
+                    background-color: #EFF3F5;
+                    color: #666;
+                    font-size: 24px;
+                    margin-right: 10px;
+                    border-radius: 6px;
+                    margin-bottom: 10px;
+                    text-align: center;
+                    text {
+                      line-height: 40px;
+                      white-space: nowrap;
+                    }
+                }
             }
             .class-price {
+              //  border: 1px solid red;
                 .hdj {
                     font-size: 24px;
                     color: #FF6600;
@@ -86,7 +95,7 @@
                 }
             }
             .class-online-sinup {
-                // display: flex;
+                // display: inline-block;
                 // justify-content: center;
                 // align-items: center;
                 color: #fff;
@@ -94,7 +103,6 @@
                 font-size: 28px;
                 border-radius: 52px;
                 padding: 8px 24px;
-                float: right;
                 margin-top: 14px;
             }
         }

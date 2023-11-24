@@ -21,7 +21,7 @@ const ActivityCom = (props) => {
     // const handleChange = () => {
     //     setIsOpened(true)
     // }
-    const {isOpenModalVisible, setIsOpenModalVisible} = props
+    const {isOpenModalVisible, setIsOpenModalVisible, setIsSureModalVisible} = props
     const onClose = () => {
         setIsOpenModalVisible(false)
     }
@@ -38,7 +38,12 @@ const ActivityCom = (props) => {
                     style={{width: Taro.pxTransform(574), height: Taro.pxTransform(804)}}
                     src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/huo-dong-nr.png"
                 />
-                <Image className="ling-qu" src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/lingqu.png"/>
+                <Image
+                onClick={() => {
+                  onClose()
+                  setIsSureModalVisible(true)
+                }}
+                className="ling-qu" src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/lingqu.png"/>
             </AtCurtain>
             {/* <AtButton
                 onClick={handleChange}>
