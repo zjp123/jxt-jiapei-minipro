@@ -1,16 +1,13 @@
-import { View, Text } from '@tarojs/components'
-import { useLoad } from '@tarojs/taro'
-import './consultation.scss'
+import { View, WebView } from '@tarojs/components';
 
-export default function Index() {
+const Consultation = () => {
+    return (
+        <View>
+            <WebView
+                src={'https://jxt.soboten.com/chat/h5/v6/index.html?sysnum=4d43f6416ac84028adb1d29bede67376&source=10'}
+            />
+        </View>
+    );
+};
 
-  useLoad(() => {
-    console.log('Page loaded.')
-  })
-
-  return (
-    <View className=''>
-      <Text>咨询</Text>
-    </View>
-  )
-}
+export default Consultation;
