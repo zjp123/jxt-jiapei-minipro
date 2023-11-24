@@ -82,3 +82,9 @@ export function loginApi(method, data = {}) {
 export function getOrderListApi(method, data = {}) {
   return taroRequest(`/api/schWeb/personal/order/list`, method, data)
 }
+
+// 用户登录信息
+export function getPersonalInfo(method, data = {}) {
+  return taroRequest(`/api/schWeb/personal/info`, method, data)
+}
+

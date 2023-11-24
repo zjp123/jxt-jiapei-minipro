@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, ScrollView, Image, Swiper, SwiperItem } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-import { getClassDetail, getOpenIdApi } from '@/api/common'
+import { getClassDetail, getPersonalInfo, loginApi, getPhoneApi } from '@/api/common'
 import NoData from '@/components/noData/noData'
 import { addSyncTrackLog } from '@/utils/utils'
 import { defaultClassesImage } from '@/utils/imgUrl'
@@ -36,49 +36,70 @@ const Index: React.FC = () => {
 
         }
     }
+    // 跳转报名页
+    const goSignup = () => {
+        const openId = Taro.getStorageSync('openId')
+        const phone = Taro.getStorageSync('phone')
+        console.log(openId, '=====>openId', phone)
+        Taro.navigateTo({
+            url: `/pages/reportEntry/webview?url=${url}&tenantId=${data.tenantId}&classesId=${data.id}&carType=${data.dicTrainType}&openId=${openId}&phone=${phone}`
+        })
+    }
+
+    const loginFn = async (data) => {
+        return await loginApi('POST', { ...data })
+    }
+
+    // 登陆
+    const goLogin = () => {
+        Taro.login({
+            async success(res) {
+                Taro.showLoading()
+                if (res.code) {
+                    try {
+                        let data = await getPhoneApi('POST', { code: res.code })
+                        console.log('获取openid结果', data)
+                        console.log(res, '手机号手机号手机号手机号手机号')
+                        const telPhone = data.data.phone
+                        Taro.setStorage({
+                            key: "phone",
+                            data: telPhone
+                        })
+                        const loginRes = await loginFn({ phone: telPhone, loginType: 3, openId: Taro.getStorageSync('openId') })
+                        Taro.hideLoading()
+                        console.log(loginRes, '获取token获取token获取token获取token')
+                        Taro.setStorage({
+                            key: 'tokenId',
+                            data: loginRes.data.token
+                        })
+                        goSignup()
+                    } catch (error) {
+                        Taro.hideLoading()
+                    }
+
+                } else {
+                    console.log("登录失败！" + res.errMsg);
+                }
+            },
+        });
+    }
 
     // 报名
-    const goApplication = () => {
+    const goApplication = async () => {
         addSyncTrackLog('在线报名', path, navigator.userAgent)
-        Taro.navigateTo({
-            url: `/pages/webview/webview?url=${url}&tenantId=${data.tenantId}&classesId=${data.id}&carType=${data.dicTrainType}`
-        })
-        // Taro.checkSession({
-        //     success: function () {
-        //         //session_key 未过期，并且在本生命周期一直有效
-        //         Taro.navigateTo({
-        //             url: `pages/webview/webview?url=http://jxtguns.58v5.cn/h5/#/spScanCode?tenantId=${item.tenantId}&classesId=${item.id}&carType=${item.dicTrainType}`
-        //         })
-        //     },
-        //     fail: function () {
-        //         // session_key 已经失效，需要重新执行登录流程
-        //         Taro.login({
-        //             async success(res) {
-        //                 if (res.code) {
-        //                     console.log("第一个code", res)
-        //                     //发起网络请求
-        //                     let data: any = null
-        //                     try {
-        //                         data = await getOpenIdApi('POST', { code: res.code })
-        //                         console.log('获取openid结果', data)
-        //                         // if (data.code === 0) {
-        //                         //     let params = {
-        //                         //         openId: data.data.openid,
-        //                         //         code: res.code,
-        //                         //     }
-        //                         // }
-        //                     } catch (error) {
-        //                         console.log('getopenidgetopenidgetopenid', error)
-        //                     }
+        try {
+            const res: any = await getPersonalInfo('POST', {})
+            // 登陆失效 重新登陆
+            if (res?.code === 4100) {
+                goLogin()
+            } else {
+                goSignup()
+            }
+        } catch (e) {
 
-        //                 } else {
-        //                     console.log("登录失败！" + res.errMsg);
-        //                 }
-        //             },
-        //         });
-        //     }
-        // })
+        }
     }
+
 
     // 图片预览
     const previewImage = (list, index) => {

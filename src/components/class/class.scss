@@ -30,6 +30,7 @@
                 border-radius: 12px;
                 flex: none;
                 margin-right: 18px;
+                overflow: hidden;
     
                 >.img {
                     width: 100%;
@@ -60,7 +61,7 @@
                     margin-top: 10px;
     
                     .class-tab {
-                        padding: 4px 8px;
+                        padding: 2px 8px;
                         border-radius: 6px;
                         background-color: #EFF3F5;
                         color: #666666;
