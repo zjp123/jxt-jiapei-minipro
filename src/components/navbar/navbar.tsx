@@ -5,20 +5,17 @@ import './navbar.scss'
 import { get as getGlobalData, set as setGlobalData } from '../../global_data'
 import Taro from '@tarojs/taro'
 import { AtActionSheet, AtActionSheetItem } from "taro-ui"
-import { useState } from 'react'
-const Navbar = (props) => {
-	// useEffect(() => {
-		
-    // }, [])
+import { useState, forwardRef } from 'react'
+const Navbar = forwardRef((props: any, ref) => {
     const [isOpened, setIsOpened] = useState(false)
     const [area, setArea] = useState('佛山')
-	useLoad(() => {
-        // Taro.hideTabBar()
-		console.log('Page loaded.')
-		// Taro.setNavigationBarTitle({
-		//     title: <View><text>hhhh</text></View>
-		// })
-	})
+    useLoad(() => {
+          // Taro.hideTabBar()
+      console.log('Page loaded.')
+      // Taro.setNavigationBarTitle({
+      //     title: <View><text>hhhh</text></View>
+      // })
+    })
 
     const handleCancel = () => {
         setIsOpened(false)
@@ -38,7 +35,7 @@ const Navbar = (props) => {
 
 	return (
         <>
-            <View className={`navigationPage ${props.size}`} style={{ backgroundColor: props.backgroundColor }}>
+            <View ref={ref} className={`navigationPage ${props.size}`} style={{ backgroundColor: props.backgroundColor }}>
                 {/* // 手机状态栏的高度 */}
                 <View style={{height: getGlobalData('statusBarHeight') + 'px', width: '100%'}}></View>
                 {/* // 导航高度 */}
@@ -72,7 +69,7 @@ const Navbar = (props) => {
             {/* <View style={{height: props.height + 'px'}}></View> */}
         </>
 	)
-}
+})
 Navbar.defaultProps = {
     title:'驾培集团',
     // height:20,

@@ -14,8 +14,8 @@ import SchoolNews from './components/school-news/school-news'
 import ContactUs from './components/contact-us/contact-us'
 import ActivityCom from './components/activity-com/activity-com'
 import ResultCom from './components/result-com/result-com'
-import { get as getGlobalData } from '../../global_data'
-import { getIndexPageApi, getFieldListApi, getClassTypeApi, getCocahStarApi, getNewsApi } from "@/api/common"
+import { get as getGlobalData, set as setGlobalData } from '../../global_data'
+import { getIndexPageApi, getFieldListApi, getClassTypeApi, getCocahStarApi, getNewsApi, getOpenIdApi } from "@/api/common"
 
 let _freshing = false
 export default function Index() {
@@ -56,6 +56,35 @@ export default function Index() {
               // console.log(res, '>>>>')
               setTopPx(res[0].top)
           })
+        const storeOpenId = Taro.getStorageSync('openId')
+        if (storeOpenId) { // 如果已有openid 不在重新获取
+            return
+        }
+        Taro.login({
+          async success(res) {
+            if (res.code) {
+                //发起网络请求
+                let data: any  = null
+                try {
+                    data = await getOpenIdApi('POST',{ code: res.code }, 'BASE_SAAS')
+                    console.log('获取openid结果', data)
+                    if (data.code === 0) {
+                      // 存储 openid
+                      Taro.setStorage({
+                        key:"openId",
+                        data:data.data.openid
+                      })
+                      setGlobalData('openId', data.data.openid)
+                    }
+                } catch (error) {
+                    console.log('getopenidgetopenidgetopenid', error)
+                }
+                
+            } else {
+                console.log("登录失败！" + res.errMsg);
+            }
+          },
+        });
     })
 
     const fetchData = async () => {

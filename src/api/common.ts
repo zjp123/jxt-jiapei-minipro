@@ -31,3 +31,13 @@ export function getNewsApi(method, data = {}) {
 export function getPhoneApi(method, data = {}) {
   return taroRequest(`/api/schWeb/clue/phone`, method, data)
 }
+
+// 登录
+export function loginApi(method, data = {}) {
+  return taroRequest(`/api/schWeb/login`, method, data)
+}
+
+// 订单
+export function getOrderListApi(method, data = {}) {
+  return taroRequest(`/api/schWeb/personal/order/list`, method, data)
+}
