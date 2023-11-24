@@ -4,9 +4,9 @@ import { useLoad } from '@tarojs/taro'
 import './my.scss'
 import { set as setGlobalData } from '../../global_data'
 import Taro, { useReady } from '@tarojs/taro'
-import { getOpenIdApi } from "@/api/common"
+import { getOpenIdApi, getPhoneApi } from "@/api/common"
 
-
+let openId = ''
 export default function My() {
 
   useLoad(() => {
@@ -24,7 +24,7 @@ export default function My() {
                 data = await getOpenIdApi('POST',{ code: res.code }, 'BASE_SAAS')
                 console.log('获取openid结果', data)
                 if (data.code === 0) {
-                  const openId = data.data.openid
+                  openId = data.data.openid
                   setGlobalData('openId', openId)
                 }
             } catch (error) {
@@ -43,18 +43,18 @@ export default function My() {
         console.log(e)
   }
 
-  const getUserInfoFn = () => {
-    Taro.getUserProfile({
-        desc: '用于完善用户资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-        success: (res) => {
-            console.log(res, '获取昵称和头像结果')
-            // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-        },
-        fail: () => {
-            console.log('拒绝获取头像和昵称')
-        }
-    })
-  }
+  // const getUserInfoFn = () => {
+  //   Taro.getUserProfile({
+  //       desc: '用于完善用户资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+  //       success: (res) => {
+  //           console.log(res, '获取昵称和头像结果')
+  //           // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+  //       },
+  //       fail: () => {
+  //           console.log('拒绝获取头像和昵称')
+  //       }
+  //   })
+  // }
 
   return (
     <View id='my-wrap'>

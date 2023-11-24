@@ -26,3 +26,8 @@ export function getCocahStarApi(method, data = {}) {
 export function getNewsApi(method, data = {}) {
   return taroRequest(`/api/schWeb/news/out/list`, method, data)
 }
+
+// 获取手机号
+export function getPhoneApi(method, data = {}) {
+  return taroRequest(`/api/schWeb/clue/phone`, method, data)
+}
