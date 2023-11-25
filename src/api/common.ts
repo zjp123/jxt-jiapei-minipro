@@ -88,3 +88,7 @@ export function getPersonalInfo(method, data = {}) {
   return taroRequest(`/api/schWeb/personal/info`, method, data)
 }
 
+// 场地详情
+export function getFieldDetailApi(method, data = {}) {
+  return taroRequest(`/api/schWeb/region/detail`, method, data)
+}

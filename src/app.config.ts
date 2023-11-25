@@ -15,6 +15,7 @@ export default defineAppConfig({
     'pages/news/news',
     'pages/newsDetail/newsDetail',
     'pages/field/field',
+    'pages/fieldDetail/fieldDetail',
   ],
   window: {
     backgroundTextStyle: 'light',

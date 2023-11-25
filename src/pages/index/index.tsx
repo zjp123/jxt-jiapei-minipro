@@ -1,4 +1,4 @@
-import { View, ScrollView, Image } from '@tarojs/components'
+import { View, ScrollView } from '@tarojs/components'
 // import Taro from '@tarojs/taro'
 import Taro, { useReady, useRouter } from '@tarojs/taro'
 import { useEffect, useState, useRef } from 'react'
