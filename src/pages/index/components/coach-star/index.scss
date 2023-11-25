@@ -36,15 +36,17 @@
             height: 120px;
             border-radius: 60px;
             margin-right: 18px;
-
+            box-sizing: border-box;
         }
         .card-right {
-            flex: 1;
-            height: 120px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 120px;
+            flex: 1;
             // border: 1px solid red;
+            overflow: hidden;
+            box-sizing: border-box;
             .card-right-one {
                 display: flex;
                 align-items: center;
@@ -72,20 +74,32 @@
             }
             .card-right-two {
                 display: flex;
+                margin-top: 1px;
                 image {
-                    width: 34px;
-                    height: 34px;
+                    width: 36px;
+                    height: 36px;
                     margin-right: 6px;
                 }
                 .star-chang-di {
                     font-size: 24px;
                     color: #666;
                     line-height: 36px;
+                    flex: 1;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
             .card-right-three {
                 display: flex;
-                
+                white-space: nowrap;
+                flex: 1;
+                overflow: hidden;
+                flex-direction: row;
+                align-items: flex-end;
+                // border: 1px solid green;
                 .score {
                     color: #FF8D00;
                     font-size: 24px;
@@ -96,15 +110,18 @@
                     font-size: 24px;
                     color: #666;
                     margin-right: 18px;
+                    align-items: flex-end;
                     .count {
                         color: #FF8A00;
                     }
                 }
                 .star-tag {
-                    padding: 2px 12px;
+                    padding: 0 12px;
                     background-color: #EFF3F5;
                     color: #666;
                     font-size: 22px;
+                    line-height: 32px;
+                    height: 32px;
                     border-radius: 6px;
                     margin-right: 18px;
                 }
