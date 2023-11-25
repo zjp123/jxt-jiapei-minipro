@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, Button } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { getPhoneApi, loginApi } from '@/api/common'
@@ -17,11 +17,12 @@ const Index: React.FC<Props> = (props) => {
             : process.env.NODE_ENV === 'development'
                 ? `http://jxtguns.58v5.cn/h5/#/spScanCode`
                 : `http://jxtguns.58v5.cn/h5/#/spScanCode`
+    const accountInfo = Taro.getAccountInfoSync();
     const { path }: any = Taro.getCurrentInstance().router;
 
     // 按钮展示
     const [isShowBtn, setIsShowBtn] = useState(!!(Taro.getStorageSync('openId') && Taro.getStorageSync('phone')))
-   
+
     useEffect(() => {
         setIsShowBtn(!!(Taro.getStorageSync('openId') && Taro.getStorageSync('phone')))
     }, [data])
@@ -32,7 +33,7 @@ const Index: React.FC<Props> = (props) => {
         const phone = Taro.getStorageSync('phone')
         console.log(openId, '=====>openId', phone)
         Taro.navigateTo({
-            url: `/pages/reportEntry/webview?url=${url}&tenantId=${data.tenantId}&classesId=${data.id}&carType=${data.dicTrainType}&openId=${openId}&phone=${phone || ''}`
+            url: `/pages/reportEntry/webview?url=${url}&tenantId=${data.tenantId}&classesId=${data.id}&carType=${data.dicTrainType}&openId=${openId}&phone=${phone || ''}&appId=${accountInfo?.miniProgram?.appId || ''}`
         })
     }
     const loginFn = async (data) => {

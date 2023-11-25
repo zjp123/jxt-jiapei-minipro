@@ -59,9 +59,12 @@ const Index: React.FC = () => {
                                     <Text className='class-tab'>最快{data?.naBen}天拿证</Text>
                                     <Text className='class-tab class-right'>{data?.ctdK2}</Text>
                                 </View>
-                                <View className='class-margin-top'>
-                                    <Text className='class-tab'>{data?.learnDriverTime}</Text>
-                                </View>
+                                {
+                                    !!data?.learnDriverTime &&
+                                    <View className='class-margin-top'>
+                                        <Text className='class-tab'>{data?.learnDriverTime}</Text>
+                                    </View>
+                                }
                             </View>
                             <View className='class-content-car'>
                                 <Text className='class-car-text'>车辆：</Text>
@@ -73,7 +76,7 @@ const Index: React.FC = () => {
                                 <Text className='class-price-prve'>原价¥{data?.originalPrice}</Text>
                             </View>
                             <View className='class-content-btn'>
-                                <SignupBtn data={data}/>
+                                <SignupBtn data={data} />
                             </View>
                         </View>
                     </View>

@@ -51,6 +51,7 @@
                         font-weight: bold;
                         color: #14213A;
                         overflow: hidden;
+                        max-width: 220px;
                         text-overflow: ellipsis; //超出部分省略号显示
                         display: -webkit-box !important; // 弹性盒模型
                         -webkit-box-orient: vertical; // 上下垂直
@@ -60,7 +61,7 @@
                     .coach-shiming {
                         flex: none;
                         width: 114px;
-                        height: 32px;
+                        height: 38px;
                         margin-left: 10px;
                     }
 

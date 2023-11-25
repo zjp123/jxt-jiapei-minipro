@@ -7,9 +7,9 @@ const Index: React.FC = () => {
     const handleMessage = (data) => {
         console.log(data)
     }
-    console.log(params?.url + `?openId=${params.openId || ''}&tenantId=${params.tenantId || ''}&classesId=${params.classesId || ''}&carType=${params.carType || ''}&phone=${params.phone || ''}`, '=====>params')
+    console.log(params?.url + `?openId=${params.openId || ''}&tenantId=${params.tenantId || ''}&classesId=${params.classesId || ''}&carType=${params.carType || ''}&phone=${params.phone || ''}&appId=${params.appId}`, '=====>params')
     return (
-        <WebView src={params?.url + `?openId=${params.openId || ''}&tenantId=${params.tenantId || ''}&classesId=${params.classesId || ''}&carType=${params.carType || ''}&phone=${params.phone || ''}`} onMessage={handleMessage} />
+        <WebView src={params?.url + `?openId=${params.openId || ''}&tenantId=${params.tenantId || ''}&classesId=${params.classesId || ''}&carType=${params.carType || ''}&phone=${params.phone || ''}&appId=${params.appId}`} onMessage={handleMessage} />
     )
 }
 
