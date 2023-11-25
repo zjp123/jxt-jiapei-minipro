@@ -36,6 +36,7 @@
             height: 120px;
             border-radius: 60px;
             margin-right: 18px;
+            box-sizing: border-box;
         }
         .card-right {
             display: flex;
@@ -43,8 +44,9 @@
             justify-content: space-between;
             height: 120px;
             flex: 1;
-            border: 1px solid red;
+            // border: 1px solid red;
             overflow: hidden;
+            box-sizing: border-box;
             .card-right-one {
                 display: flex;
                 align-items: center;
@@ -72,9 +74,10 @@
             }
             .card-right-two {
                 display: flex;
+                margin-top: 1px;
                 image {
-                    width: 34px;
-                    height: 34px;
+                    width: 36px;
+                    height: 36px;
                     margin-right: 6px;
                 }
                 .star-chang-di {

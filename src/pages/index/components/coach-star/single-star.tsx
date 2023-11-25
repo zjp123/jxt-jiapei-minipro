@@ -1,10 +1,15 @@
 // import React from 'react'
 import { View, Text, Image } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import './index.scss'
 
 const SingleCoach = (props) => {
     const {item} = props
-    return <View className="single-coach-box" style={{borderBottom: props.lastChild ? 'none' : '1px solid #EDEDED' }}>
+    return <View onClick={() => {
+      Taro.navigateTo({
+        url: '/pages/coachDetail/coachDetail?id=' + item.id
+      })
+    }} className="single-coach-box" style={{borderBottom: props.lastChild ? 'none' : '1px solid #EDEDED' }}>
             <Image className="img-left-width" src={item.coachPhotoUrl} />
             <View className="card-right">
                 <View className="card-right-one">
@@ -22,7 +27,7 @@ const SingleCoach = (props) => {
                         点评<Text className="count">{item.dpCount}</Text>条
                     </View>
                     {
-                      item.dpInfo.map((item) => {
+                      item.dpInfo.slice(0, 3).map((item) => {
                         return <Text key={item} className="star-tag">{item}</Text>
                       })
                     }

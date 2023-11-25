@@ -1,10 +1,16 @@
 // import React from 'react'
 import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
+import SignupBtn from '@/components/signupBtn/signupBtn'
+import Taro from '@tarojs/taro'
 
 const SingleClass = (props) => {
     const {item = {}} = props
-    return <View className="single-class-box" style={{borderBottom: props.lastChild ? 'none' : '1px solid #EDEDED' }}>
+    return <View onClick={() => {
+      Taro.navigateTo({
+        url: '/pages/classbriefDetail/classbriefDetail?id=' + item.id
+      })
+    }} className="single-class-box" style={{borderBottom: props.lastChild ? 'none' : '1px solid #EDEDED' }}>
             <Image className="img-left-width" src={item.picUrl} />
             <View className="card-right">
                 <Text className="card-right-title">{item.dicTrainType} {item.name}</Text>
@@ -31,7 +37,8 @@ const SingleClass = (props) => {
                     <Text className="origin-rice">原价￥{item.originalPrice}</Text>
                 </View>
                 <View style={{display: 'flex', justifyContent: 'flex-end'}}>
-                  <Text className="class-online-sinup">在线报名</Text>
+                  {/* <Text className="class-online-sinup">在线报名</Text> */}
+                  <SignupBtn data={item} />
                 </View>
             </View>
     </View>
