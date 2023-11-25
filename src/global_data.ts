@@ -8,6 +8,7 @@ const globalData = {
         phone: ''
     },
     schoolId: '1128592555575894016'
+    // schoolId: ''
 }
 
 export function set(key, val) {

@@ -14,7 +14,7 @@ const SingleCoach = (props) => {
                 </View>
                 <View className="card-right-two">
                     <Image src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/icon-xlc.png" />
-                    <Text className="star-chang-di">{item.coachAreaList.join(', ')}</Text>
+                    <Text numberOfLines={1} maxLines={1} className="star-chang-di">{item.coachAreaList.join('、')}</Text>
                 </View>
                 <View className="card-right-three">
                     <Text className="score">{item.score}分</Text>

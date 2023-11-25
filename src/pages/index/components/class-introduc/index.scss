@@ -50,6 +50,11 @@
                 line-height: 52rpx;
                 margin-bottom: 10rpx;
                 // border: 1px solid green;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .three-tag {
                 display: flex;
