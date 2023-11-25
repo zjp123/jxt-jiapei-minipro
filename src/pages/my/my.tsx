@@ -1,5 +1,5 @@
-import { View, Text, Image, Button } from '@tarojs/components'
-// import { AtButton } from 'taro-ui'
+import { View, Text, Image } from '@tarojs/components'
+import { AtButton } from 'taro-ui'
 import { useLoad } from '@tarojs/taro'
 import './my.scss'
 // import { set as setGlobalData } from '../../global_data'
@@ -55,6 +55,14 @@ export default function My() {
 
   const getPhoneFn = async (e) => {
         console.log(e)
+        if (!e.target.code) {
+          Taro.showToast({
+            title: '需要您允许获取手机号码，查询订单信息',
+            icon: 'error',
+            duration: 2000
+          })
+          return
+        }
         try {
             Taro.showLoading()
             const res = await getPhoneApi('POST', {code: e.target.code})
@@ -66,14 +74,17 @@ export default function My() {
             })
             const loginRes = await loginFn({phone: telPhone, loginType: 3, openId: Taro.getStorageSync('openId')})
             setPhoneState(telPhone)
-            Taro.hideLoading()
             console.log(loginRes, '获取token获取token获取token获取token')
             Taro.setStorage({
               key:'tokenId',
               data: loginRes.data.token
             })
+            const orderListRes = await getOrderListApi('POST')
+            Taro.hideLoading()
+            setOrderList(orderListRes.data?.orders || [])
         } catch (error) {
             Taro.hideLoading()
+            console.log(error, '登录发生错误')
         }
   }
 
@@ -96,8 +107,8 @@ export default function My() {
             <View className="img-text">
                 <Image src={phoneState ? 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/logined.png' : "https://img.58cdn.com.cn/dist/jxt/images/jxtschool/adv-default.png"}/>
                 {(!phoneState || !Taro.getStorageSync('phone')) && <View className="login-btn">
-                    {/* <AtButton className="btn" type='primary' size='small'>点击登录/注册</AtButton> */}
-                    <Button className="btn" openType='getPhoneNumber' onGetPhoneNumber={getPhoneFn}>获取手机号</Button>
+                    <AtButton openType='getPhoneNumber' onGetPhoneNumber={getPhoneFn} className="btn">点击登录/注册</AtButton>
+                    {/* <Button className="btn" openType='getPhoneNumber' onGetPhoneNumber={getPhoneFn}>点击登录/注册</Button> */}
                     {/* <Button className="btn" onClick={getUserInfoFn}>登录</Button> */}
                     <Text className="more">登录后获取更多信息～</Text>
                     {/* <Text className="nickName">Hi，微信昵称</Text>

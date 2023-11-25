@@ -5,10 +5,33 @@ import './navbar.scss'
 import { get as getGlobalData, set as setGlobalData } from '../../global_data'
 import Taro from '@tarojs/taro'
 import { AtActionSheet, AtActionSheetItem } from "taro-ui"
-import { useState, forwardRef } from 'react'
+import { useState, forwardRef, useEffect } from 'react'
 const Navbar = forwardRef((props: any, ref) => {
+    const {contactInfo} = props
     const [isOpened, setIsOpened] = useState(false)
     const [area, setArea] = useState('佛山')
+    const [areaList, setAreaList] = useState<Array<any>>([
+      {
+        cityName: '佛山',
+        id: '1128592555575894016'
+      },
+      {
+        cityName: '石家庄',
+        id: '1426060676178128896'
+      }
+    ])
+    useEffect(() => {
+      const ele = areaList.find((item) => item.id === contactInfo.id)
+      if (!ele && contactInfo.id) { // 如果不在默认列表里
+        setAreaList(areaList.concat([{
+          cityName: contactInfo.city,
+          id: contactInfo.id
+        }]))
+        setArea(contactInfo.city)
+        setGlobalData('schoolId', contactInfo.id)
+      }
+    }, [contactInfo.id])
+
     useLoad(() => {
           // Taro.hideTabBar()
       console.log('Page loaded.')
@@ -51,12 +74,17 @@ const Navbar = forwardRef((props: any, ref) => {
                             }}
                         >{area}</Text>
                         <AtActionSheet isOpened={isOpened} cancelText='取消' onCancel={ handleCancel } onClose={ handleClose }>
-                            <AtActionSheetItem onClick={ () => {handleClick('佛山', '1390632768383229952')} }>
+                            {areaList.map((item) => {
+                                return <AtActionSheetItem key={item.id} onClick={ () => {handleClick(item.cityName, item.id)} }>
+                                    {item.cityName}
+                                </AtActionSheetItem>
+                            })}
+                            {/* <AtActionSheetItem onClick={ () => {handleClick('佛山', '1128592555575894016')} }>
                                 佛山
                             </AtActionSheetItem>
                             <AtActionSheetItem onClick={ () => {handleClick('石家庄', '1426060676178128896')} }>
                                 石家庄
-                            </AtActionSheetItem>
+                            </AtActionSheetItem> */}
                         </AtActionSheet>
                     </View>
                     <View className="navigationTitle">

@@ -47,6 +47,11 @@
                 font-family: 'Alibaba PuHuiTi';
                 font-size: 32px;
                 color: #14213A;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 // border: 1px solid green;
             }
             .card-right-jz {

@@ -6,14 +6,14 @@ const SingleOrder = (props: any) => {
     return <View className="single-order" style={{borderBottom: lastChild ? 'none' : '1px solid #EDEDED' }}>
             <View className="order-level-left">
                 <View className="order-level-top">
-                    <Text className="bac-style">C1</Text>
-                    <Text className="order-desc">{item.name}</Text>
+                    <Text className="bac-style">{item.carType}</Text>
+                    <Text className="order-desc">{item.className}</Text>
                 </View>
-                <Text className="order-level-bottom">{item.schoolName}</Text>
+                <Text className="order-level-bottom">{item.schName}</Text>
             </View>
             <View className="order-level-right">
                 <Text className="cny-sym">￥</Text>
-                <Text>{item.price}</Text>
+                <Text>{item.actualFee}</Text>
             </View>
         </View>
 }

@@ -7,7 +7,8 @@ const globalData = {
     userInfo: {
         phone: ''
     },
-    schoolId: '1426060676178128896'
+    schoolId: '1128592555575894016'
+    // schoolId: '1426060676178128896'
 }
 
 export function set(key, val) {

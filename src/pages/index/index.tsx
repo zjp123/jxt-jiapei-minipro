@@ -1,6 +1,6 @@
 import { View, ScrollView, Image } from '@tarojs/components'
 // import Taro from '@tarojs/taro'
-import Taro, { useReady } from '@tarojs/taro'
+import Taro, { useReady, useRouter } from '@tarojs/taro'
 import { useEffect, useState, useRef } from 'react'
 import './index.scss'
 import Navigation from '../../components/navbar/navbar'
@@ -19,6 +19,7 @@ import { getIndexPageApi, getFieldListApi, getClassTypeApi, getCocahStarApi, get
 
 let _freshing = false
 export default function Index() {
+    const router = useRouter()
     const schoolId = getGlobalData('schoolId')
     const [triggered, setTriggered] = useState(false)
     const [isOpenModalVisible, setIsOpenModalVisible] = useState(false)
@@ -33,7 +34,7 @@ export default function Index() {
     const [coachStarList, setCoachStarList] = useState([])
     const [newsList, setNewsList] = useState([])
     const [contactInfo, setContactInfo] = useState({})
-    
+    console.log(router, '路由路由路由路由')
     const onPulling = (e) => {
         setTriggered(true)
         console.log('onPulling:', e)
@@ -87,31 +88,43 @@ export default function Index() {
         });
     })
 
-    const fetchData = async () => {
+    const fetchData = async (handChange?) => {
         if (_freshing) return
         Taro.showLoading({
             title: '加载中',
         })
         _freshing = true
-        const p1 = getIndexPageApi('POST')
-        const p2 = getFieldListApi('POST')
-        const p3 = getClassTypeApi('POST')
-        const p4 = getCocahStarApi('POST', {schoolId, isHome: true})
-        const p5 = getNewsApi('POST')
-        const res_contac = await p1
-        setContactInfo(res_contac.data || {})
-        const res_field = await p2
-        setFieldList(res_field?.data?.list || [])
-        const res_class_type = await p3
-        setClassIntroducList(res_class_type?.data?.list || [])
-        const res_cocah_type = await p4
-        setCoachStarList(res_cocah_type?.data?.list || [])
-        const res_news_list = await p5
-        console.log(res_cocah_type, '>>>>>>>>>>>>')
-        setNewsList(res_news_list?.data?.list || [])
-        Taro.hideLoading()
-        setTriggered(false)
-        _freshing = false
+        try {
+            let res_contac: any = {}
+            if (handChange) {
+              res_contac = await getIndexPageApi('POST')
+            } else {
+              res_contac = await getIndexPageApi('POST', {}, router.params.ydtId)
+            }
+            setGlobalData('schoolId', res_contac.data.id) // 更新最新一点通id
+            const p2 = getFieldListApi('POST')
+            const p3 = getClassTypeApi('POST')
+            const p4 = getCocahStarApi('POST', {schoolId, isHome: true})
+            const p5 = getNewsApi('POST')
+            // const res_contac = await p1
+            setContactInfo(res_contac.data || {})
+            const res_field = await p2
+            setFieldList(res_field?.data?.list || [])
+            const res_class_type = await p3
+            setClassIntroducList(res_class_type?.data?.list || [])
+            const res_cocah_type = await p4
+            setCoachStarList(res_cocah_type?.data?.list || [])
+            const res_news_list = await p5
+            console.log(res_cocah_type, '>>>>>>>>>>>>')
+            setNewsList(res_news_list?.data?.list || [])
+            Taro.hideLoading()
+            setTriggered(false)
+            _freshing = false
+        } catch (error) {
+            Taro.hideLoading()
+            setTriggered(false)
+            _freshing = false
+        }
     }
 
     // const fetchData = (pageNum?) => {
@@ -170,8 +183,8 @@ export default function Index() {
 
 	return (
 		<View className='index_box'>
-          <Navigation ref={navRef} onchange={() => {
-              fetchData()
+          <Navigation contactInfo={contactInfo} ref={navRef} onchange={() => {
+              fetchData(true)
           }}/>
           <View className="pb-36" style={{display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden'}}>
               <ScrollView
@@ -216,11 +229,11 @@ export default function Index() {
               </ScrollView>
               {/* <View className="zhan-wei" style={{height: '36px'}}></View> */}
           </View>
-          <View id="activity-img" onClick={() => {
+          {/* <View id="activity-img" onClick={() => {
               setIsOpenModalVisible(true)
           }}>
               <Image src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/activity-img.png"/>
-          </View>
+          </View> */}
           {
               isOpenModalVisible && 
               <ActivityCom 

@@ -10,7 +10,7 @@ const SingleCard = (props) => {
                 <Text className="card-right-title">{item.courseName}{item.name}</Text>
                 <View className="card-right-jz">
                     <Image className="icon-width" src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/icon_jz.png" />
-                    <Text>{item.vehicleType}</Text>
+                    <Text className="max-line-one">{item.vehicleType.replace(/,/g, '/')}</Text>
                 </View>
                 <View className="card-right-jz">
                     <Image data-longitude={item.longitude} data-latitude={item.latitude} className="icon-width" src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/icon_dz.png" />

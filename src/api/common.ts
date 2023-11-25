@@ -46,8 +46,8 @@ export function getCombinationDetail(method, data = {}) {
 }
 
 // 首页联系
-export function getIndexPageApi(method, data = {}) {
-    return taroRequest(`/api/schWeb/firstPage/search`, method, data)
+export function getIndexPageApi(method, data = {}, ydtId?) {
+    return taroRequest(`/api/schWeb/firstPage/search`, method, data, undefined, ydtId)
 }
 // 场地
 export function getFieldListApi(method, data = {}) {
