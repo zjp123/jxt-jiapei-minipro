@@ -2,6 +2,7 @@
 import { View, Text, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import './index.scss'
+import { defaultCoachImage } from '@/utils/imgUrl'
 
 const SingleCoach = (props) => {
     const {item} = props
@@ -10,7 +11,7 @@ const SingleCoach = (props) => {
         url: '/pages/coachDetail/coachDetail?id=' + item.id
       })
     }} className="single-coach-box" style={{borderBottom: props.lastChild ? 'none' : '1px solid #EDEDED' }}>
-            <Image className="img-left-width" src={item.coachPhotoUrl} />
+            <Image className="img-left-width" src={item?.coachPhotoUrl ? item?.coachPhotoUrl + '?w=120&h=120' : defaultCoachImage} />
             <View className="card-right">
                 <View className="card-right-one">
                     <Text className="card-right-title">{item.coachName}</Text>

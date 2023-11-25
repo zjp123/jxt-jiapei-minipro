@@ -1,11 +1,11 @@
-// import React from 'react'
 import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
+import { defaultTrainImage } from '@/utils/imgUrl'
 
 const SingleCard = (props) => {
     const {item = {}, lastChild, isNotIndexPage = false} = props
     return <View className="single-card-box" style={{borderBottom: lastChild ? 'none' : isNotIndexPage ? 'static' : '1px solid #EDEDED' }}>
-            <Image className="img-left-width" src={item.jxCdPicUrl} />
+            <Image className="img-left-width" src={item.jxCdPicUrl && item.jxCdPicUrl[0] ? item.jxCdPicUrl[0] + '?w=107&h=72&ss=1' : defaultTrainImage} />
             <View className="card-right">
                 <Text className="card-right-title">{item.courseName}{item.name}</Text>
                 <View className="card-right-jz">

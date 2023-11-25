@@ -3,6 +3,7 @@ import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 import SignupBtn from '@/components/signupBtn/signupBtn'
 import Taro from '@tarojs/taro'
+import { defaultClassesImage } from '@/utils/imgUrl'
 
 const SingleClass = (props) => {
     const {item = {}} = props
@@ -11,7 +12,7 @@ const SingleClass = (props) => {
         url: '/pages/classbriefDetail/classbriefDetail?id=' + item.id
       })
     }} className="single-class-box" style={{borderBottom: props.lastChild ? 'none' : '1px solid #EDEDED' }}>
-            <Image className="img-left-width" src={item.picUrl} />
+        <Image className="img-left-width" src={item?.picUrl ? item?.picUrl + '?w=233&h=175' : defaultClassesImage} />
             <View className="card-right">
                 <Text className="card-right-title">{item.dicTrainType} {item.name}</Text>
                 <View className="three-tag">

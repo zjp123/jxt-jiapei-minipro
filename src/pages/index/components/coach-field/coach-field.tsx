@@ -28,13 +28,6 @@ const CoachField = (props: FieldProp) => {
         {props.fieldList.map((item, index) => {
           return <SingleField key={item.id} item={item} lastChild={index === props.fieldList.length - 1}/>
         })}
-        {/* <SingleField />
-        <SingleField />
-        <SingleField lastChild/> */}
-        {/* <View className="fl">
-            <Image className="mr" src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/zhjx.png"></Image>
-            <Text>智慧驾校</Text>
-        </View> */}
     </View>
 }
 

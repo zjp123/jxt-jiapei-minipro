@@ -1,4 +1,5 @@
 export const defaultClassesImage = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/h5/classes-default.png'
+export const  defaultTrainImage= 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/h5/train-default.png'
 export const defaultCoachImage = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/h5/coach-default.png'
 export const shiming = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/ysm-new.png'
 export const coachAreaImg = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/icon-xlc.png'
