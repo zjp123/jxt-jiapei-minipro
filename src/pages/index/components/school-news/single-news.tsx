@@ -13,7 +13,7 @@ const SingleNews = (props) => {
             <View className="news-left">
                 <View className="news-left-desc">{item.title}</View>
                 <View className="news-left-date">
-                    {item.top && <Text className="set-top">置顶</Text>}
+                    {item.top === 1 ? <Text className="set-top">置顶</Text> : null}
                     <Text className="date">{item.dateShow}</Text>
                 </View>
             </View>
