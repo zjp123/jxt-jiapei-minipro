@@ -22,6 +22,7 @@
                 border-radius: 12px;
                 flex: none;
                 margin-right: 18px;
+                overflow: hidden;
 
                 >.img {
                     width: 100%;
@@ -52,7 +53,7 @@
                     margin-top: 10px;
 
                     .class-tab {
-                        padding: 4px 8px;
+                        padding: 2px 8px;
                         border-radius: 6px;
                         background-color: #EFF3F5;
                         color: #666666;
@@ -147,9 +148,11 @@
                 height: 252px !important;
                 padding-right: 20px;
                 box-sizing: border-box;
+             
                 > .detail-swipe-item-img {
                     width: 100%;
                     height: 100%;
+                    border-radius: 24px;
                 }
             }
             .detail-swipe-item:last-child {

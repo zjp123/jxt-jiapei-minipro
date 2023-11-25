@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, ScrollView, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-import { getClassList, getOpenIdApi } from '@/api/common'
+import { getClassList } from '@/api/common'
 import { addSyncTrackLog } from '@/utils/utils'
 import { defaultClassesImage } from '@/utils/imgUrl'
+import SignupBtn from '@/components/signupBtn/signupBtn'
 import './class.scss'
 
 const Index: React.FC = () => {
-    const url =
-        process.env.NODE_ENV === 'production'
-            ? `https://jxtm.jxedt.com/h5/#/spScanCode`
-            : process.env.NODE_ENV === 'development'
-                ? `http://jxtguns.58v5.cn/h5/#/spScanCode`
-                : `http://jxtguns.58v5.cn/h5/#/spScanCode`
     const { path }: any = Taro.getCurrentInstance().router;
     const [triggered, setTriggered] = useState(false)
     const [list, setList] = useState({
@@ -73,48 +68,6 @@ const Index: React.FC = () => {
         }
         getList({ pageIndex: list.pagination.pageIndex + 1 }, true)
     };
-
-    // 报名
-    const goApplication = (item) => {
-        addSyncTrackLog('在线报名', path, navigator.userAgent)
-        // Taro.navigateTo({
-        //     url: `/pages/webview/webview?url=${url}&tenantId=${item.tenantId}&classesId=${item.id}&carType=${item.dicTrainType}`
-        // })
-        // Taro.getUserProfile({
-        //     desc: '用于完善用户资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-        //     success: (res) => {
-        //         console.log(res, '获取昵称和头像结果')
-        //         // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-        //     },
-        //     fail: () => {
-        //         console.log('拒绝获取头像和昵称')
-        //     }
-        // })
-        // Taro.login({
-        //     async success(res) {
-        //         if (res.code) {
-        //             console.log("第一个code", res)
-        //             //发起网络请求
-        //             let data: any = null
-        //             try {
-        //                 data = await getOpenIdApi('POST', { code: res.code })
-        //                 console.log('获取openid结果', data)
-        //                 // if (data.code === 0) {
-        //                 //     let params = {
-        //                 //         openId: data.data.openid,
-        //                 //         code: res.code,
-        //                 //     }
-        //                 // }
-        //             } catch (error) {
-        //                 console.log('getopenidgetopenidgetopenid', error)
-        //             }
-
-        //         } else {
-        //             console.log("登录失败！" + res.errMsg);
-        //         }
-        //     },
-        // });
-    }
 
     // 班制详情
     const goDetail = (item) => {
@@ -187,10 +140,7 @@ const Index: React.FC = () => {
                                             <Text className='class-price-prve'>原价¥{item?.originalPrice}</Text>
                                         </View>
                                         <View className='class-content-btn'>
-                                            <Text className='class-btn' onClick={(e) => {
-                                                e.stopPropagation()
-                                                goApplication(item)
-                                            }}>在线报名</Text>
+                                            <SignupBtn data={item}/>
                                         </View>
                                     </View>
                                 </View>

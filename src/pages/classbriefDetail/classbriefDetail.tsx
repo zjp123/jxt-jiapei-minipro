@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, ScrollView, Image, Swiper, SwiperItem } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-import { getClassDetail, getOpenIdApi } from '@/api/common'
+import { getClassDetail } from '@/api/common'
 import NoData from '@/components/noData/noData'
-import { addSyncTrackLog } from '@/utils/utils'
+import SignupBtn from '@/components/signupBtn/signupBtn'
 import { defaultClassesImage } from '@/utils/imgUrl'
 import './classbriefDetail.scss'
 
 const Index: React.FC = () => {
-    const url =
-        process.env.NODE_ENV === 'production'
-            ? `https://jxtm.jxedt.com/h5/#/spScanCode`
-            : process.env.NODE_ENV === 'development'
-                ? `http://jxtguns.58v5.cn/h5/#/spScanCode`
-                : `http://jxtguns.58v5.cn/h5/#/spScanCode`
-    const { params, path }: any = Taro.getCurrentInstance().router;
+    const { params }: any = Taro.getCurrentInstance().router;
     const [data, setData] = useState<any>({});
     // 初始化
     useEffect(() => {
@@ -35,49 +29,6 @@ const Index: React.FC = () => {
         } catch (e) {
 
         }
-    }
-
-    // 报名
-    const goApplication = () => {
-        addSyncTrackLog('在线报名', path, navigator.userAgent)
-        Taro.navigateTo({
-            url: `/pages/webview/webview?url=${url}&tenantId=${data.tenantId}&classesId=${data.id}&carType=${data.dicTrainType}`
-        })
-        // Taro.checkSession({
-        //     success: function () {
-        //         //session_key 未过期，并且在本生命周期一直有效
-        //         Taro.navigateTo({
-        //             url: `pages/webview/webview?url=http://jxtguns.58v5.cn/h5/#/spScanCode?tenantId=${item.tenantId}&classesId=${item.id}&carType=${item.dicTrainType}`
-        //         })
-        //     },
-        //     fail: function () {
-        //         // session_key 已经失效，需要重新执行登录流程
-        //         Taro.login({
-        //             async success(res) {
-        //                 if (res.code) {
-        //                     console.log("第一个code", res)
-        //                     //发起网络请求
-        //                     let data: any = null
-        //                     try {
-        //                         data = await getOpenIdApi('POST', { code: res.code })
-        //                         console.log('获取openid结果', data)
-        //                         // if (data.code === 0) {
-        //                         //     let params = {
-        //                         //         openId: data.data.openid,
-        //                         //         code: res.code,
-        //                         //     }
-        //                         // }
-        //                     } catch (error) {
-        //                         console.log('getopenidgetopenidgetopenid', error)
-        //                     }
-
-        //                 } else {
-        //                     console.log("登录失败！" + res.errMsg);
-        //                 }
-        //             },
-        //         });
-        //     }
-        // })
     }
 
     // 图片预览
@@ -122,10 +73,7 @@ const Index: React.FC = () => {
                                 <Text className='class-price-prve'>原价¥{data?.originalPrice}</Text>
                             </View>
                             <View className='class-content-btn'>
-                                <Text className='class-btn' onClick={(e) => {
-                                    e.stopPropagation()
-                                    goApplication()
-                                }}>在线报名</Text>
+                                <SignupBtn data={data}/>
                             </View>
                         </View>
                     </View>
