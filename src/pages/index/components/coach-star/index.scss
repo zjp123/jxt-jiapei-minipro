@@ -57,7 +57,13 @@
                     color: #14213A;
                     // border: 1px solid green;
                     line-height: 44px;
-
+                    max-width: 144px;
+                    // width: 126px;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 image {
                     width: 114px;

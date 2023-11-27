@@ -18,7 +18,7 @@ const TextIcon = () => {
         </View>
         <View className="fl">
             <Image className="mr" src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/mxjld.png"></Image>
-            <Text>明星教练对</Text>
+            <Text>明星教练团队</Text>
         </View>
     </View>
 }

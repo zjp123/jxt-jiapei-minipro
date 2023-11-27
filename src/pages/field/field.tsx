@@ -14,28 +14,28 @@ export default function Field() {
     const [pageIndex, setPageIndex] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
     const fetchData = async (pageNum?) => {
-		Taro.showLoading({
+        Taro.showLoading({
             title: '加载中',
         })
-		const res = await getFieldListApi('POST', {isHome: false, schoolId, pageSize: 12, pageIndex: pageNum || pageIndex})
-		Taro.hideLoading()
-		console.log(res, '-----------')
-		if (pageNum === 1) {
-			setDataList(res?.data?.list || [])
-		} else {
-			setDataList(dataList.concat(res?.data?.list || []))
-		}
-		setTotalPages(res?.data?.pagination.totalPages)
-		// setTotalPages(5)
-		Taro.stopPullDownRefresh()
-	}
+        const res = await getFieldListApi('POST', {isHome: false, schoolId, pageSize: 12, pageIndex: pageNum || pageIndex})
+        Taro.hideLoading()
+        console.log(res, '-----------')
+        if (pageNum === 1) {
+          setDataList(res?.data?.list || [])
+        } else {
+          setDataList(dataList.concat(res?.data?.list || []))
+        }
+        setTotalPages(res?.data?.pagination.totalPages)
+        // setTotalPages(5)
+        Taro.stopPullDownRefresh()
+      }
 	
     useEffect(() => {
         fetchData()
     }, [pageIndex])
     usePullDownRefresh(() => {
-		fetchData(1)
-		console.log('下拉刷新')
+        fetchData(1)
+        console.log('下拉刷新')
     })
 
     useReachBottom(() => {

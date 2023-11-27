@@ -3,6 +3,7 @@
     height: 100vh;
     // height: 100%;
     // overflow: hidden;
+    font-family: 'PingFang SC';
     display: flex;
     flex-direction: column;
     padding: 30px 26px 0;
@@ -16,6 +17,7 @@
       box-sizing: border-box;
       // border: 1px solid red;
       display: flex;
+      flex: 1;
       align-items: center;
       // border-bottom: 1px solid #EDEDED;
       .img-left-width {
@@ -30,6 +32,7 @@
           justify-content: space-between;
           height: 140px;
           flex: 1;
+          overflow: hidden;
           .card-right-title {
               font-family: 'Alibaba PuHuiTi';
               font-size: 32px;

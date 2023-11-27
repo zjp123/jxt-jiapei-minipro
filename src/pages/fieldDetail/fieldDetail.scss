@@ -3,7 +3,7 @@
     // height: 1448px;
     width: 100%;
     height: 100vh;
-    overflow: hidden;
+    // overflow: hidden;
     background-color: #f8f8f8;
     padding-top: 5px;
     .single-card-box {
@@ -130,40 +130,66 @@
         color: #101D37;
       }
       #mapId {
-        margin-top: 24px;
         width: 100%;
         height: 240px;
         border-radius: 12px;
         .customCallout {
           box-sizing: border-box;
-          background-color: #fff; 
-          border: 1px solid #ccc;
-          border-radius: 30px;
-          width: 150px;
-          height: 40px;
+          background-color: #E9623E; 
+          // border: 1px solid #ccc;
+          border-radius: 19px;
+          width: auto;
+          height: 72px;
           display: inline-flex;
           padding: 5px 20px;
           justify-content: center;
           align-items: center;
+          color: #fff;
         }
         
         .circle {
           width: 20px;
           height: 20px;
           border: 1px solid #ccc;
-          border-radius: 50%;
+          border-radius: 19px;
+          // border-radius: 50%;
         }
         
         .icon {
           width: 16px;
           height: 16px;
+          display: none;
         }
         
         .content {
-          flex: 0 1 auto;
-          margin: 0 10px;
-          font-size: 14px;
+          color: #fff;
+          font-size: 20px;
+          font-weight: 600;
         }
+      }
+    }
+    .img-list-wrap {
+      .detail-swipe {
+          margin-top: 20px;
+      }
+      .detail-swipe-box {
+          height: 252px !important;
+      }
+      .detail-swipe-item {
+          flex: none;
+          width: 448px !important;
+          height: 252px !important;
+          padding-right: 20px;
+          box-sizing: border-box;
+      
+          > .detail-swipe-item-img {
+              width: 100%;
+              height: 100%;
+              border-radius: 24px;
+          }
+      }
+      .detail-swipe-item:last-child {
+          padding-right: 20px;
       }
     }
 }
