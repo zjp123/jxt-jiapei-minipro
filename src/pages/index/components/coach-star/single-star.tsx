@@ -14,7 +14,7 @@ const SingleCoach = (props) => {
             <Image className="img-left-width" src={item?.coachPhotoUrl ? item?.coachPhotoUrl + '?w=120&h=120' : defaultCoachImage} />
             <View className="card-right">
                 <View className="card-right-one">
-                    <Text className="card-right-title">{item.coachName}</Text>
+                    <Text numberOfLines={1} maxLines={1}  className="card-right-title">{item.coachName}</Text>
                     <Image src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/ysm-new.png" />
                     <Text className="star-tag">{item.coachYear}年教龄</Text>
                 </View>
