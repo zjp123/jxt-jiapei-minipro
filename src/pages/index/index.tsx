@@ -137,6 +137,9 @@ export default function Index() {
     const onRestore = (e) => {
         console.log(navRef, '00000000000')
         console.log('onRestore:', e)
+        _freshing = false
+        setTriggered(false)
+        Taro.hideLoading()
     }
 
     // 下拉刷新
