@@ -27,15 +27,15 @@
           // justify-content: flex-start;
           // height: 140px;
           flex: 1;
-          .card-right-title {
-              font-family: 'Alibaba PuHuiTi';
-              font-size: 32px;
-              color: #14213A;
-              // border: 1px solid green;
-          }
           .fl {
             display: flex;
             align-items: center;
+            .card-right-title {
+                font-family: 'Alibaba PuHuiTi';
+                font-size: 32px;
+                color: #14213A;
+                // border: 1px solid green;
+            }
             .kemu {
                 display: inline-block;
                 background-color: #FFDCC3; 
