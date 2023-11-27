@@ -14,3 +14,4 @@ export const newS_img2 = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/ten
 // 常见问题默认图片
 export const newS_img3 = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/tenant_info_img1.png?v=2'
 
+export const cd_default = 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/cd-default.png'

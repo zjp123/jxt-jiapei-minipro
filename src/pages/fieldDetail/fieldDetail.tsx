@@ -1,82 +1,14 @@
-import { View, Text, Map, CoverView, CoverImage, Slot } from '@tarojs/components'
+import { View, Text, Map, CoverView, CoverImage } from '@tarojs/components'
 // import { AtButton } from 'taro-ui'
 // import { useLoad } from '@tarojs/taro'
 import './fieldDetail.scss'
 // import { set as setGlobalData } from '../../global_data'
-import Taro, { useRouter } from '@tarojs/taro'
+import Taro, { useLoad, useRouter } from '@tarojs/taro'
 import { getFieldDetailApi } from "@/api/common"
 import { useEffect, useState } from 'react'
 import HeaderCard from './header-card'
 import locationPath from '../../static/images/location.png'
 import ImgList from './img-list'
-
-const normalCallout = {
-  id: 1,
-  latitude: 23.098994,
-  longitude: 113.322520,
-  iconPath: '/image/location.png',
-  callout: {
-    content: '文本内容',
-    color: '#ff0000',
-    fontSize: 14,
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: '#000000',
-    bgColor: '#fff',
-    padding: 5,
-    display: 'ALWAYS',
-    textAlign: 'center'
-  },
-  // label: {
-  //   content: 'label 文本',
-  //   fontSize: 24,
-  //   textAlign: 'center',
-  //   borderWidth: 1,
-  //   borderRadius: 5,
-  //   bgColor: '#fff',
-  //   padding: 5
-  // }
-}
-
-const customCallout1 = {
-  id: 2,
-  // latitude: 23.097994,
-  // longitude: 113.323520,
-  latitude: 39.142853,
-  longitude: 117.244186,
-  iconPath: locationPath,
-  // iconPath: '',
-  // iconPath: '/image/location.png',
-  customCallout: {
-    anchorY: 0,
-    anchorX: 0,
-    display: 'ALWAYS'
-  },
-}
-
-const customCallout2 = {
-  id: 3,
-  latitude: 23.096994,
-  longitude: 113.324520,
-  iconPath: '/image/location.png',
-  customCallout: {
-    anchorY: 10,
-    anchorX: 0,
-    display: 'ALWAYS',
-  },
-}
-
-const customCallout3 = {
-  id: 4,
-  latitude: 23.095994,
-  longitude: 113.325520,
-  iconPath: '/image/location.png',
-  customCallout: {
-    anchorY: 0,
-    anchorX: 20,
-    display: 'ALWAYS',
-  },
-}
 
 // const obj = {
 //   id: 1,
@@ -91,6 +23,8 @@ const customCallout3 = {
 //     display: 'ALWAYS'
 //   },
 // }
+
+let mapCtx: any = null
 
 export default function FieldDetail() {
   const { params }: any = useRouter()
@@ -109,33 +43,40 @@ export default function FieldDetail() {
     getDataFn()
   }, [])
 
+  useLoad(() => {
+    // const query = Taro.createSelectorQuery()
+    // query.select('#mapId')
+    mapCtx = Taro.createMapContext('mapId')
+    // console.log(mapCtx, 'dddddddddddddddddddd')
+  })
+
   const getDataFn = async() => {
      Taro.showLoading()
      const res = await getFieldDetailApi('POST', {id: params.id})
      console.log(res, '获取场地详情获取场地详情获取场地详情')
      Taro.hideLoading()
-     setMakersObj([{
-        id: 1,
-        latitude: res.data.latitude,
-        longitude: res.data.longitude,
-        // latitude: 23.098994,
-        // longitude: 113.322520,
-        iconPath: locationPath,
-        width: 30,
-        height: 30,
-        content: res.data.address,
-        customCallout: {
-          anchorY: 0,
-          anchorX: 0,
-          display: 'ALWAYS'
-        },
-     }])
      setData(res.data || {})
+     setMakersObj([{
+          id: 1,
+          latitude: res.data.latitude,
+          longitude: res.data.longitude,
+          // latitude: 23.098994,
+          // longitude: 113.322520,
+          iconPath: locationPath,
+          width: 30,
+          height: 30,
+          content: res.data.address,
+          customCallout: {
+            anchorY: 0,
+            anchorX: 0,
+            display: 'ALWAYS'
+          },
+      }])
   }
 
   return (
     <View id='field-detail-wrap'>
-        <HeaderCard isDetail lastChild item={data}/>
+        <HeaderCard mapCtx={mapCtx} address={data.address} longitude={data.longitude} latitude={data.latitude} isDetail lastChild item={data}/>
         <View className="introduce">
           <Text className="introduce-title">练车场地介绍</Text>
           <View className="some-text">{data.regionDesc}</View>
@@ -154,6 +95,19 @@ export default function FieldDetail() {
           <View style={{borderRadius: '12px', marginTop: Taro.pxTransform(24), overflow: 'hidden'}}>
             <Map 
               id="mapId"
+              onClick={() => {
+                mapCtx.openMapApp({
+                  latitude: data.latitude,
+                  longitude: data.longitude,
+                  destination: data.address,
+                  success:()=>{
+                    console.log('导航触发成功');
+                  },
+                  fail:()=>{
+                    console.log('导航触发失败');
+                  }, 
+                }) 
+              }}
               markers={makersObj}
               enableZoom={true}
               enableScroll={true}
