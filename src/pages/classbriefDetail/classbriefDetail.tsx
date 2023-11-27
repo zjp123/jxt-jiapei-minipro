@@ -48,7 +48,7 @@ const Index: React.FC = () => {
                 <View className='class-bg'>
                     <View className='class-item'>
                         <View className='class-item-img'>
-                            <Image className='img' src={data?.picUrl ? data?.picUrl + '?w=233&h=175' : defaultClassesImage} />
+                            <Image className='img' src={data?.picUrlList?.length ? data?.picUrlList[0] + '?w=233&h=175' : defaultClassesImage} />
                         </View>
                         <View className='class-item-content'>
                             <View className='class-content-top'>
