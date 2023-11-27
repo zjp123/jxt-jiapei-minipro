@@ -55,23 +55,26 @@ export default function FieldDetail() {
      const res = await getFieldDetailApi('POST', {id: params.id})
      console.log(res, '获取场地详情获取场地详情获取场地详情')
      Taro.hideLoading()
-     setData(res.data || {})
-     setMakersObj([{
-          id: 1,
-          latitude: res.data.latitude,
-          longitude: res.data.longitude,
-          // latitude: 23.098994,
-          // longitude: 113.322520,
-          iconPath: locationPath,
-          width: 30,
-          height: 30,
-          content: res.data.address,
-          customCallout: {
-            anchorY: 0,
-            anchorX: 0,
-            display: 'ALWAYS'
-          },
-      }])
+     setTimeout(() => {
+      setData(res.data || {})
+      setMakersObj([{
+           id: 1,
+           latitude: res.data.latitude,
+           longitude: res.data.longitude,
+           // latitude: 23.098994,
+           // longitude: 113.322520,
+           iconPath: locationPath,
+           width: 30,
+           height: 30,
+           content: res.data.address,
+           customCallout: {
+             anchorY: 0,
+             anchorX: 0,
+             display: 'ALWAYS'
+           },
+       }])
+     }, 100);
+     
   }
 
   return (
