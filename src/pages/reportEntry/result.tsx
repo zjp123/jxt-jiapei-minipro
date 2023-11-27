@@ -12,7 +12,7 @@ const Index: React.FC = () => {
     const params: any = Taro.getCurrentInstance().router?.params;
     
     return (
-        <WebView src={url + `/supplierAllBack?showOrder=1&${params.payStatus ? `&payStatus=${params.payStatus}` : ''}`} />
+        <WebView src={url + `/supplierAllBack?source=1&${params.payStatus ? `&payStatus=${params.payStatus}` : ''}`} />
     )
 }
 
