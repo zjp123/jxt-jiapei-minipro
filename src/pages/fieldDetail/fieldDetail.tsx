@@ -117,8 +117,32 @@ export default function FieldDetail() {
               latitude={data.latitude}
               longitude={data.longitude}
               scale={16}
-              // bindmarkertap="onMarkerTap"
-              // bindcallouttap="onCalloutTap"
+              onMarkerTap={() => {
+                mapCtx.openMapApp({
+                  latitude: data.latitude,
+                  longitude: data.longitude,
+                  destination: data.address,
+                  success:()=>{
+                    console.log('导航触发成功');
+                  },
+                  fail:()=>{
+                    console.log('导航触发失败');
+                  }, 
+                }) 
+              }}
+              onCalloutTap={() => {
+                mapCtx.openMapApp({
+                  latitude: data.latitude,
+                  longitude: data.longitude,
+                  destination: data.address,
+                  success:()=>{
+                    console.log('导航触发成功');
+                  },
+                  fail:()=>{
+                    console.log('导航触发失败');
+                  }, 
+                }) 
+              }}
               // bindlabeltap="onLabelTap"
             >
               <CoverView 
