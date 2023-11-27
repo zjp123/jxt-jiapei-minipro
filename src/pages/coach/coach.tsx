@@ -102,7 +102,7 @@ const Index: React.FC = () => {
                                         <View className='coach-content-top'>
                                             <Text className='coach-title'>{item?.coachName}</Text>
                                             <Image className='coach-shiming' src={shiming} />
-                                            <Text className='coach-year'>{item?.coachYear}年教龄</Text>
+                                            <Text className='coach-year'>{item?.coachYear || '0'}年教龄</Text>
                                         </View>
                                         <View className='coach-content-area'>
                                             <Image className='coach-area-img' src={coachAreaImg} />
