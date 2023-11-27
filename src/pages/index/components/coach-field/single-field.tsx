@@ -10,7 +10,7 @@ const SingleCard = (props) => {
         url: '/pages/fieldDetail/fieldDetail?id=' + item.id
       })
     }} className="single-card-box" style={{borderBottom: lastChild ? 'none' : isNotIndexPage ? 'static' : '1px solid #EDEDED' }}>
-            <Image className="img-left-width" src={item.jxCdPicUrl || cd_default} />
+            <Image className="img-left-width" src={item.jxCdPicUrl.length ? item.jxCdPicUrl[0] : cd_default} />
             <View className="card-right">
                 <Text className="card-right-title">{item.name}</Text>
                 <View className="card-right-jz">
