@@ -11,12 +11,12 @@ interface Props {
 
 const Index: React.FC<Props> = (props) => {
     const { data } = props
-    const url =
-        process.env.NODE_ENV === 'production'
-            ? `https://jxtm.jxedt.com/h5/#/spScanCode`
-            : process.env.NODE_ENV === 'development'
-                ? `http://jxtguns.58v5.cn/h5/#/spScanCode`
-                : `http://jxtguns.58v5.cn/h5/#/spScanCode`
+    const url = `http://jxtguns.58v5.cn/h5/#/spScanCode`
+        // process.env.NODE_ENV === 'production'
+        //     ? `https://jxtm.jxedt.com/h5/#/spScanCode`
+        //     : process.env.NODE_ENV === 'development'
+        //         ? `http://jxtguns.58v5.cn/h5/#/spScanCode`
+        //         : `http://jxtguns.58v5.cn/h5/#/spScanCode`
     const accountInfo = Taro.getAccountInfoSync();
     const { path }: any = Taro.getCurrentInstance().router;
 
