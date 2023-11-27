@@ -3,6 +3,7 @@ import { View, Text, Button } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { getPhoneApi, loginApi } from '@/api/common'
 import { addSyncTrackLog } from '@/utils/utils'
+import {url} from '@/utils/utils'
 import './signupBtn.scss'
 
 interface Props {
@@ -11,12 +12,6 @@ interface Props {
 
 const Index: React.FC<Props> = (props) => {
     const { data } = props
-    const url = `http://jxtguns.58v5.cn/h5/#/spScanCode`
-        // process.env.NODE_ENV === 'production'
-        //     ? `https://jxtm.jxedt.com/h5/#/spScanCode`
-        //     : process.env.NODE_ENV === 'development'
-        //         ? `http://jxtguns.58v5.cn/h5/#/spScanCode`
-        //         : `http://jxtguns.58v5.cn/h5/#/spScanCode`
     const accountInfo = Taro.getAccountInfoSync();
     const { path }: any = Taro.getCurrentInstance().router;
 
