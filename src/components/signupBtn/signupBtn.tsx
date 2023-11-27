@@ -28,7 +28,7 @@ const Index: React.FC<Props> = (props) => {
         const phone = Taro.getStorageSync('phone')
         console.log(openId, '=====>openId', phone)
         Taro.navigateTo({
-            url: `/pages/reportEntry/webview?url=${url}&tenantId=${data.tenantId}&classesId=${data.id}&carType=${data.dicTrainType}&openId=${openId}&phone=${phone || ''}&appId=${accountInfo?.miniProgram?.appId || ''}`
+            url: `/pages/reportEntry/webview?url=${url + '/spScanCode'}&tenantId=${data.tenantId}&classesId=${data.id}&carType=${data.dicTrainType}&openId=${openId}&phone=${phone || ''}&appId=${accountInfo?.miniProgram?.appId || ''}`
         })
     }
     const loginFn = async (data) => {
