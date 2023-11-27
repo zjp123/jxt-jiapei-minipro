@@ -35,9 +35,9 @@ export const addSyncTrackLog = (btn, href, info) => {
 	})
 }
 
-export const url = `http://jxtguns.58v5.cn/h5/#/spScanCode`
+export const url = `http://jxtguns.58v5.cn/h5/#`
 // process.env.NODE_ENV === 'production'
-// 	? `https://jxtm.jxedt.com/h5/#/spScanCode`
+// 	? `https://jxtm.jxedt.com/h5/#`
 // 	: process.env.NODE_ENV === 'development'
-// 		? `http://jxtguns.58v5.cn/h5/#/spScanCode`
-// 		: `http://jxtguns.58v5.cn/h5/#/spScanCode`
+// 		? `http://jxtguns.58v5.cn/h5/#`
+// 		: `http://jxtguns.58v5.cn/h5/#`
