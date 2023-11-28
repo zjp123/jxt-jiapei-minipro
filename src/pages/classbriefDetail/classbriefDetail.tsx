@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, ScrollView, Image, Swiper, SwiperItem } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { getClassDetail } from '@/api/common'
-import NoData from '@/components/noData/noData'
 import SignupBtn from '@/components/signupBtn/signupBtn'
 import { defaultClassesImage } from '@/utils/imgUrl'
 import './classbriefDetail.scss'
@@ -80,43 +79,46 @@ const Index: React.FC = () => {
                             </View>
                         </View>
                     </View>
-                    <View className='class-detail-content'>
-                        <View className='detail-title'>班型介绍</View>
-                        <View className='detail-tip'>
+                    {
+                        (!!data?.remarksList?.length || !!data?.picUrlList?.length) &&
+                        <View className='class-detail-content'>
                             {
-                                data?.remarksList?.map((e, index) => {
-                                    return (
-                                        <View key={index} className='class-tip-item'>{e}</View>
-                                    )
-                                })
+                                !!data?.remarksList?.length &&
+                                <>
+                                    <View className='detail-title'>班型介绍</View>
+                                    <View className='detail-tip'>
+                                        {
+                                            data?.remarksList?.map((e, index) => {
+                                                return (
+                                                    <View key={index} className='class-tip-item'>{e}</View>
+                                                )
+                                            })
+                                        }
+                                    </View>
+                                </>
                             }
-                            {!data?.remarksList?.length &&
-                                <NoData />
-                            }
-                        </View>
-                        <View className='detail-swipe'>
+
+
                             {
                                 !!data?.picUrlList?.length &&
-                                <Swiper
-                                    className='detail-swipe-box'
-                                >
-                                    {
-                                        data?.picUrlList?.map((item, index) => {
-                                            return (
-                                                <SwiperItem key={index} className='detail-swipe-item'>
-                                                    <Image onClick={() => previewImage(data?.picUrlList, index)} className='detail-swipe-item-img' src={item} />
-                                                </SwiperItem>
-                                            )
-                                        })
-                                    }
-                                </Swiper>
-                            }
-                            {
-                                !data?.picUrlList?.length &&
-                                <NoData />
+                                <View className='detail-swipe'>
+                                    <Swiper
+                                        className='detail-swipe-box'
+                                    >
+                                        {
+                                            data?.picUrlList?.map((item, index) => {
+                                                return (
+                                                    <SwiperItem key={index} className='detail-swipe-item'>
+                                                        <Image onClick={() => previewImage(data?.picUrlList, index)} className='detail-swipe-item-img' src={item} />
+                                                    </SwiperItem>
+                                                )
+                                            })
+                                        }
+                                    </Swiper>
+                                </View>
                             }
                         </View>
-                    </View>
+                    }
                 </View>
             </ScrollView>
         </View>
