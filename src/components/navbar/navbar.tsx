@@ -10,14 +10,15 @@ const Navbar = forwardRef((props: any, ref) => {
     const {contactInfo} = props
     const [isOpened, setIsOpened] = useState(false)
     const [area, setArea] = useState('佛山')
+    // 1707325546549014529 22144
     const [areaList, setAreaList] = useState<Array<any>>([
       {
         cityName: '佛山',
-        id: '1128592555575894016'
+        id: process.env.NODE_ENV === 'development' ? '1128592555575894016' : '1707325546549014529'
       },
       {
         cityName: '石家庄',
-        id: '1426060676178128896'
+        id: process.env.NODE_ENV === 'development' ? '1426060676178128896' : '22144'
       }
     ])
     useEffect(() => {
