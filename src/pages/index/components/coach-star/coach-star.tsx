@@ -3,6 +3,7 @@ import { View, Text } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import './index.scss'
 import SingleStar from './single-star'
+import NoData from '@/components/noData/noData'
 
 interface StarProp{
     coachStarList: Array<any>
@@ -27,9 +28,9 @@ const CoachStar = (props: StarProp) => {
             </View>
         </View>
         {
-          coachStarList.map((item, index) => {
+          coachStarList.length ? coachStarList.map((item, index) => {
             return <SingleStar key={item.id} item={item} lastChild={index === coachStarList.length - 1}/>
-          })
+          }) : <NoData />
         }
         {/* <SingleStar />
         <SingleStar />

@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react'
 import HeaderCard from './header-card'
 import locationPath from '../../static/images/location.png'
 import ImgList from './img-list'
+import NoData from '@/components/noData/noData'
+
 
 // const obj = {
 //   id: 1,
@@ -82,11 +84,11 @@ export default function FieldDetail() {
         <HeaderCard mapCtx={mapCtx} address={data.address} longitude={data.longitude} latitude={data.latitude} isDetail lastChild item={data}/>
         <View className="introduce">
           <Text className="introduce-title">练车场地介绍</Text>
-          <View className="some-text">{data.regionDesc}</View>
+          {data.regionDesc ? <View className="some-text">{data.regionDesc}</View> : <NoData />}
         </View>
         <View className="environment">
           <Text className="introduce-title">场地环境</Text>
-          <ImgList picUrlList={data.jxCdPicUrl || []}/>
+          {data.jxCdPicUrl.length ? <ImgList picUrlList={data.jxCdPicUrl}/> : <NoData />}
         </View>
         <View className="address">
           <Text className="introduce-title" 

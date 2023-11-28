@@ -6,6 +6,7 @@ import { get as getGlobalData } from '../../global_data'
 import SingleField from '../index/components/coach-field/single-field'
 import { useState, useEffect} from 'react'
 import { getFieldListApi} from "@/api/common"
+import NoData from '@/components/noData/noData'
 // 如果页面内容不足以滚动到底部，则不会触发该事件
 
 export default function Field() {
@@ -46,10 +47,10 @@ export default function Field() {
 
     return (
       <View id='page-field'>
-		{dataList.map((item: any) => {
-			return <SingleField key={item.id} item={item} isNotIndexPage/>
-		})}
-        {pageIndex >= totalPages && <View className="not-more-data">暂无更多数据~</View>}
+        {dataList.length ? dataList.map((item: any) => {
+          return <SingleField key={item.id} item={item} isNotIndexPage/>
+        }) : <NoData />}
+        {(pageIndex >= totalPages && dataList.length >= 1) && <View className="not-more-data">暂无更多数据~</View>}
       </View>
     )
 }

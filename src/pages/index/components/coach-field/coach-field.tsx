@@ -3,6 +3,7 @@ import { View, Text } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import './index.scss'
 import SingleField from './single-field'
+import NoData from '@/components/noData/noData'
 
 interface FieldProp{
     fieldList: Array<any>
@@ -25,9 +26,10 @@ const CoachField = (props: FieldProp) => {
                 className="look_more">查看更多&gt;</Text>
             </View>
         </View>
-        {props.fieldList.map((item, index) => {
-          return <SingleField key={item.id} item={item} lastChild={index === props.fieldList.length - 1}/>
-        })}
+        {props.fieldList.length ? props.fieldList.map((item, index) => {
+            return <SingleField key={item.id} item={item} lastChild={index === props.fieldList.length - 1}/>
+          }) : <NoData /> 
+        }
     </View>
 }
 

@@ -11,7 +11,7 @@
       // border: 1px solid red;
       margin-bottom: 10px;
       display: flex;
-      // align-items: center;
+      flex: 1;
       background-color: #fff;
       border-radius: 0px, 0px, 24px, 24px;
       box-sizing: border-box;
@@ -24,6 +24,8 @@
       .card-right {
           display: flex;
           flex-direction: column;
+          overflow: hidden;
+          box-sizing: border-box;
           // justify-content: flex-start;
           // height: 140px;
           flex: 1;
@@ -53,6 +55,7 @@
               display: flex;
               align-items: center;
               margin-top: 16px;
+              overflow: hidden;
               // border: 1px solid green;
               image {
                   width: 24px;
@@ -62,6 +65,15 @@
               text {
                   color: #666;
                   font-size: 24px;
+              }
+              .one-line{
+                flex: 1;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                // border: 1px solid blue;
               }
           }
           .phone-wrap {
@@ -81,11 +93,6 @@
             align-items: unset;
             .max-line-one {
               flex: 1;
-              // display: -webkit-box;
-              // -webkit-line-clamp: 2;
-              // -webkit-box-orient: vertical;
-              // overflow: hidden;
-              // text-overflow: ellipsis;
             }
           }
       }

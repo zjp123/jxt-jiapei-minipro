@@ -3,6 +3,7 @@ import { View, Text } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import './index.scss'
 import SingleClass from './single-class'
+import NoData from '@/components/noData/noData'
 
 interface IntroducProp{
     classIntroducList: Array<any>
@@ -26,9 +27,10 @@ const ClassIntroduc = (props: IntroducProp) => {
                 className="look-more">查看更多&gt;</Text>
             </View>
         </View>
-        {classIntroducList.map((item, index) => {
-          return <SingleClass key={item.id} item={item} lastChild={index === classIntroducList.length - 1}/>
-        })}
+        {classIntroducList.length ? classIntroducList.map((item, index) => {
+            return <SingleClass key={item.id} item={item} lastChild={index === classIntroducList.length - 1}/>
+          }) : <NoData />
+        }
         {/* <SingleClass />
         <SingleClass />
         <SingleClass lastChild/> */}
