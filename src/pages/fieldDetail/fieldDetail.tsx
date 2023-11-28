@@ -113,6 +113,9 @@ export default function FieldDetail() {
                   }, 
                 }) 
               }}
+              onError={(e) => {
+                console.log('地图发生错误', e)
+              }}
               markers={makersObj}
               enableZoom={true}
               enableScroll={true}

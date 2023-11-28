@@ -1,3 +1,4 @@
+const isDev = process.env.NODE_ENV === 'development'
 const globalData = {
     navBarHeight:0,// 导航栏高度
     menuHeight:0,//胶囊按钮 高度
@@ -7,8 +8,9 @@ const globalData = {
     userInfo: {
         phone: ''
     },
-    schoolId: '1128592555575894016'
-    // schoolId: '1426060676178128896'
+    schoolId: isDev ? '1128592555575894016' : '1707325546549014529'
+    // '1707325546549014529'
+    // schoolId: '1426060676178128896' 1128592555575894016
 }
 
 export function set(key, val) {

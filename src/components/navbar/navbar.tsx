@@ -15,10 +15,12 @@ const Navbar = forwardRef((props: any, ref) => {
       {
         cityName: '佛山',
         id: process.env.NODE_ENV === 'development' ? '1128592555575894016' : '1707325546549014529'
+        // id: '1707325546549014529'
       },
       {
         cityName: '石家庄',
         id: process.env.NODE_ENV === 'development' ? '1426060676178128896' : '22144'
+        // id: '22144'
       }
     ])
     useEffect(() => {
