@@ -5,14 +5,14 @@ import './my.scss'
 // import { set as setGlobalData } from '../../global_data'
 import Taro from '@tarojs/taro'
 import { getPhoneApi, loginApi, getOrderListApi} from "@/api/common"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SingleOrder from './single-order'
 // let openId = ''
 export default function My() {
-  const [phoneState, setPhoneState] = useState('')
+  const [phoneState, setPhoneState] = useState(Taro.getStorageSync('phone') || '')
   const [orderList, setOrderList] = useState<Array<any>>([])
   useLoad(() => {
-    console.log('Page loaded.')
+    console.log('Page loaded.', Taro.getStorageSync('phone'))
   })
 
   // useReady(() => { 
@@ -49,6 +49,24 @@ export default function My() {
   //   });
   // })
 
+  const getOrderFn = async() => {
+    Taro.showLoading()
+    try {
+      const res = await getOrderListApi('POST')
+      Taro.hideLoading()
+      setOrderList(res.data?.orders || [])
+    } catch (error) {
+      Taro.hideLoading()
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    if (Taro.getStorageSync('phone')) {
+      getOrderFn()
+    }
+  }, [])
+
   const loginFn = async(data) => {
     return await loginApi('POST', {...data})
   }
@@ -80,6 +98,7 @@ export default function My() {
               data: loginRes.data.token
             })
             const orderListRes = await getOrderListApi('POST')
+            console.log(orderListRes, '订单列表订单列表订单列表')
             Taro.hideLoading()
             setOrderList(orderListRes.data?.orders || [])
         } catch (error) {
@@ -101,31 +120,35 @@ export default function My() {
   //   })
   // }
 
+  const trasformPhone = (str) => {
+    return str.replace(/(\d{3})\d*(\d{4})/, "$1****$2")
+  }
+
   return (
     <View id='my-wrap'>
         <View className="my-header">
             <View className="img-text">
                 <Image src={phoneState ? 'https://img.58cdn.com.cn/dist/jxt/images/jxtschool/logined.png' : "https://img.58cdn.com.cn/dist/jxt/images/jxtschool/adv-default.png"}/>
-                {(!phoneState || !Taro.getStorageSync('phone')) && <View className="login-btn">
+                {(!phoneState || !Taro.getStorageSync('phone')) ? <View className="login-btn">
                     <AtButton openType='getPhoneNumber' onGetPhoneNumber={getPhoneFn} className="btn">点击登录/注册</AtButton>
                     {/* <Button className="btn" openType='getPhoneNumber' onGetPhoneNumber={getPhoneFn}>点击登录/注册</Button> */}
                     {/* <Button className="btn" onClick={getUserInfoFn}>登录</Button> */}
                     <Text className="more">登录后获取更多信息～</Text>
                     {/* <Text className="nickName">Hi，微信昵称</Text>
                     <Text className="phone">188****8888</Text> */}
-                </View>}
+                </View> : <View className="tel-phone">{trasformPhone(phoneState || '')}</View>}
             </View>
         </View>
         <View className="my-order">
             <Text className="order-title">我的订单</Text>
-              {(!phoneState || Taro.getStorageSync('phone')) ? <View className="img-wrap">
+              {!orderList.length ? <View className="img-wrap">
                   <Image src="https://img.58cdn.com.cn/dist/jxt/images/jxtschool/jqqd.png"/>
                   <Text>暂无数据~</Text>
               </View> :
               <View className="my-order-list">
                   {
                     orderList.map((item, index) => {
-                      return <SingleOrder key={item.id} item={item} lastChild={index === orderList.length - 1}/>
+                      return <SingleOrder key={item.className + item.actualFee} item={item} lastChild={index === orderList.length - 1}/>
                     })
                   }
               </View>
