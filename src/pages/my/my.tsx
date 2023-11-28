@@ -5,7 +5,7 @@ import './my.scss'
 // import { set as setGlobalData } from '../../global_data'
 import Taro from '@tarojs/taro'
 import { getPhoneApi, loginApi, getOrderListApi} from "@/api/common"
-import { useEffect, useState, useId } from 'react'
+import { useEffect, useState } from 'react'
 import SingleOrder from './single-order'
 // let openId = ''
 export default function My() {
@@ -98,6 +98,7 @@ export default function My() {
               data: loginRes.data.token
             })
             const orderListRes = await getOrderListApi('POST')
+            console.log(orderListRes, '订单列表订单列表订单列表')
             Taro.hideLoading()
             setOrderList(orderListRes.data?.orders || [])
         } catch (error) {
