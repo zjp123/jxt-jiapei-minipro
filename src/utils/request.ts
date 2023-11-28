@@ -31,6 +31,7 @@ const TaroRequest = (
         if (result.code === 0 || result.status === 0) {
           return result
         } else {
+          console.log("拦截失败",result)
           let msg = result.message || result.msg
           if (result.code === 4100 || result.status === 4100) {
             Taro.showToast({
@@ -47,7 +48,6 @@ const TaroRequest = (
             })
             return
           }
-          console.log("拦截失败",result)
           Taro.showToast({
             title: msg || '请求有误',
             icon: 'none',
