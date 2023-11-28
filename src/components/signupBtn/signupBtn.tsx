@@ -22,6 +22,11 @@ const Index: React.FC<Props> = (props) => {
         setIsShowBtn(!!(Taro.getStorageSync('openId') && Taro.getStorageSync('phone')))
     }, [data])
 
+    Taro.useDidShow(() => {
+        console.log('======>我进入页面了')
+        setIsShowBtn(!!(Taro.getStorageSync('openId') && Taro.getStorageSync('phone')))
+    })
+
     // 跳转报名页
     const goSignup = () => {
         const openId = Taro.getStorageSync('openId')
