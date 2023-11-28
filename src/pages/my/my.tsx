@@ -1,6 +1,6 @@
 import { View, Text, Image } from '@tarojs/components'
 import { AtButton } from 'taro-ui'
-import { useLoad } from '@tarojs/taro'
+import { useLoad, useDidShow } from '@tarojs/taro'
 import './my.scss'
 // import { set as setGlobalData } from '../../global_data'
 import Taro from '@tarojs/taro'
@@ -9,11 +9,27 @@ import { useEffect, useState } from 'react'
 import SingleOrder from './single-order'
 // let openId = ''
 export default function My() {
-  const [phoneState, setPhoneState] = useState(Taro.getStorageSync('phone') || '')
+  const store_phone = Taro.getStorageSync('phone')
+  const [phoneState, setPhoneState] = useState(store_phone || '')
   const [orderList, setOrderList] = useState<Array<any>>([])
   useLoad(() => {
     console.log('Page loaded.', Taro.getStorageSync('phone'))
   })
+
+  useDidShow(() => {
+    console.log('useDidShow-------')
+    if (!phoneState && Taro.getStorageSync('phone')) {
+      setPhoneState(Taro.getStorageSync('phone'))
+      getOrderFn()
+    }
+  })
+
+  // useTabItemTap((item) => {
+  //   console.log(item.index)
+  //   console.log(item.pagePath)
+  //   console.log(item.text)
+  // })
+
 
   // useReady(() => { 
   //   openId = Taro.getStorageSync('openId')
@@ -82,15 +98,16 @@ export default function My() {
           return
         }
         try {
+            const store_openid = Taro.getStorageSync('openId')
             Taro.showLoading()
-            const res = await getPhoneApi('POST', {code: e.target.code})
+            const res = await getPhoneApi('POST', {code: e.target.code, openId: store_openid})
             console.log(res, '手机号手机号手机号手机号手机号')
             const telPhone = res.data.phone
             Taro.setStorage({
               key:"phone",
               data: telPhone
             })
-            const loginRes = await loginFn({phone: telPhone, loginType: 3, openId: Taro.getStorageSync('openId')})
+            const loginRes = await loginFn({phone: telPhone, loginType: 3, openId: store_openid})
             setPhoneState(telPhone)
             console.log(loginRes, '获取token获取token获取token获取token')
             Taro.setStorage({
