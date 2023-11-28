@@ -5,8 +5,8 @@ interface URL {
     JXTCOMMON_API: string
 }
 
-// const isDev = process.env.NODE_ENV === 'development'
-const isDev = false
+const isDev = process.env.NODE_ENV === 'development'
+// const isDev = false
 
 
 // OPEN_API: '"http://jxtopenapi.58v5.cn"',  https://jxtopenapi.xueche.com
