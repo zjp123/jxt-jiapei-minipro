@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, RichText, ScrollView } from '@tarojs/components'
+import { View, RichText, ScrollView, WebView } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { getCombinationDetail } from '@/api/common'
 
@@ -18,6 +18,7 @@ const Index: React.FC = () => {
     const getList = async () => {
         try {
             const res: any = await getCombinationDetail('POST', { id: params.id, type: params.type })
+            console.log(res, '......')
             if (res?.code === 0 || res?.code === 200) {
                 setData(res?.data)
             }
@@ -28,6 +29,19 @@ const Index: React.FC = () => {
 
     return (
         <View className='news-detail-werrper'>
+          {data.linkType === 1
+              ? 
+              <WebView 
+                  src={data.text} 
+                  onMessage={() => {}} 
+                  onLoad={(e) => {
+                      console.log(e, '页面加载完成')
+                  }} 
+                  onError={(e) => {
+                      console.log(e, '页面加载错误')
+                  }} 
+              ></WebView> 
+                :
             <ScrollView
                 scrollY
                 style={{ height: '100%' }}
@@ -40,6 +54,7 @@ const Index: React.FC = () => {
                     </View>
                 </View>
             </ScrollView>
+            }
         </View>
     )
 }
